@@ -1,0 +1,743 @@
+/* Inner pages — client mockup layouts */
+.site-main[class*="page-"] {
+    padding: 0;
+}
+
+.page-section {
+    padding: 70px 0;
+}
+
+.page-section--cream {
+    background: var(--light-cream);
+}
+
+.page-section--white {
+    background: var(--light-cream);
+}
+
+.page-section--top {
+    padding-top: 100px;
+}
+
+.site-main--page > .pio-hero,
+.site-main--page > .careers-hero {
+    padding-top: 70px;
+}
+
+.page-banner-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.brand-card__image-link {
+    display: block;
+    line-height: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.brand-card__image-link img {
+    pointer-events: none;
+}
+
+.contact-notice {
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.contact-notice--success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+.contact-notice--error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+.page-editable-content .entry-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Split layouts */
+.page-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.page-split--fade-right .page-split__media img,
+.page-split--fade-left .page-split__media img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+}
+
+/* About */
+.about-story-label {
+    color: var(--secondary-orange);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.about-img-radius-tl {
+    border-radius: 40px 0 40px 0;
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+}
+
+.about-img-radius-tr {
+    border-radius: 0 40px 0 40px;
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    text-align: center;
+}
+
+.value-card__icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.value-card__label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary-brown);
+}
+
+.btn-green {
+    background: var(--accent-green);
+    color: #fff !important;
+    border-radius: 4px;
+}
+
+.btn-brown {
+    background: var(--primary-brown);
+    color: #fff !important;
+    border-radius: 0;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+}
+
+.btn-purple {
+    background: var(--accent-purple);
+    color: #fff !important;
+    border-radius: 6px;
+}
+
+/* Pio brand */
+/* Brand detail (all brands) — mockup layout */
+.page-brand-detail {
+    background: var(--light-cream);
+}
+
+/* .page-brand-detail.site-main--page > .brand-detail-hero {
+    padding-top: 88px; comment by AB
+} */
+
+.brand-detail-hero {
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
+    min-height: 480px;
+    background: #fff;
+    align-items: stretch;
+}
+
+.brand-detail-hero__content {
+    padding: 48px 56px 48px max(48px, calc((100vw - 1200px) / 2 + 20px));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #fff;
+    z-index: 2;
+}
+
+.brand-detail-hero__logo {
+    max-width: 180px;
+    max-height: 72px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 28px;
+}
+
+.brand-detail-hero__title {
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+    color: var(--primary-brown);
+    line-height: 1.15;
+}
+
+.brand-detail-hero__desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    max-width: 420px;
+}
+
+.brand-detail-hero__body {
+    margin-bottom: 20px;
+    line-height: 1.7;
+    font-size: 14px;
+    max-width: 440px;
+}
+
+.brand-detail-hero__cta {
+    align-self: flex-start;
+    margin-top: 8px;
+}
+
+.brand-detail-hero__media {
+    position: relative;
+    overflow: hidden;
+    background: var(--light-cream);
+}
+
+.brand-detail-hero__media img {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.brand-detail-products {
+    padding: 56px 0 48px;
+    background: var(--light-cream);
+}
+
+.brand-detail-products__title {
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.page-brand-detail .drink-card__name {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 11px;
+}
+
+.brand-product-card--hidden {
+    display: none !important;
+}
+
+.brand-products.is-expanded .brand-product-card--hidden {
+    display: block !important;
+}
+
+.brand-products__toggle-wrap {
+    margin-top: 36px;
+}
+
+.brand-detail-all-brands {
+    background: var(--light-cream);
+    padding-bottom: 48px;
+}
+
+.page-brand-detail .brand-detail-all-brands .home-brands {
+    padding-top: 0;
+}
+
+.page-brand-detail .brand-detail-all-brands .brands-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.page-brand-detail .brand-detail-all-brands .brand-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.page-split--reverse {
+    direction: rtl;
+}
+
+.page-split--reverse > * {
+    direction: ltr;
+}
+
+.section-icon {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.pio-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 420px;
+    background: var(--light-cream);
+    margin-top: 0;
+}
+
+.pio-hero__content {
+    padding: 60px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pio-hero__logo {
+    max-width: 160px;
+    margin-bottom: 24px;
+}
+
+.pio-hero__title {
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.pio-hero__media img {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+}
+
+.drinks-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.drink-card {
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.drink-card__image {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+.drink-card__name {
+    padding: 12px;
+    font-size: 12px;
+    margin: 0;
+    color: var(--primary-brown);
+}
+
+/* Order */
+.order-top {
+    padding: 80px 0 60px;
+    background: var(--light-cream);
+}
+
+.order-features {
+    background: var(--light-cream);
+    padding: 48px 0;
+}
+
+.features-grid--4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+}
+
+.feature-item__icon {
+    font-size: 36px;
+    display: block;
+    margin-bottom: 12px;
+    color: var(--primary-brown);
+}
+
+.feature-item__label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary-brown);
+}
+
+.phone-mockup {
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.powered-by {
+    font-size: 12px;
+    color: #888;
+    margin-top: 16px;
+}
+
+/* Rewards */
+.rewards-section {
+    padding: 80px 0;
+    background: var(--light-cream);
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+}
+
+.benefits-list li {
+    padding: 10px 0 10px 20px;
+    position: relative;
+}
+
+.benefits-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-brown);
+}
+
+/* Brands page (matches homepage grid) */
+.page-brands__section {
+    padding: 100px 0 70px;
+}
+
+.page-brands .brands-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.page-brands .brand-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.page-brands .brand-card__image-link {
+    display: block;
+}
+
+.page-brands .brand-card__image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.page-brands .brand-card__name {
+    font-size: 18px;
+    margin: 16px 16px 8px;
+    color: var(--primary-brown);
+    text-transform: none;
+}
+
+.page-brands .brand-card__desc {
+    font-size: 13px;
+    color: #666;
+    margin: 0 16px 16px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+
+.page-brands .btn-brand--purple { background: var(--accent-purple); color: #fff !important; border-radius: 4px; }
+.page-brands .btn-brand--orange { background: var(--secondary-orange); color: #fff !important; border-radius: 4px; }
+.page-brands .btn-brand--yellow { background: #F2B824; color: var(--primary-brown) !important; border-radius: 4px; }
+.page-brands .btn-brand--green { background: var(--accent-green); color: #fff !important; border-radius: 4px; }
+
+/* Careers */
+.careers-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 480px;
+    background: var(--light-cream);
+    align-items: stretch;
+}
+
+.careers-hero__content {
+    padding: 80px 48px 80px max(48px, calc((100vw - 1200px) / 2 + 20px));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.careers-hero__content h1 {
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.careers-hero__intro {
+    margin-bottom: 24px;
+    line-height: 1.7;
+    color: var(--text-dark);
+    text-transform: none;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.careers-hero__list {
+    margin-bottom: 28px;
+}
+
+.careers-hero__media {
+    position: relative;
+    overflow: hidden;
+}
+
+.careers-hero__media img {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.careers-paths {
+    background: var(--light-cream);
+    padding: 56px 0 64px;
+    margin-bottom: 0;
+}
+
+.careers-paths__inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+}
+
+.career-path__icon {
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 14px;
+    border: 2px solid var(--primary-brown);
+    border-radius: 50%;
+    position: relative;
+}
+
+.career-path__icon--entry::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 20px;
+    height: 2px;
+    background: var(--primary-brown);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 -6px 0 var(--primary-brown), 0 6px 0 var(--primary-brown);
+}
+
+.career-path__icon--lead::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--primary-brown);
+    border-radius: 2px;
+    transform: translateX(-50%);
+}
+
+.career-path__icon--store::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 2px solid var(--primary-brown);
+    border-radius: 2px;
+}
+
+.career-path__icon--own::before {
+    content: '♥';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--primary-brown);
+    line-height: 1;
+}
+
+.career-path__label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--primary-brown);
+    line-height: 1.4;
+    display: block;
+}
+
+.text-center { text-align: center; }
+
+@media (max-width: 992px) {
+    .page-split, .pio-hero, .careers-hero, .brand-detail-hero { grid-template-columns: 1fr; }
+    .brand-detail-hero__content { padding: 48px 24px; }
+    .brand-detail-hero__media img { min-height: 280px; mask-image: none; -webkit-mask-image: none; }
+    .page-brand-detail .brand-detail-all-brands .brands-grid { grid-template-columns: repeat(2, 1fr); }
+    .values-grid { grid-template-columns: repeat(3, 1fr); }
+    .drinks-grid { grid-template-columns: repeat(3, 1fr); }
+    .features-grid--4 { grid-template-columns: repeat(2, 1fr); }
+    .page-brands .brands-grid { grid-template-columns: repeat(2, 1fr); }
+    .careers-paths__inner { grid-template-columns: repeat(2, 1fr); }
+    .careers-hero__content { padding: 60px 24px; }
+    .careers-hero__media img { min-height: 320px; mask-image: none; -webkit-mask-image: none; }
+}
+
+
+
+@media (max-width: 767px) {
+
+    
+    .page-split{
+        display:flex !important;
+        flex-direction:column !important;
+    }
+
+    
+    .page-split__media{
+        order:2 !important;
+        width:100%;
+        margin:20px 0 !important;
+    }
+
+   
+    .page-split__content{
+        order:1 !important;
+        width:100%;
+    }
+
+ 
+    .page-split__content h2,
+    .page-split__content p{
+        order:3;
+    }
+
+}
+
+.contact-title{
+    text-align:center;
+    font-family:"Cormorant", serif;
+    font-size:64px;
+    color:#4b2b1d;
+    margin-bottom:60px;
+    line-height:1.1;
+}
+
+.contact-layout{
+    display:grid;
+    grid-template-columns:380px 1fr;
+    gap:60px;
+    align-items:start;
+}
+
+.contact-info{
+    background:#fff;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.contact-info h2,
+.contact-form-title{
+    font-family:"Cormorant", serif;
+    font-size:40px;
+    color:#4b2b1d;
+    margin-bottom:30px;
+}
+
+.contact-item{
+    margin-bottom:30px;
+}
+
+.contact-item h3{
+    font-size:20px;
+    color:#6b3c22;
+    margin-bottom:10px;
+}
+
+.contact-item p{
+    line-height:1.8;
+}
+
+.contact-form-wrapper{
+    background:#fff;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+
+
+@media (max-width: 991px) {
+
+    .contact-layout{
+        display:flex;
+        flex-direction:column;
+        gap:40px;
+    }
+
+    /* Form first */
+    .contact-form-wrapper{
+        order:1;
+    }
+
+    /* Location second */
+    .contact-info{
+        order:2;
+        margin-top:0;
+    }
+
+    .contact-title{
+        font-size:30px;
+        text-align:center;
+        line-height:1.2;
+        margin-bottom:35px;
+    }
+
+    .contact-form-wrapper,
+    .contact-info{
+        width:100%;
+        padding:25px;
+        border-radius:18px;
+    }
+
+    /* Reduce both headings */
+    .contact-info h2,
+    .contact-form-title{
+        font-size:26px;
+        margin-bottom:20px;
+        text-align:center;
+    }
+
+}

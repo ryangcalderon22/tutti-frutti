@@ -1,0 +1,1436 @@
+/**
+ * Tutti Frutti — site overrides (v1.5)
+ * Uses stable page classes + CSS variables from Customizer (not page-id-*).
+ */
+
+/* Oswald for headings / brand labels */
+.section-title,
+.home-hero__title,
+.page-hero__title,
+.brand-card__name,
+.brand-detail-hero__title,
+.brand-detail-products__title,
+.brand-product-category__title,
+.page-brand-detail .drink-card__name,
+.careers-job-card__title,
+.faq-item__question {
+    font-family: 'Oswald', 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+/* Homepage hero height from Customizer */
+.home-hero {
+    min-height: var(--tf-hero-min-height, 30vh);
+}
+
+/* Brand cards — homepage & brand detail footer grid */
+.home-brands .brand-card,
+.page-brand-detail .brand-detail-all-brands .brand-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.home-brands .brand-card:hover,
+.page-brand-detail .brand-detail-all-brands .brand-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+.home-brands .brand-card__name {
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 12px 16px 16px;
+    text-align: center;
+    color: var(--primary-brown);
+}
+
+.home-brands .brand-card__logo {
+    max-width: 140px;
+    max-height: 72px;
+}
+
+.home-brands .brand-card__lines {
+    max-width: 220px;
+    margin: 0 auto;
+}
+
+.home-brands .brand-card__line {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.home-brands .brand-card--compact .brand-card__logo-link {
+    padding-top: 24px;
+    padding-bottom: 4px;
+}
+
+/* Moments section */
+.home-moments .moments-feature__title {
+    font-family: 'Oswald', 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Rewards & Careers — hero backgrounds from admin (Customizer / Page Sections) */
+.page-rewards .rewards-hero,
+.page-rewards .page-hero--rewards,
+.rewards-split.page-hero--rewards {
+    background-image: var(--tf-rewards-hero-bg);
+    background-size: cover;
+    background-position: center;
+}
+
+.page-careers .careers-hero,
+.page-careers .page-hero--careers {
+    background-image: var(--tf-careers-hero-bg);
+    background-size: cover;
+    background-position: center;
+}
+
+/* Order page */
+.page-order .page-split__media img,
+.page-order .phone-mockup {
+    border-radius: 12px;
+}
+
+/* Brand detail — hero bg variable from PHP */
+.brand-detail-hero {
+    background-image: var(--tf-brand-hero-bg);
+    background-size: cover;
+    background-position: right center;
+}
+
+.brand-detail-hero__media img {
+    visibility: visible;
+}
+
+/* Product category headings */
+.brand-product-category__title {
+    font-size: 18px;
+    color: var(--primary-brown);
+    margin: 28px 0 16px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--secondary-orange);
+    padding-bottom: 8px;
+}
+
+.brand-product-category__title:first-of-type {
+    margin-top: 0;
+}
+
+/* Order Now hover overlay */
+.brand-product-card {
+    position: relative;
+}
+
+.brand-product-card__link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    line-height: 0;
+}
+
+.brand-product-card__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(107, 62, 38, 0.72);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+
+.brand-product-card:hover .brand-product-card__overlay,
+.brand-product-card:focus-within .brand-product-card__overlay {
+    opacity: 1;
+}
+
+.brand-product-card__overlay .btn {
+    pointer-events: auto;
+}
+
+.home-featured__subtitle,
+.section-subtitle {
+    text-align: center;
+    font-family: 'Oswald', 'Montserrat', sans-serif;
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: var(--primary-brown);
+    margin: -24px 0 32px;
+    letter-spacing: 0.04em;
+}
+
+/* Careers Microsoft Form embed */
+.careers-embed-section {
+    padding: 48px 0 64px;
+}
+
+.careers-embed-wrap {
+    max-width: var(--tf-careers-embed-width, 100%);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.careers-embed-frame {
+    width: 100%;
+    min-height: var(--tf-careers-embed-height, 720px);
+    height: var(--tf-careers-embed-height, 720px);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Brand detail — menu columns */
+.brand-menu-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 32px 40px;
+    align-items: start;
+}
+
+.brand-menu-column {
+    break-inside: avoid;
+}
+
+.brand-menu-category-card {
+    margin-bottom: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.brand-menu-category-card__link {
+    display: block;
+    position: relative;
+    line-height: 0;
+}
+
+.brand-menu-category-card__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.brand-menu-category-card__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(107, 62, 38, 0.72);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.brand-menu-category-card__link:hover .brand-menu-category-card__overlay,
+.brand-menu-category-card__link:focus .brand-menu-category-card__overlay {
+    opacity: 1;
+}
+
+.brand-menu-category__title {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--primary-brown);
+    margin: 0 0 12px;
+}
+
+.brand-menu-products {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.brand-menu-product {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.brand-menu-product__row {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.25em 0.65em;
+}
+
+.brand-menu-product__name {
+    display: inline;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--primary-brown);
+}
+
+.brand-menu-product__desc {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+    line-height: 1.4;
+}
+
+.brand-menu-product__order {
+    display: inline;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: lowercase;
+    letter-spacing: 0;
+    color: #c0392b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    white-space: nowrap;
+}
+
+.brand-menu-product__order:hover {
+    color: var(--secondary-orange);
+}
+
+.brand-detail-hero--no-media {
+    grid-template-columns: 1fr;
+}
+
+.brand-detail-hero__logo--small {
+    max-width: 140px;
+    max-height: 64px;
+}
+.container--narrow {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.tf-form__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 24px;
+}
+
+.tf-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tf-form__field--full {
+    grid-column: 1 / -1;
+}
+
+.tf-form__field label {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--primary-brown);
+}
+
+.tf-form__field input,
+.tf-form__field select,
+.tf-form__field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgba(107, 62, 38, 0.25);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 15px;
+    background: #fff;
+}
+
+.tf-form__field textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.tf-form__actions {
+    text-align: center;
+    margin-top: 8px;
+}
+
+.tf-form__actions .btn {
+    min-width: 220px;
+}
+
+/* Careers — centered career paths (4 icons) */
+.page-careers .careers-paths {
+    padding: 48px 0;
+    text-align: center;
+}
+
+.page-careers .careers-paths__inner {
+    display: grid;
+    grid-template-columns: repeat(var(--icon-cols, 4), minmax(140px, 1fr));
+    gap: 28px 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+    justify-items: center;
+    align-items: start;
+}
+
+.page-careers .career-path {
+    max-width: 200px;
+}
+
+.page-careers .career-path__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 14px;
+    border: 2px solid var(--primary-brown);
+    border-radius: 50%;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--primary-brown);
+}
+
+.page-careers .career-path__label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.35;
+    color: var(--primary-brown);
+}
+
+/* Careers jobs + form */
+.careers-jobs-section {
+    text-align: center;
+}
+
+.careers-jobs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 48px;
+    max-width: 640px;
+    display: grid;
+    gap: 20px;
+    text-align: left;
+}
+
+.careers-job-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.careers-job-card .btn {
+    margin-top: 12px;
+}
+
+.careers-form-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 36px 32px 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    text-align: left;
+}
+
+.careers-form-wrap .section-title {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.careers-general-intro {
+    margin-bottom: 32px;
+    color: var(--text-dark);
+}
+
+@media (max-width: 640px) {
+    .tf-form__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-careers .careers-paths__inner {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .careers-form-wrap {
+        padding: 28px 20px;
+    }
+}
+
+/* FAQs */
+.faqs-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 0 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.faq-item__question {
+    cursor: pointer;
+    padding: 18px 0;
+    font-size: 17px;
+    list-style: none;
+}
+
+.faq-item__question::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item__answer {
+    padding-bottom: 18px;
+    color: var(--text-dark);
+}
+
+/********** Additional CSS from WP Customizer ************/
+.container.home-hero__content {
+    text-align: left;
+    width: 100%;
+}
+
+.home-hero__actions {
+    justify-content: flex-start;
+}
+
+
+h1.home-hero__title {
+    font-weight: 500;
+    font-size: 50px;
+	line-height: 50px;
+	padding-bottom: 20px;
+	position: relative;
+    font-family: "Cormorant", serif;
+    text-transform: capitalize;
+	color: antiquewhite;
+}
+
+h1.home-hero__title:after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 1px;
+    background-color: #ffca08;
+    bottom: 0;
+    left: 3px;
+}
+
+section.home-section.home-brands.page-brands__section.page-section--cream {
+    background-color: #fff;
+	margin-top:-22px;
+}
+
+article.brand-card {
+    background: #fff !important;
+    border: 1px solid #f1e6d8;
+    border-radius: 18px;
+
+    /* 3D Effect */
+    box-shadow:
+        0 4px 8px rgba(0,0,0,0.05),
+        0 12px 24px rgba(0,0,0,0.08),
+        0 24px 40px rgba(0,0,0,0.06);
+
+    margin-top: -30px;
+    margin-bottom: 30px;
+
+    transition: all .3s ease;
+}
+
+
+article.brand-card:hover{
+    transform: translateY(-5px);
+    box-shadow:
+        0 8px 16px rgba(0,0,0,0.08),
+        0 20px 40px rgba(0,0,0,0.12),
+        0 30px 60px rgba(0,0,0,0.10);
+}
+
+
+.home-brands .brand-card__logo {
+    width: auto !important;
+    height: auto !important;
+    max-width: 75% !important;
+	margin-top:-35px;
+	
+
+}
+ 
+.brand-card__logo {
+    margin-bottom: 10px !important;
+	
+}
+
+.brand-card__lines {
+    margin-top: -27px !important;
+	
+}
+
+
+
+
+article.brand-card a.btn.btn-sm {
+    font-family: 'Oswald';
+    padding: 1px 16px;
+	
+}
+
+section.home-section.home-brands.page-brands__section.page-section--cream {
+    background-color: #fff;
+    padding: 30px 0;
+}
+
+article.brand-card {
+    background: linear-gradient(
+        180deg,
+        #FBF6F0 0%,
+        #FCF0E8 100%
+    );
+    border: 1px solid #E7DDD1;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+article.brand-card img.brand-card__image {
+    object-fit: contain;
+}
+
+article.brand-card a.btn.btn-sm {
+    font-family: 'Oswald';
+    padding: 7px 16px;
+}
+
+section.home-section.home-moments {
+    background-image: url('http://tutti-frutti-cafe.local/wp-content/uploads/2026/06/Celebrating.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100% auto;
+    height: 0;
+    padding-top: 38%; 
+    min-height: unset !important;
+}
+
+
+
+section.home-section.home-moments .moments-split__media img {
+    display: none;
+}
+
+section.home-section.home-moments:before {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 100%;
+/*     background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0.95) 0%,
+        rgba(255,255,255,0.85) 25%,
+        rgba(255,255,255,0.55) 50%,
+        rgba(255,255,255,0.15) 75%,
+        rgba(255,255,255,0) 100%
+    );
+    top: 0; */
+}
+
+section.home-section.home-moments .container.moments-split {
+    position: relative;
+}
+
+section.home-section.home-moments .container.moments-split h2.section-title {
+    font-family: 'Oswald';
+    width: 221px;
+    font-weight: 900;
+    color: #000;
+    line-height: 40px;
+}
+
+section.home-section.home-moments .container.moments-split p.moments-split__text {
+    font-size: 16px;
+    font-family: 'Oswald';
+    width: 50%;
+}
+
+section.home-section.home-moments .container.moments-split .moments-features {
+    display: flex;
+}
+
+body {
+    font-family: 'Oswald';
+}
+
+section.home-section.home-featured {
+    background: #FFF !important;
+    border-top: none !important;
+	padding: 10px 0 0 !important;
+}
+
+h2.section-title {
+    font-family: 'Oswald';
+    letter-spacing: 4px;
+}
+
+section.home-section.home-featured .tf-slider__media {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 11px;
+}
+
+section.home-section.home-featured .tf-slider__media img.tf-slider__image {
+    width: 100%;
+		object-fit: contain;
+}
+
+section.home-section.home-featured .container {
+    padding: 0 !important;
+	background-color: #FFF !important;
+}
+
+section.home-section.home-promos {}
+
+section.home-section.home-promos .container.promo-grid {
+    width: 100%;
+    max-width: 1440px;
+}
+
+section.home-section.home-promos .container.promo-grid a.promo-card {display: inline-block;}
+
+section.home-section.home-promos .container.promo-grid a.promo-card h3.promo-card__title {
+    font-family: 'Oswald';
+    font-size: 36px;
+    width: 50%;
+    font-weight: 500;
+}
+
+section.home-section.home-promos .container.promo-grid a.promo-card span.btn.btn-sm {
+    width: auto;
+    display: inline-block;
+    min-width: inherit;
+    font-family: 'Oswald';
+    padding: 7px 16px;
+	margin-top: 15px
+}
+
+section.page-section.page-section--cream.page-section--top {
+    padding: 40px 0;
+    border: 0;
+}
+
+section.page-section.page-section--cream.page-section--top img.about-img-radius-tl {
+    border-radius: 0px 20px 20px 0px;
+}
+
+section.page-section.page-section--cream.page-section--top span.about-story-label {
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-family: 'Montserrat';
+    font-weight: 700;
+}
+
+section.page-section.page-section--cream.page-section--top h2 {
+    font-family: 'Oswald';
+    font-size: 36px;
+    line-height: 45px;
+    width: 77%;
+}
+
+section.page-section.page-section--cream.page-section--top .page-split__content {
+    padding-left: 40px;
+}
+
+section.page-section.page-section--cream.page-section--top .entry-content {
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+section.page-section.page-section--cream.page-section--top a.btn.btn-primary {
+    padding: 7px 16px;
+    font-size: 16px;
+}
+
+section.page-section.page-section--cream {
+    padding: 40px 0 ;
+    border-bottom: 1px solid #fb82165c;
+}
+
+.site-main.page-about section.page-section.page-section--cream:last-child .page-split.page-split--reverse {
+    direction: ltr;
+}
+
+.site-main.page-about section.page-section.page-section--cream:last-child .page-split.page-split--reverse h2 {
+    font-family: 'Oswald';
+    font-size: 36px;
+    line-height: 45px;
+}
+
+.site-main.page-about section.page-section.page-section--cream:last-child .page-split.page-split--reverse .entry-content {
+    padding: 0;
+    margin-top: 10px;
+}
+
+.site-main.page-about section.page-section.page-section--cream:last-child .page-split.page-split--reverse img.about-img-radius-tr {
+    border-radius: 20px 20px 0px 0px;
+}
+
+section.page-brands__section.page-section--cream.page-section--top {
+    padding: 40px 0;
+    background-color: #fff;
+}
+
+section.page-brands__section.page-section--cream.page-section--top h1.section-title {
+    text-align: center;
+    font-family: 'Oswald';
+    margin-bottom: 30px;
+}
+
+section.page-brands__section.page-section--cream.page-section--top article.brand-card {
+        background: linear-gradient(
+        180deg,
+        #FBF6F0 0%,
+        #FCF0E8 100%
+    ) !important;
+        border: 1px solid #E7DDD1;
+        border-radius: 14px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+section.page-brands__section.page-section--cream.page-section--top article.brand-card h2.brand-card__name {
+    font-family: 'Oswald';
+}
+
+.page-id-61 section.page-section.page-section--cream.page-section--top {
+    background-color: #fff;
+    padding-bottom: 0;
+}
+
+.page-id-61 section.page-section.page-section--cream.page-section--top .page-split {
+    direction: rtl;
+}
+
+.page-id-61 section.page-section.page-section--cream.page-section--top .page-split .page-split__content {
+    direction: ltr;
+    padding-left: 0;
+    padding-right: 40px;
+}
+
+.page-id-61 section.page-section.page-section--cream.page-section--top .page-split .page-split__media img {
+    border-radius: 0;
+    display: none;
+}
+
+.page-id-61 section.page-section.page-section--cream.page-section--top .page-split .page-split__media:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(/wp-content/uploads/2026/05/hand-mbl.png);
+    background-repeat: no-repeat;
+    top: 0;
+    left: auto;
+    background-size: contain;
+}
+
+.page-id-61 section.page-section.page-section--cream.page-section--top .page-split .page-split__media {
+    position: relative;
+    height: 400px;
+}
+
+.page-id-58 section.page-section.page-section--cream {
+    background: linear-gradient(180deg, #FBF6F0 0%, #FCF0E8 100%);
+}
+
+.page-rewards section.page-section.page-section--cream.page-section--top {
+    position: relative;
+    background-image: url(https://images.unsplash.com/photo-1551650975-87deedd944c3?w=500&h=900&fit=crop);
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-color: #fff;
+}
+
+.page-rewards section.page-section.page-section--cream.page-section--top img.about-img-radius-tl {
+    visibility: hidden;
+}
+
+.page-rewards section.page-section.page-section--cream.page-section--top:before {
+    content: '';
+    position: absolute;
+    width: 73%;
+    height: 100%;
+    top: 0;
+    /* background: linear-gradient(to left, #5c4848, transparent); */
+    right: 0;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+100,ffffff+100&0+0,1+29 */
+    background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 29%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.page-rewards section.page-section.page-section--cream.page-section--top .container {
+    position: relative;
+}
+
+.page-careers section.careers-hero.page-section--top {
+    position: relative;
+/*     background-image: url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=700&fit=crop); */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: #fff;
+}
+
+.page-careers section.careers-hero.page-section--top img {
+    visibility: hidden;
+}
+
+.page-careers section.careers-hero.page-section--top .careers-hero__content .careers-hero__intro {margin: 0;padding: 0;}
+
+.page-careers section.careers-hero.page-section--top .careers-hero__media {
+    width: 70%;
+}
+
+.page-careers section.careers-hero.page-section--top:before {
+    content: '';
+    position: absolute;
+    width: 61%;
+    height: 100%;
+    top: 0;
+    /* background: linear-gradient(to left, #5c4848, transparent); */
+    left: 0;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+100,ffffff+100&0+0,1+29 */
+    background: linear-gradient(to left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 29%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.page-careers section.careers-hero.page-section--top .careers-hero__content {
+    position: relative;
+}
+
+.page-brand-detail section.brand-detail-hero {
+    position: relative;
+    background-color: #fff;
+/*     background-image: url(http://tutti-frutti-cafe.local/wp-content/uploads/2026/05/download-1.webp); */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.page-brand-detail section.brand-detail-hero:before {
+    content: '';
+    position: absolute;
+    width: 61%;
+    height: 100%;
+    top: 0;
+    /* background: linear-gradient(to left, #5c4848, transparent); */
+    left: 100px;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+100,ffffff+100&0+0,1+29 */
+    background: linear-gradient(to left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 29%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.page-brand-detail section.brand-detail-hero .brand-detail-hero__body.entry-content img {
+    /* visibility: hidden; */
+}
+
+.page-brand-detail section.brand-detail-hero .brand-detail-hero__body.entry-content {
+    padding: 0;
+    margin: 0;
+}
+
+
+.page-brand-detail section.brand-detail-hero .brand-detail-hero__content {
+    padding-top: 0;
+    background: transparent !important;
+}
+
+
+
+.page-brand-detail section.brand-detail-hero .brand-detail-hero__media {
+    background: transparent;
+}
+
+
+.brand-detail-all-brands article.brand-card p.brand-card__desc {
+    padding: 0 18px;
+}
+
+.page-id-177 section.page-hero.page-hero--brown.page-section--top {
+    background-image: url(/wp-content/uploads/2026/05/StockCake-Joyful_Coffee_Gathering-515078-standard.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 111px 0 !important;
+    background-position: center;
+    position: relative;
+}
+
+.page-id-177 section.page-hero.page-hero--brown.page-section--top:before {content: '';position: absolute;width: 40%;height: 100%;top: 0;left: 0;background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 29%, rgba(255, 255, 255, 1) 100%);}
+
+.page-id-177 section.page-hero.page-hero--brown.page-section--top .container {
+    position: relative;
+}
+
+
+.home-brands .brand-card__logo {
+    max-width: inherit;
+    max-height: inherit;
+    width: 170px;
+}
+
+
+.brand-detail-hero__logo--small {
+    max-width: inherit;
+    max-height: inherit;
+    width: 140px;
+    margin-bottom: 0;
+}
+
+body.has-transparent-header .site-header {
+    background-color: #fff;
+}
+
+body.has-transparent-header .site-header #primary-menu a {
+    color: var(--primary-brown);
+}
+
+body.has-transparent-header .site-header:not(.site-header--scrolled) .site-branding {
+    visibility: visible;
+    opacity: 1;
+    width: auto;
+}
+.footer-social {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.footer-social__link {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-social__link svg {
+    width: 22px;
+    height: 22px;
+    fill: #000;
+}
+
+.footer-social__link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(255,255,255,0.25);
+}
+
+
+section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns {
+    grid-template-columns: inherit;
+    grid-column: 7 !important;
+    display: flex;
+	gap: 30px !important;
+}
+
+section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-menu-column {
+    border-right: 1px solid #ffdb99;
+    height: 100%;
+	max-width: 33.3%;
+	padding-right: 30px;
+}
+
+section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns img.brand-menu-category-card__image {
+    aspect-ratio: inherit;
+	  min-height: 260px;
+    object-fit: contain;
+}
+
+section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-menu-column:last-child {
+    border-right: 0;
+}
+
+section.home-section.home-brands.page-brands__section.page-section--cream a.brand-card__logo-link {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding-top: 0;
+}
+
+.home-brands .brand-card, .page-brand-detail .brand-detail-all-brands .brand-card a.btn.btn-sm.btn-brand--orange {
+    text-align: center;
+}
+
+
+.home-hero {
+    min-height: 800px;
+    margin-top: 80px;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: #936846;
+		display: flex;
+		align-items: end;
+}
+
+section.home-hero:before {
+		content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, #6e583b7a 0%, rgb(88 62 42 / 25%) 35%, rgba(15, 8, 3, 0.20) 60%, rgba(15, 8, 3, 0.05) 100%);
+        }
+
+.brand-menu-category__title {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.brand-menu-products li.brand-menu-product {
+    margin-bottom: 4px;
+}
+
+.brand-menu-products li.brand-menu-product .brand-menu-product__name {
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.page-brand-detail section.brand-detail-hero .brand-detail-hero__content img.brand-detail-hero__logo.brand-detail-hero__logo--small {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 180px;
+}
+
+
+.brand-detail-menu + .brand-detail-all-brands {
+    display: none;
+}
+
+.container.footer-grid img.custom-logo {
+	    margin-bottom: 15px;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    max-height: 55px;
+}
+
+
+.brand-detail-hero__content {
+    position: relative;
+}
+
+.page-careers section.careers-hero.page-section--top::before {
+    display: none;
+}
+
+@media (max-width: 767px){
+	h1.home-hero__title {
+    max-width: 100%;
+    text-align: center;
+}
+
+.home-hero__tagline {
+    text-align: center;
+}
+	
+	.brand-detail-hero {
+    background-size: cover;
+    min-height: inherit !important;
+}
+	
+	
+
+.page-brand-detail section.brand-detail-hero:before {
+    left: 0;
+    width: 100%;
+    background: #ffffffc4;
+}
+	
+	.page-careers section.careers-hero.page-section--top {
+    background-size: cover;
+    min-height: inherit;
+}
+
+.page-careers section.careers-hero.page-section--top:before {
+    background: #ffffffc4;
+    width: 100%;
+}
+	
+	   .tf-slider__slide, .tf-slider--featured .tf-slider__slide
+Specificity: (0,2,0)
+ {
+        flex: 0 0 30%;
+	 
+    }
+
+	
+	
+@media (max-width:767px){
+
+    .page-id-57 section.home-section.home-moments{
+        background-image:url('http://tutti-frutti-cafe.local/wp-content/uploads/2026/06/Celebrating.png');
+        background-size:100% auto;
+        background-repeat:no-repeat;
+        background-position:top center;
+        height:160px !important;
+        min-height:130px !important;
+        padding:0 !important;
+        margin:0 !important;
+        overflow:hidden;
+    }
+
+    .page-id-57 section.home-section.home-moments .container.moments-split{
+        display:none;
+    }
+
+}
+   
+	
+	section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns {
+    flex-direction: column;
+}
+
+section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-menu-column {
+    max-width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid #ffdb99;
+	padding-bottom: 20px;
+	padding-right: 0;
+	width: 100%;
+	text-align: cemter;
+}
+	
+	.brand-menu-products li.brand-menu-product .brand-menu-product__row {
+    text-align: center;
+    justify-content: center;
+}
+
+
+.brand-menu-category__title {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}	
+	
+section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns img.brand-menu-category-card__image {
+    min-height: inherit !important;
+	width: 160px;
+	margin: 0 auto;
+}
+	
+	section.home-hero {
+    background-size: cover;
+    max-height: inherit;
+    min-height: inherit;
+    background-position: right;
+}
+
+h1.home-hero__title {
+            text-align: left;
+        font-size: 31px;
+        line-height: 29px;
+        padding-bottom: 12px;
+}
+
+body.has-transparent-header .hamburger span {
+    background: #6b3e26 !important;
+}
+	
+.container.footer-grid {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	  margin-bottom: 5px;
+		margin-top: 10px;
+}
+	
+
+.container.footer-grid .footer-col:nth-child(2), .container.footer-grid .footer-col:last-child {
+    width: 46%;
+}
+	
+
+.footer-social__link {
+    width: 40px;
+    height: 40px;
+}
+	
+	.page-brand-detail section.brand-detail-hero .brand-detail-hero__content img.brand-detail-hero__logo.brand-detail-hero__logo--small {
+    position: relative;
+    width: 140px;
+		display: block;
+		margin: 0 auto;
+}
+	
+h3.brand-menu-category__title {
+    text-align: center;
+}
+	
+	section.careers-hero.page-hero--careers.page-section--top {
+    background-image: inherit !important;
+    padding-top: 0;
+}
+
+section.careers-hero.page-hero--careers.page-section--top .careers-hero__media {
+    width: 100%;
+}
+
+section.careers-hero.page-hero--careers.page-section--top .careers-hero__media img {
+    min-height: inherit;
+		visibility: visible;
+}
+	
+	
+.container.home-hero__content {
+    padding-bottom: 20px;
+    padding-top: 150px;
+}
+}
+
+@media (max-width:1024px){
+
+    #primary-menu{
+        display:grid !important;
+        grid-template-columns:1fr 1fr !important;
+        column-gap:30px !important;
+        row-gap:2px !important;
+    }
+
+    #menu-item-82  { grid-column:1; grid-row:1; }
+    #menu-item-78  { grid-column:1; grid-row:2; }
+    #menu-item-668 { grid-column:1; grid-row:3; }
+    #menu-item-80  { grid-column:1; grid-row:4; }
+    #menu-item-593 { grid-column:1; grid-row:5; }
+
+    #menu-item-674 { grid-column:2; grid-row:1; }
+    #menu-item-673 { grid-column:2; grid-row:2; }
+    #menu-item-592 { grid-column:2; grid-row:3; }
+    #menu-item-591 { grid-column:2; grid-row:4; }
+
+    #primary-menu li{
+        width:100% !important;
+        margin:0 !important;
+    }
+}
+
+
+
+.tf-slider__media {
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #fffaf5 100%
+    );
+
+    border-radius: 20px !important;
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 202, 8, 0.15);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.04),
+        0 20px 40px rgba(0,0,0,.05),
+        0 35px 70px rgba(0,0,0,.03);
+
+    transition: all .35s ease;
+}
+
+.footer-links{
+    display:flex;
+    gap:35px;
+    list-style:none;
+    padding:0;
+    margin:0;
+	font-size:16px;
+}
+
+.footer-link-col{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.footer-links li{
+    margin:0;
+}
+   
+
+@media (max-width: 767px) {
+    .brand-detail-hero__media {
+        height: auto;
+        overflow: hidden;
+    }
+
+    .brand-detail-hero__media img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+			margin-top:-110px;
+    }
+}
+@media (max-width: 767px) {
+
+    .brand-detail-hero {
+        padding: 0 !important;
+        margin: 0 !important;
+        gap: 0 !important;
+    }
+
+    .brand-detail-hero__content {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .brand-detail-hero__media {
+        margin-top: -50px;
+			margin-bottom:-60px;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .brand-detail-hero__media img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .brand-detail-hero__content {
+        padding: 0 15px 1px !important;
+    }
+
+    .brand-detail-hero__title {
+        margin-bottom: 15px;
+    }
+
+    .brand-detail-hero__desc {
+        margin-top: 10px;
+        line-height: 1.7;
+    }
+}
+
+.page-brand-detail .page-section--cream,
+.page-brand-detail .brand-detail-menu {
+    background: #ffffff !important;
+}
+
+.home-hero h1.home-hero__title {
+    margin-bottom: -40px !important;
+}
