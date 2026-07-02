@@ -26,24 +26,21 @@ while ( have_posts() ) :
     <main id="primary" class="site-main page-brand-detail site-main--page">
         <section class="<?php echo esc_attr( $hero_class ); ?>">
             <div class="brand-detail-hero__content">
-                <?php if ( $brand_logo ) : ?>
-                    <img src="<?php echo esc_url( $brand_logo ); ?>" alt="<?php the_title_attribute(); ?>" class="brand-detail-hero__logo brand-detail-hero__logo--small">
+                <?php if ( $has_right_hero ) : ?>
+                    <div class="brand-detail-hero__media">
+                        <img src="<?php echo esc_url( $hero_image ); ?>" alt="<?php the_title_attribute(); ?>">
+                    </div>
                 <?php endif; ?>
-                <?php if ( $hero_title ) : ?>
-                    <h1 class="brand-detail-hero__title"><?php echo esc_html( $hero_title ); ?></h1>
-                <?php endif; ?>
-                <?php if ( $hero_desc ) : ?>
-                    <p class="brand-detail-hero__desc"><?php echo esc_html( $hero_desc ); ?></p>
-                <?php endif; ?>
+                <?php //if ( $hero_title ) : ?>
+                    <!-- <h1 class="brand-detail-hero__title"><?php echo esc_html( $hero_title ); ?></h1> -->
+                <?php //endif; ?>
+                <?php //if ( $hero_desc ) : ?>
+                    <!-- <p class="brand-detail-hero__desc"><?php echo esc_html( $hero_desc ); ?></p> -->
+                <?php //endif; ?>
                 <?php if ( $btn_text && $order_url ) : ?>
                     <a href="<?php echo esc_url( $order_url ); ?>" class="btn btn-brown brand-detail-hero__cta" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $btn_text ); ?></a>
                 <?php endif; ?>
             </div>
-            <?php if ( $has_right_hero ) : ?>
-                <div class="brand-detail-hero__media">
-                    <img src="<?php echo esc_url( $hero_image ); ?>" alt="<?php the_title_attribute(); ?>">
-                </div>
-            <?php endif; ?>
         </section>
 
         <?php if ( ! empty( $grouped ) ) : ?>
@@ -53,7 +50,24 @@ while ( have_posts() ) :
                         <h2 class="section-title brand-detail-products__title"><?php echo esc_html( $product_title ); ?></h2>
                     <?php endif; ?>
                     <div class="brand-menu-columns">
-                        <?php foreach ( $grouped as $group ) : ?>
+                        <?php
+                        $current_parent_title = null;
+                        foreach ( $grouped as $group ) :
+                            $group_parent_title = ! empty( $group['parent_title'] ) ? $group['parent_title'] : '';
+                            if ( $group_parent_title !== $current_parent_title ) :
+                                $current_parent_title = $group_parent_title;
+                                if ( $group_parent_title ) :
+                                    ?>
+                                    <div class="brand-menu-parent">
+                                        <?php if ( $brand_logo ) : ?>
+                                            <img src="<?php echo esc_url( $brand_logo ); ?>" alt="<?php the_title_attribute(); ?>" class="brand-menu-parent__logo">
+                                        <?php endif; ?>
+                                        <h3 class="brand-menu-parent__title"><?php echo esc_html( $group_parent_title ); ?></h3>
+                                    </div>
+                                    <?php
+                                endif;
+                            endif;
+                            ?>
                             <div class="brand-menu-column">
                                 <?php if ( ! empty( $group['image'] ) ) : ?>
                                     <div class="brand-menu-category-card">

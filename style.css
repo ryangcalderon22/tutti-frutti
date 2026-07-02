@@ -87,12 +87,6 @@ button, .button {
     transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-body.has-transparent-header .site-header {
-    position: fixed;
-    left: 0;
-    right: 0;
-}
-
 body.has-transparent-header {
     padding-top: 0;
 }

@@ -49,7 +49,6 @@ for ( $i = 1; $i <= 4; $i++ ) {
     <div class="footer-link-col">
         <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'about' ) ); ?>">About</a></li>
         <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'brands' ) ); ?>">Brands</a></li>
-        <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'order-online' ) ); ?>">Order Online</a></li>
     </div>
 
     <div class="footer-link-col">
@@ -60,6 +59,9 @@ for ( $i = 1; $i <= 4; $i++ ) {
     <div class="footer-link-col">
         <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'careers' ) ); ?>">Careers</a></li>
         <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'contact' ) ); ?>">Contact</a></li>
+    </div>
+    <div class="footer-link-col">
+        <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'order-online' ) ); ?>">Order Online</a></li>
     </div>
 </ul>		
 					

@@ -23,6 +23,7 @@ function tutti_frutti_register_product_category_cpt() {
             'show_in_menu'        => true,
             'menu_icon'           => 'dashicons-category',
             'menu_position'       => 21,
+            'hierarchical'        => true,
             'supports'            => array( 'title', 'thumbnail', 'page-attributes' ),
             'show_in_rest'        => true,
         )
@@ -97,8 +98,11 @@ function tutti_frutti_get_brand_categories( $brand_id ) {
             'post_type'      => 'tf_product_category',
             'posts_per_page' => 50,
             'post_status'    => 'publish',
-            'orderby'        => 'menu_order title',
-            'order'          => 'ASC',
+            'orderby'        => array(
+                'parent'     => 'ASC',
+                'menu_order' => 'ASC',
+                'title'      => 'ASC',
+            ),
             'meta_query'     => array(
                 array(
                     'key'   => '_tf_brand_id',
