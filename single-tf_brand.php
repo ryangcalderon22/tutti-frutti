@@ -72,7 +72,18 @@ while ( have_posts() ) :
                                 endif;
                             endif;
                             ?>
+                            <?php $group_has_title = ! empty( $group['title'] ) && 'Tutti Frutti Products' !== $group['title']; ?>
                             <div class="brand-menu-column">
+                                <?php if ( ! $group_parent_title && ( $brand_logo || $group_has_title ) ) : ?>
+                                    <div class="brand-menu-column__header">
+                                        <?php if ( $brand_logo ) : ?>
+                                            <img src="<?php echo esc_url( $brand_logo ); ?>" alt="<?php the_title_attribute(); ?>" class="brand-menu-column__logo">
+                                        <?php endif; ?>
+                                        <?php if ( $group_has_title ) : ?>
+                                            <h3 class="brand-menu-category__title brand-menu-category__title--with-logo"><?php echo esc_html( $group['title'] ); ?></h3>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endif; ?>
                                 <?php if ( ! empty( $group['image'] ) ) : ?>
                                     <div class="brand-menu-category-card">
                                         <?php if ( ! empty( $group['order_url'] ) ) : ?>
@@ -87,7 +98,7 @@ while ( have_posts() ) :
                                         <?php endif; ?>
                                     </div>
                                 <?php endif; ?>
-                                <?php if ( ! empty( $group['title'] ) && 'Tutti Frutti Products' !== $group['title'] ) : ?>
+                                <?php if ( $group_parent_title && $group_has_title ) : ?>
     <h3 class="brand-menu-category__title">
         <?php echo esc_html( $group['title'] ); ?>
     </h3>

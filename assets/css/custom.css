@@ -197,6 +197,28 @@
     break-inside: avoid;
 }
 
+.brand-menu-column__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    text-align: center;
+    flex-direction: column;
+}
+
+.brand-menu-column__logo {
+    display: block;
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.brand-menu-category__title--with-logo {
+    margin: 0;
+}
+
 .brand-menu-parent {
     grid-column: 1 / -1;
     flex: 1 0 100%;
@@ -381,7 +403,7 @@
 .tf-form__field textarea {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid rgba(107, 62, 38, 0.25);
+    border: 1px solid var(--primary-brown);
     border-radius: 6px;
     font-family: inherit;
     font-size: 15px;
@@ -494,6 +516,7 @@
 @media (max-width: 640px) {
     .tf-form__grid {
         grid-template-columns: 1fr;
+        gap: 0;
     }
 
     .page-careers .careers-paths__inner {
@@ -775,7 +798,6 @@ section.page-section.page-section--cream.page-section--top h2 {
     font-family: 'Oswald';
     font-size: 36px;
     line-height: 45px;
-    width: 77%;
 }
 
 section.page-section.page-section--cream.page-section--top .page-split__content {
@@ -1255,6 +1277,10 @@ section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .
     font-weight: 800;
     margin-bottom: 5px;
 }	
+
+.brand-menu-category__title--with-logo {
+    font-size: 18px;
+}
 	
 section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns img.brand-menu-category-card__image {
     min-height: inherit !important;
