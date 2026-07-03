@@ -249,6 +249,36 @@ function tutti_frutti_customizer_site_settings( $wp_customize ) {
         'type'        => 'url',
     ) );
 
+    $wp_customize->add_section(
+        'tf_recaptcha_settings',
+        array(
+            'title'    => __( 'reCAPTCHA Settings', 'tutti-frutti-cafe' ),
+            'priority' => 38,
+        )
+    );
+
+    $wp_customize->add_setting( 'tf_recaptcha_site_key', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'tf_recaptcha_site_key', array(
+        'label'       => __( 'reCAPTCHA v2 Site Key', 'tutti-frutti-cafe' ),
+        'description' => __( 'From google.com/recaptcha/admin — Checkbox ("I\'m not a robot") type. Leave blank to disable captcha.', 'tutti-frutti-cafe' ),
+        'section'     => 'tf_recaptcha_settings',
+        'type'        => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'tf_recaptcha_secret_key', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'tf_recaptcha_secret_key', array(
+        'label'       => __( 'reCAPTCHA v2 Secret Key', 'tutti-frutti-cafe' ),
+        'description' => __( 'Kept server-side, used to verify submissions.', 'tutti-frutti-cafe' ),
+        'section'     => 'tf_recaptcha_settings',
+        'type'        => 'text',
+    ) );
+
     $wp_customize->add_setting( 'tf_custom_css_extra', array(
         'default'           => '',
         'sanitize_callback' => 'wp_strip_all_tags',

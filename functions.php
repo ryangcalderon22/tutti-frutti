@@ -162,6 +162,13 @@ function tutti_frutti_enqueue_scripts() {
     if ( is_singular( 'tf_brand' ) ) {
         wp_enqueue_script( 'brand-products', get_template_directory_uri() . '/js/brand-products.js', array(), $version, true );
     }
+
+    if ( is_page_template( 'page-templates/template-contact.php' ) ) {
+        $recaptcha_site_key = get_theme_mod( 'tf_recaptcha_site_key', '' );
+        if ( $recaptcha_site_key ) {
+            wp_enqueue_script( 'google-recaptcha', 'https://www.google.com/recaptcha/api.js', array(), null, true );
+        }
+    }
 }
 add_action( 'wp_enqueue_scripts', 'tutti_frutti_enqueue_scripts' );
 

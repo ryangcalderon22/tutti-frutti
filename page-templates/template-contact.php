@@ -14,16 +14,16 @@ get_header();
 
 <div class="container">
 
-    <h1 class="contact-title">
+    <h2 class="section-title section-title--contact">
         We'd Love to Hear From You
-    </h1>
+    </h2>
 
     <div class="contact-layout">
 
         <!-- LEFT COLUMN -->
         <aside class="contact-info">
 
-            <h2>Location Details</h2>
+            <h2>Tutti Frutti Cafe</h2>
 
             <div class="contact-item">
                 <h3>Address</h3>
@@ -44,6 +44,15 @@ get_header();
 
             <div class="contact-item">
 
+                <h3>Email</h3>
+
+                <p>
+                    <a href="mailto:GM@TFCLaverne.com">GM@TFCLaverne.com</a>
+                </p>
+
+
+            <!-- <div class="contact-item">
+
                 <h3>Business Hours</h3>
 
                 <p>
@@ -56,16 +65,16 @@ get_header();
                     10:00 AM – 10:00 PM
                 </p>
 
-            </div>
+            </div> -->
 
         </aside>
 
         <!-- RIGHT COLUMN -->
         <section class="contact-form-wrapper">
 
-            <h2 class="contact-form-title">
+            <!-- <h2 class="contact-form-title">
                 Contact Form
-            </h2>
+            </h2> -->
 
             <?php tutti_frutti_render_contact_notice(); ?>
 
@@ -80,14 +89,28 @@ get_header();
 
                     <div class="tf-form__field">
 
-                        <label for="contact_name">
-                            <?php esc_html_e( 'Name', 'tutti-frutti-cafe' ); ?> *
+                        <label for="contact_first_name">
+                            <?php esc_html_e( 'First Name', 'tutti-frutti-cafe' ); ?> *
                         </label>
 
                         <input
                             type="text"
-                            id="contact_name"
-                            name="contact_name"
+                            id="contact_first_name"
+                            name="contact_first_name"
+                            required>
+
+                    </div>
+
+                    <div class="tf-form__field">
+
+                        <label for="contact_last_name">
+                            <?php esc_html_e( 'Last Name', 'tutti-frutti-cafe' ); ?> *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="contact_last_name"
+                            name="contact_last_name"
                             required>
 
                     </div>
@@ -109,7 +132,7 @@ get_header();
                     <div class="tf-form__field">
 
                         <label for="contact_phone">
-                            <?php esc_html_e( 'Phone (Optional)', 'tutti-frutti-cafe' ); ?>
+                            <?php esc_html_e( 'Phone', 'tutti-frutti-cafe' ); ?>
                         </label>
 
                         <input
@@ -132,6 +155,13 @@ get_header();
                             required></textarea>
 
                     </div>
+
+                    <?php $tf_recaptcha_site_key = get_theme_mod( 'tf_recaptcha_site_key', '' ); ?>
+                    <?php if ( $tf_recaptcha_site_key ) : ?>
+                        <div class="tf-form__field tf-form__field--full">
+                            <div class="g-recaptcha" data-sitekey="<?php echo esc_attr( $tf_recaptcha_site_key ); ?>"></div>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="tf-form__field tf-form__field--full tf-form__actions">
 
