@@ -59,10 +59,14 @@ while ( have_posts() ) :
                                 if ( $group_parent_title ) :
                                     ?>
                                     <div class="brand-menu-parent">
-                                        <?php if ( $brand_logo ) : ?>
-                                            <img src="<?php echo esc_url( $brand_logo ); ?>" alt="<?php the_title_attribute(); ?>" class="brand-menu-parent__logo">
+                                        <?php if ( ! empty( $group['parent_image'] ) ) : ?>
+                                            <img src="<?php echo esc_url( $group['parent_image'] ); ?>" alt="<?php echo esc_attr( $group_parent_title ); ?>" class="brand-menu-parent__image">
+                                        <?php else : ?>
+                                            <?php if ( $brand_logo ) : ?>
+                                                <img src="<?php echo esc_url( $brand_logo ); ?>" alt="<?php the_title_attribute(); ?>" class="brand-menu-parent__logo">
+                                            <?php endif; ?>
+                                            <h3 class="brand-menu-parent__title"><?php echo esc_html( $group_parent_title ); ?></h3>
                                         <?php endif; ?>
-                                        <h3 class="brand-menu-parent__title"><?php echo esc_html( $group_parent_title ); ?></h3>
                                     </div>
                                     <?php
                                 endif;

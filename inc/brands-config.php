@@ -143,10 +143,19 @@ function tutti_frutti_get_brand_products_grouped( $brand_id ) {
                 $cat_image = get_post_meta( $cat->ID, '_tf_cat_image', true );
             }
             $cat_order    = get_post_meta( $cat->ID, '_tf_cat_order_url', true );
-            $parent_title = $cat->post_parent ? get_the_title( $cat->post_parent ) : '';
+            $parent_title = '';
+            $parent_image = '';
+            if ( $cat->post_parent ) {
+                $parent_title = get_the_title( $cat->post_parent );
+                $parent_image = get_the_post_thumbnail_url( $cat->post_parent, 'medium' );
+                if ( ! $parent_image ) {
+                    $parent_image = get_post_meta( $cat->post_parent, '_tf_cat_image', true );
+                }
+            }
             $grouped[] = array(
                 'title'        => $cat->post_title,
                 'parent_title' => $parent_title,
+                'parent_image' => $parent_image ? $parent_image : '',
                 'image'        => $cat_image ? $cat_image : '',
                 'order_url'    => $cat_order,
                 'products'     => $products,
@@ -164,6 +173,7 @@ function tutti_frutti_get_brand_products_grouped( $brand_id ) {
         $grouped[] = array(
             'title'        => '',
             'parent_title' => '',
+            'parent_image' => '',
             'image'        => '',
             'order_url'    => '',
             'products'     => $other,
@@ -174,6 +184,7 @@ function tutti_frutti_get_brand_products_grouped( $brand_id ) {
         $grouped[] = array(
             'title'        => '',
             'parent_title' => '',
+            'parent_image' => '',
             'image'        => '',
             'order_url'    => '',
             'products'     => $all,

@@ -220,6 +220,13 @@
     flex-shrink: 0;
 }
 
+.brand-menu-parent__image {
+    max-width: 240px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
 .brand-menu-parent__title {
     font-size: 18px;
     font-weight: 800;
