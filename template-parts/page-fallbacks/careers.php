@@ -7,12 +7,12 @@
 $top_class = ! empty( $top ) ? ' page-section--top' : '';
 ?>
 <section class="careers-hero<?php echo esc_attr( $top_class ); ?>">
+    <div class="careers-hero__media">
+        <img src="<?php echo esc_url( tutti_frutti_get_page_banner( 'careers' ) ); ?>" alt="">
+    </div>
     <div class="careers-hero__content">
         <h1><?php esc_html_e( 'Grow Your Career. Build Your Future.', 'tutti-frutti-cafe' ); ?></h1>
         <p class="careers-hero__intro"><?php esc_html_e( 'Join a team that values passion, growth and opportunity.', 'tutti-frutti-cafe' ); ?></p>
-    </div>
-    <div class="careers-hero__media">
-        <img src="<?php echo esc_url( tutti_frutti_get_page_banner( 'careers' ) ); ?>" alt="">
     </div>
 </section>
 <section class="careers-paths">

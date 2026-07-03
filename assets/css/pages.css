@@ -626,7 +626,7 @@
     .features-grid--4 { grid-template-columns: repeat(2, 1fr); }
     .page-brands .brands-grid { grid-template-columns: repeat(2, 1fr); }
     .careers-paths__inner { grid-template-columns: repeat(2, 1fr); }
-    .careers-hero__content { padding: 60px 24px; }
+    .careers-hero__content { padding: 30px 24px 20px; }
     .careers-hero__media img { min-height: 320px; mask-image: none; -webkit-mask-image: none; }
 }
 

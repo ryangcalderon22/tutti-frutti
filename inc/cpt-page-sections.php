@@ -467,12 +467,12 @@ function tutti_frutti_render_section_careers_hero( $section, $extra_class = '' )
     $img = tutti_frutti_section_image_url( $section, 'careers' );
     ?>
     <section class="careers-hero page-hero--careers<?php echo esc_attr( $extra_class ); ?>"<?php echo tutti_frutti_page_hero_style_attr( 'careers' ); // phpcs:ignore ?>>
+        <div class="careers-hero__media">
+            <img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $section->post_title ); ?>">
+        </div>
         <div class="careers-hero__content">
             <h1><?php echo esc_html( $section->post_title ); ?></h1>
             <div class="careers-hero__intro entry-content"><?php echo wp_kses_post( wpautop( $section->post_content ) ); ?></div>
-        </div>
-        <div class="careers-hero__media">
-            <img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $section->post_title ); ?>">
         </div>
     </section>
     <?php

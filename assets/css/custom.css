@@ -393,6 +393,18 @@
     grid-column: 1 / -1;
 }
 
+.tf-form__subheading {
+    grid-column: 1 / -1;
+    margin: 8px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid rgba(107, 62, 38, 0.15);
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary-brown);
+}
+
 .tf-form__field label {
     font-size: 13px;
     font-weight: 600;
@@ -420,7 +432,7 @@
 
 .tf-form__actions {
     text-align: center;
-    margin-top: 8px;
+    margin-top: 20px;
 }
 
 .tf-form__actions .btn {
