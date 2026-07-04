@@ -349,10 +349,23 @@ footer {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto 40px;
+    direction: rtl;
+}
+
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 769px) {
+    .footer-col {
+        direction: ltr;
+    }
 }
 
 .footer-col h4 {

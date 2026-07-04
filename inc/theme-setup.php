@@ -68,6 +68,11 @@ function tutti_frutti_get_pages_config() {
             'template' => 'page-templates/template-franchise.php',
         ),
         array(
+            'title'    => 'Business Opportunity',
+            'slug'     => 'business-opportunity',
+            'template' => 'page-templates/template-business-opportunity.php',
+        ),
+        array(
             'title'    => 'Contact',
             'slug'     => 'contact',
             'template' => 'page-templates/template-contact.php',
@@ -148,6 +153,7 @@ function tutti_frutti_create_primary_menu() {
         'order-online' => 'Order Online',
         'rewards'      => 'Rewards',
         'franchise'    => 'Franchise',
+        'business-opportunity' => 'Business Opportunity',
         'careers'      => 'Careers',
         'contact'      => 'Contact',
         'faqs'         => 'FAQs',

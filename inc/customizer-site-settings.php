@@ -238,6 +238,27 @@ function tutti_frutti_customizer_site_settings( $wp_customize ) {
         'type'    => 'checkbox',
     ) );
 
+    $wp_customize->add_setting( 'tf_email_business_admins', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'tf_email_business_admins', array(
+        'label'       => __( 'Business Opportunity — admin email(s)', 'tutti-frutti-cafe' ),
+        'description' => __( 'Comma-separated. Empty = same as contact admins.', 'tutti-frutti-cafe' ),
+        'section'     => 'tf_email_settings',
+        'type'        => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'tf_business_applicant_email', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ) );
+    $wp_customize->add_control( 'tf_business_applicant_email', array(
+        'label'   => __( 'Business Opportunity form — send confirmation to submitter', 'tutti-frutti-cafe' ),
+        'section' => 'tf_email_settings',
+        'type'    => 'checkbox',
+    ) );
+
     $wp_customize->add_setting( 'tf_chownow_url', array(
         'default'           => '',
         'sanitize_callback' => 'esc_url_raw',

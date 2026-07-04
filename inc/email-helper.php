@@ -68,6 +68,20 @@ function tutti_frutti_get_contact_cc_emails() {
 }
 
 /**
+ * Get business opportunity admin recipients.
+ *
+ * @return array
+ */
+function tutti_frutti_get_business_admin_emails() {
+    $raw = get_theme_mod( 'tf_email_business_admins', '' );
+    $list = tutti_frutti_parse_email_list( $raw );
+    if ( ! empty( $list ) ) {
+        return $list;
+    }
+    return tutti_frutti_get_contact_admin_emails();
+}
+
+/**
  * Send email to admin recipients with optional CC.
  *
  * @param string $subject Subject.

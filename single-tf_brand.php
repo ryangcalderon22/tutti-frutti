@@ -99,10 +99,10 @@ while ( have_posts() ) :
                                     </div>
                                 <?php endif; ?>
                                 <?php if ( $group_parent_title && $group_has_title ) : ?>
-    <h3 class="brand-menu-category__title">
-        <?php echo esc_html( $group['title'] ); ?>
-    </h3>
-<?php endif; ?>
+                                    <h3 class="brand-menu-category__title">
+                                        <?php echo esc_html( $group['title'] ); ?>
+                                    </h3>
+                                <?php endif; ?>
                                 <?php if ( ! empty( $group['products'] ) ) : ?>
                                     <ul class="brand-menu-products">
                                         <?php foreach ( $group['products'] as $product ) : ?>

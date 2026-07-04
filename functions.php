@@ -25,6 +25,8 @@ require_once get_template_directory() . '/inc/contact-form.php';
 require_once get_template_directory() . '/inc/careers-form.php';
 require_once get_template_directory() . '/inc/cpt-faq.php';
 require_once get_template_directory() . '/inc/cpt-jobs.php';
+require_once get_template_directory() . '/inc/cpt-business-opportunity.php';
+require_once get_template_directory() . '/inc/business-opportunity-form.php';
 require_once get_template_directory() . '/inc/cpt-page-sections.php';
 require_once get_template_directory() . '/inc/theme-setup.php';
 

@@ -157,11 +157,8 @@
 } */
 
 .brand-detail-hero {
-    display: grid;
-    grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
     min-height: 480px;
     background: #fff;
-    align-items: stretch;
 }
 
 .brand-detail-hero__content {
@@ -447,8 +444,21 @@
     text-align: center;
 }
 
-.page-brands .brand-card:first-child {
-    margin-top: 30px;
+@media (min-width: 768px) {
+    .page-brands .brand-card {
+        margin-top: 30px;
+    }
+
+    .page-brands .brand-card:nth-child(3),
+    .page-brands .brand-card:nth-child(4) {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .page-brands .brand-card:first-child {
+        margin-top: 30px;
+    }
 }
 
 .page-brands .brand-card__link {

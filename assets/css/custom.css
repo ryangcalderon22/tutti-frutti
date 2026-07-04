@@ -523,6 +523,21 @@
     text-align: center;
 }
 
+.business-form-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 36px 32px 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    text-align: left;
+}
+
+.business-form-wrap .section-title {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
 .careers-general-intro {
     margin-bottom: 32px;
     color: var(--text-dark);
@@ -539,6 +554,10 @@
     }
 
     .careers-form-wrap {
+        padding: 28px 20px;
+    }
+
+    .business-form-wrap {
         padding: 28px 20px;
     }
 }
@@ -1086,7 +1105,12 @@ body.has-transparent-header .site-header:not(.site-header--scrolled) .site-brand
     display: flex;
     gap: 12px;
     flex-wrap: nowrap;
-    justify-content: space-around;
+}
+
+@media (max-width: 767px) {
+    .footer-social {
+        justify-content: space-around;
+    }
 }
 
 .footer-social__link {
@@ -1119,13 +1143,18 @@ section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns {
     display: flex;
     flex-wrap: wrap;
 	gap: 30px !important;
+    justify-content: center;
 }
 
 section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-menu-column {
     border-right: 1px solid #ffdb99;
     height: 100%;
-	max-width: 33.3%;
+	max-width: 30%;
 	padding-right: 30px;
+}
+
+section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-menu-column:last-child {
+    border-right: 0;
 }
 
 section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns img.brand-menu-category-card__image {
