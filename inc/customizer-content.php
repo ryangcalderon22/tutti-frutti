@@ -58,6 +58,7 @@ function tutti_frutti_customizer_content( $wp_customize ) {
     );
 
     $text_fields = array(
+        'tf_contact_title_text' => array( 'label' => __( 'Contact page — info title text', 'tutti-frutti-cafe' ), 'default' => 'Tutti Frutti Cafe' ),
         'tf_hero_title'    => array( 'label' => __( 'Homepage hero title', 'tutti-frutti-cafe' ), 'default' => '' ),
         'tf_hero_tagline'  => array( 'label' => __( 'Homepage hero tagline', 'tutti-frutti-cafe' ), 'default' => '' ),
         'tf_moments_title' => array( 'label' => __( 'Moments section title', 'tutti-frutti-cafe' ), 'default' => '' ),
@@ -102,6 +103,19 @@ function tutti_frutti_customizer_content( $wp_customize ) {
             array(
                 'label'   => __( 'Moments section image', 'tutti-frutti-cafe' ),
                 'section' => 'tf_site_content',
+            )
+        )
+    );
+
+    $wp_customize->add_setting( 'tf_contact_title_image', array( 'sanitize_callback' => 'esc_url_raw' ) );
+    $wp_customize->add_control(
+        new WP_Customize_Image_Control(
+            $wp_customize,
+            'tf_contact_title_image',
+            array(
+                'label'       => __( 'Contact page — info title image (optional)', 'tutti-frutti-cafe' ),
+                'description' => __( 'If set, replaces the "Tutti Frutti Cafe" text heading on the Contact page with this image (e.g. a logo).', 'tutti-frutti-cafe' ),
+                'section'     => 'tf_site_content',
             )
         )
     );

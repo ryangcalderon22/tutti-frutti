@@ -283,8 +283,8 @@ function tutti_frutti_customizer_site_settings( $wp_customize ) {
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'tf_recaptcha_site_key', array(
-        'label'       => __( 'reCAPTCHA v2 Site Key', 'tutti-frutti-cafe' ),
-        'description' => __( 'From google.com/recaptcha/admin — Checkbox ("I\'m not a robot") type. Leave blank to disable captcha.', 'tutti-frutti-cafe' ),
+        'label'       => __( 'reCAPTCHA v3 Site Key', 'tutti-frutti-cafe' ),
+        'description' => __( 'From google.com/recaptcha/admin — choose the v3 (score based, invisible) type. Leave blank to disable captcha.', 'tutti-frutti-cafe' ),
         'section'     => 'tf_recaptcha_settings',
         'type'        => 'text',
     ) );
@@ -294,8 +294,19 @@ function tutti_frutti_customizer_site_settings( $wp_customize ) {
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'tf_recaptcha_secret_key', array(
-        'label'       => __( 'reCAPTCHA v2 Secret Key', 'tutti-frutti-cafe' ),
+        'label'       => __( 'reCAPTCHA v3 Secret Key', 'tutti-frutti-cafe' ),
         'description' => __( 'Kept server-side, used to verify submissions.', 'tutti-frutti-cafe' ),
+        'section'     => 'tf_recaptcha_settings',
+        'type'        => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'tf_recaptcha_score_threshold', array(
+        'default'           => '0.5',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'tf_recaptcha_score_threshold', array(
+        'label'       => __( 'reCAPTCHA v3 minimum score (0.0–1.0)', 'tutti-frutti-cafe' ),
+        'description' => __( 'Submissions scoring below this are rejected as likely bots. Google recommends starting at 0.5.', 'tutti-frutti-cafe' ),
         'section'     => 'tf_recaptcha_settings',
         'type'        => 'text',
     ) );

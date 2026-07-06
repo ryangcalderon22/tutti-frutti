@@ -23,7 +23,15 @@ get_header();
         <!-- LEFT COLUMN -->
         <aside class="contact-info">
 
-            <h2>Tutti Frutti Cafe</h2>
+            <?php
+            $contact_title_image = get_theme_mod( 'tf_contact_title_image', '' );
+            $contact_title_text  = get_theme_mod( 'tf_contact_title_text', 'Tutti Frutti Cafe' );
+            ?>
+            <?php if ( $contact_title_image ) : ?>
+                <img src="<?php echo esc_url( $contact_title_image ); ?>" alt="<?php echo esc_attr( $contact_title_text ); ?>" class="contact-info__title-image">
+            <?php elseif ( $contact_title_text ) : ?>
+                <h2><?php echo esc_html( $contact_title_text ); ?></h2>
+            <?php endif; ?>
 
             <div class="contact-item">
                 <h3>Address</h3>
@@ -78,12 +86,17 @@ get_header();
 
             <?php tutti_frutti_render_contact_notice(); ?>
 
+            <?php $tf_recaptcha_site_key = get_theme_mod( 'tf_recaptcha_site_key', '' ); ?>
             <form
                 class="contact-form tf-form"
                 action="<?php echo esc_url( tutti_frutti_page_url( 'contact' ) ); ?>"
-                method="post">
+                method="post"
+                <?php echo $tf_recaptcha_site_key ? ' data-recaptcha="1"' : ''; ?>>
 
                 <?php wp_nonce_field( 'tf_contact_form', 'tf_contact_nonce' ); ?>
+                <?php if ( $tf_recaptcha_site_key ) : ?>
+                    <input type="hidden" name="g-recaptcha-response" value="">
+                <?php endif; ?>
 
                 <div class="tf-form__grid">
 
@@ -155,13 +168,6 @@ get_header();
                             required></textarea>
 
                     </div>
-
-                    <?php $tf_recaptcha_site_key = get_theme_mod( 'tf_recaptcha_site_key', '' ); ?>
-                    <?php if ( $tf_recaptcha_site_key ) : ?>
-                        <div class="tf-form__field tf-form__field--full">
-                            <div class="g-recaptcha" data-sitekey="<?php echo esc_attr( $tf_recaptcha_site_key ); ?>"></div>
-                        </div>
-                    <?php endif; ?>
 
                     <div class="tf-form__field tf-form__field--full tf-form__actions">
 

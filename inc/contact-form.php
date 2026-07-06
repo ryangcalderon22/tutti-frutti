@@ -134,13 +134,14 @@ function tutti_frutti_render_contact_notice() {
 }
 
 /**
- * Verify a Google reCAPTCHA v2 token server-side.
+ * Verify a Google reCAPTCHA v3 token server-side.
  *
  * @param string $token  The g-recaptcha-response value from the form.
  * @param string $secret The reCAPTCHA secret key.
+ * @param string $action Expected action name (set when the token was generated).
  * @return bool
  */
-function tutti_frutti_verify_recaptcha( $token, $secret ) {
+function tutti_frutti_verify_recaptcha( $token, $secret, $action = 'contact' ) {
     $response = wp_remote_post(
         'https://www.google.com/recaptcha/api/siteverify',
         array(
@@ -159,7 +160,19 @@ function tutti_frutti_verify_recaptcha( $token, $secret ) {
 
     $body = json_decode( wp_remote_retrieve_body( $response ), true );
 
-    return ! empty( $body['success'] );
+    if ( empty( $body['success'] ) ) {
+        return false;
+    }
+
+    // v3-specific checks: score and (if present) matching action.
+    if ( isset( $body['action'] ) && $action && $body['action'] !== $action ) {
+        return false;
+    }
+
+    $threshold = (float) get_theme_mod( 'tf_recaptcha_score_threshold', '0.5' );
+    $score     = isset( $body['score'] ) ? (float) $body['score'] : 1.0;
+
+    return $score >= $threshold;
 }
 
 /**
@@ -179,8 +192,8 @@ function tutti_frutti_handle_contact_form() {
     $recaptcha_secret = get_theme_mod( 'tf_recaptcha_secret_key', '' );
     if ( $recaptcha_secret ) {
         $recaptcha_response = isset( $_POST['g-recaptcha-response'] ) ? sanitize_text_field( wp_unslash( $_POST['g-recaptcha-response'] ) ) : '';
-        if ( empty( $recaptcha_response ) || ! tutti_frutti_verify_recaptcha( $recaptcha_response, $recaptcha_secret ) ) {
-            tutti_frutti_set_contact_notice( 'error', __( 'Please confirm you are not a robot.', 'tutti-frutti-cafe' ) );
+        if ( empty( $recaptcha_response ) || ! tutti_frutti_verify_recaptcha( $recaptcha_response, $recaptcha_secret, 'contact' ) ) {
+            tutti_frutti_set_contact_notice( 'error', __( 'Spam check failed. Please try again.', 'tutti-frutti-cafe' ) );
             wp_safe_redirect( add_query_arg( 'contact', 'error', tutti_frutti_page_url( 'contact' ) ) );
             exit;
         }

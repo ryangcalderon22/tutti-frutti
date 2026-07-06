@@ -112,7 +112,7 @@ add_filter( 'page_template', 'tutti_frutti_load_page_template' );
  * Enqueue Styles and Scripts
  */
 function tutti_frutti_enqueue_scripts() {
-    $version = '1.7.0';
+    $version = '1.7.2';
 
     wp_enqueue_style( 'tutti-frutti-style', get_stylesheet_uri(), array(), $version );
 
@@ -168,7 +168,28 @@ function tutti_frutti_enqueue_scripts() {
     if ( is_page_template( 'page-templates/template-contact.php' ) ) {
         $recaptcha_site_key = get_theme_mod( 'tf_recaptcha_site_key', '' );
         if ( $recaptcha_site_key ) {
-            wp_enqueue_script( 'google-recaptcha', 'https://www.google.com/recaptcha/api.js', array(), null, true );
+            wp_enqueue_script(
+                'google-recaptcha',
+                'https://www.google.com/recaptcha/api.js?render=' . rawurlencode( $recaptcha_site_key ),
+                array(),
+                null,
+                true
+            );
+            wp_enqueue_script(
+                'tutti-frutti-recaptcha-v3',
+                get_template_directory_uri() . '/js/recaptcha-v3.js',
+                array( 'google-recaptcha' ),
+                $version,
+                true
+            );
+            wp_localize_script(
+                'tutti-frutti-recaptcha-v3',
+                'tfRecaptcha',
+                array(
+                    'siteKey' => $recaptcha_site_key,
+                    'action'  => 'contact',
+                )
+            );
         }
     }
 }
