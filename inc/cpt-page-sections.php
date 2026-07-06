@@ -16,13 +16,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function tutti_frutti_page_section_targets() {
     return array(
-        'about'      => __( 'About Us', 'tutti-frutti-cafe' ),
-        'franchise'  => __( 'Franchise', 'tutti-frutti-cafe' ),
-        'order'      => __( 'Order Online', 'tutti-frutti-cafe' ),
-        'contact'    => __( 'Contact Us', 'tutti-frutti-cafe' ),
-        'careers'    => __( 'Careers', 'tutti-frutti-cafe' ),
-        'rewards'    => __( 'Rewards', 'tutti-frutti-cafe' ),
-        'directions' => __( 'Directions', 'tutti-frutti-cafe' ),
+        'about'                => __( 'About Us', 'tutti-frutti-cafe' ),
+        'franchise'            => __( 'Franchise', 'tutti-frutti-cafe' ),
+        'business-opportunity' => __( 'Business Opportunity', 'tutti-frutti-cafe' ),
+        'order'                => __( 'Order Online', 'tutti-frutti-cafe' ),
+        'contact'              => __( 'Contact Us', 'tutti-frutti-cafe' ),
+        'careers'              => __( 'Careers', 'tutti-frutti-cafe' ),
+        'rewards'              => __( 'Rewards', 'tutti-frutti-cafe' ),
+        'directions'           => __( 'Directions', 'tutti-frutti-cafe' ),
     );
 }
 
@@ -359,7 +360,7 @@ function tutti_frutti_render_page_sections( $page_key, $top_padding = true ) {
         $first       = false;
 
         if ( 'careers_hero' === $layout ) {
-            tutti_frutti_render_section_careers_hero( $section, $extra_class );
+            tutti_frutti_render_section_careers_hero( $section, $extra_class, $page_key );
         } elseif ( 'text_only' === $layout ) {
             tutti_frutti_render_section_text_only( $section, $extra_class );
         } else {
@@ -463,10 +464,11 @@ function tutti_frutti_render_section_text_only( $section, $extra_class = '' ) {
  * @param WP_Post $section Section.
  * @param string  $extra_class Extra class.
  */
-function tutti_frutti_render_section_careers_hero( $section, $extra_class = '' ) {
-    $img = tutti_frutti_section_image_url( $section, 'careers' );
+function tutti_frutti_render_section_careers_hero( $section, $extra_class = '', $page_key = 'careers' ) {
+    $page_key = $page_key ? $page_key : 'careers';
+    $img      = tutti_frutti_section_image_url( $section, $page_key );
     ?>
-    <section class="careers-hero page-hero--careers<?php echo esc_attr( $extra_class ); ?>"<?php echo tutti_frutti_page_hero_style_attr( 'careers' ); // phpcs:ignore ?>>
+    <section class="careers-hero page-hero--<?php echo esc_attr( $page_key ); ?><?php echo esc_attr( $extra_class ); ?>"<?php echo tutti_frutti_page_hero_style_attr( $page_key ); // phpcs:ignore ?>>
         <div class="careers-hero__media">
             <img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $section->post_title ); ?>">
         </div>

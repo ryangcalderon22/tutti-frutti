@@ -52,12 +52,22 @@ while ( have_posts() ) :
                     <div class="brand-menu-columns">
                         <?php
                         $current_parent_title = null;
+                        $column_index         = 0;
+                        $column_open          = false;
                         foreach ( $grouped as $group ) :
                             $group_parent_title = ! empty( $group['parent_title'] ) ? $group['parent_title'] : '';
                             if ( $group_parent_title !== $current_parent_title ) :
                                 $current_parent_title = $group_parent_title;
-                                if ( $group_parent_title ) :
+                                if ( $column_open ) :
                                     ?>
+                                    </div>
+                                    <?php
+                                endif;
+                                $column_index++;
+                                $column_open = true;
+                                ?>
+                                <div class="brand-column brand-column-<?php echo esc_attr( $column_index ); ?>">
+                                <?php if ( $group_parent_title ) : ?>
                                     <div class="brand-menu-parent">
                                         <?php if ( ! empty( $group['parent_image'] ) ) : ?>
                                             <img src="<?php echo esc_url( $group['parent_image'] ); ?>" alt="<?php echo esc_attr( $group_parent_title ); ?>" class="brand-menu-parent__image">
@@ -143,6 +153,9 @@ if ( in_array( $product['name'], $instore_products, true ) ) : ?>
                                 <?php endif; ?>
                             </div>
                         <?php endforeach; ?>
+                        <?php if ( $column_open ) : ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </section>

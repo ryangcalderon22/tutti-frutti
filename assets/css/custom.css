@@ -200,6 +200,18 @@
     break-inside: avoid;
 }
 
+.brand-column {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 32px 40px;
+    align-items: start;
+}
+
+.brand-column .brand-menu-parent {
+    grid-column: 1 / -1;
+}
+
 .brand-menu-column__header {
     display: flex;
     align-items: center;
@@ -305,6 +317,7 @@
     letter-spacing: 0.06em;
     color: var(--primary-brown);
     margin: 0 0 12px;
+    text-align: center;
 }
 
 .brand-menu-products {
@@ -323,6 +336,7 @@
     align-items: baseline;
     flex-wrap: wrap;
     gap: 0.25em 0.65em;
+    justify-content: center;
 }
 
 .brand-menu-product__name {
@@ -701,7 +715,7 @@ article.brand-card a.btn.btn-sm {
 }
 
 section.home-section.home-moments {
-    background-image: url('http://tutti-frutti-cafe.local/wp-content/uploads/2026/06/Celebrating.png');
+    background-image: url('/wp-content/uploads/2026/06/Celebrating.png');
     background-repeat: no-repeat;
     background-position: top center;
     background-size: 100% auto;
@@ -1105,6 +1119,7 @@ body.has-transparent-header .site-header:not(.site-header--scrolled) .site-brand
     display: flex;
     gap: 12px;
     flex-wrap: nowrap;
+    justify-content: flex-end;
 }
 
 @media (max-width: 767px) {
@@ -1144,6 +1159,16 @@ section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns {
     flex-wrap: wrap;
 	gap: 30px !important;
     justify-content: center;
+    align-items: center;
+}
+
+section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-column {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
 }
 
 section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-menu-column {
@@ -1285,7 +1310,7 @@ Specificity: (0,2,0)
 @media (max-width:767px){
 
     .page-id-57 section.home-section.home-moments{
-        background-image:url('http://tutti-frutti-cafe.local/wp-content/uploads/2026/06/Celebrating.png');
+        background-image:url('/wp-content/uploads/2026/06/Celebrating.png');
         background-size:100% auto;
         background-repeat:no-repeat;
         background-position:top center;
@@ -1307,6 +1332,10 @@ Specificity: (0,2,0)
     flex-direction: column;
 }
 
+section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-column {
+    flex-direction: column;
+}
+
 section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-menu-column {
     max-width: 100%;
     border-right: 0;
@@ -1314,7 +1343,7 @@ section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .
 	padding-bottom: 20px;
 	padding-right: 0;
 	width: 100%;
-	text-align: cemter;
+	text-align: center;
 }
 	
 	.brand-menu-products li.brand-menu-product .brand-menu-product__row {
@@ -1364,6 +1393,12 @@ body.has-transparent-header .hamburger span {
 	  margin-bottom: 5px;
 		margin-top: 10px;
         flex-direction: column;
+}
+
+@media (max-width: 767px) {
+    .footer-col {
+        direction: ltr;
+    }
 }
 	
 

@@ -99,7 +99,6 @@ function tutti_frutti_get_brand_categories( $brand_id ) {
             'posts_per_page' => 50,
             'post_status'    => 'publish',
             'orderby'        => array(
-                'parent'     => 'DESC',
                 'menu_order' => 'ASC',
                 'title'      => 'ASC',
             ),

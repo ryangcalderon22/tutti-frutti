@@ -19,11 +19,6 @@
     padding-top: 100px;
 }
 
-.site-main--page > .pio-hero,
-.site-main--page > .careers-hero {
-    padding-top: 70px;
-}
-
 .page-banner-img {
     width: 100%;
     height: 400px;
@@ -162,7 +157,7 @@
 }
 
 .brand-detail-hero__content {
-    padding: 48px 56px 48px max(48px, calc((100vw - 1200px) / 2 + 20px));
+    padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -444,20 +439,29 @@
     text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 993px) {
     .page-brands .brand-card {
         margin-top: 30px;
     }
+}
 
-    .page-brands .brand-card:nth-child(3),
-    .page-brands .brand-card:nth-child(4) {
-        margin-top: 0;
+@media (max-width: 992px) {
+
+    .page-brands .brand-card:nth-child(1),
+    .page-brands .brand-card:nth-child(2) {
+        margin-top: 30px;
     }
 }
 
 @media (max-width: 767px) {
     .page-brands .brand-card:first-child {
         margin-top: 30px;
+    }
+
+    .page-brands .brand-card:nth-child(2),
+    .page-brands .brand-card:nth-child(3),
+    .page-brands .brand-card:nth-child(4) {
+        margin-top: -30px;
     }
 }
 
@@ -506,10 +510,11 @@
     min-height: 480px;
     background: var(--light-cream);
     align-items: stretch;
+    padding-top: 0;;
 }
 
 .careers-hero__content {
-    padding: 80px 48px 80px max(48px, calc((100vw - 1200px) / 2 + 20px));
+    padding: 80px 48px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -528,6 +533,7 @@
     text-transform: none;
     font-weight: 400;
     letter-spacing: 0;
+    padding-bottom: 0;
 }
 
 .careers-hero__list {

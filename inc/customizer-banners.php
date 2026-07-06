@@ -31,6 +31,7 @@ function tutti_frutti_customizer_banners( $wp_customize ) {
         'rewards'   => __( 'Rewards Page', 'tutti-frutti-cafe' ),
         'careers'   => __( 'Careers Page', 'tutti-frutti-cafe' ),
         'franchise' => __( 'Franchise Page', 'tutti-frutti-cafe' ),
+        'business-opportunity' => __( 'Business Opportunity Page', 'tutti-frutti-cafe' ),
         'contact'   => __( 'Contact Page', 'tutti-frutti-cafe' ),
         'brands'    => __( 'Brands Page', 'tutti-frutti-cafe' ),
     );

@@ -129,6 +129,13 @@ function tutti_frutti_get_brand_products_grouped( $brand_id ) {
     $grouped    = array();
     $assigned   = array();
 
+    // Map of category ID => its "Order" value (Page Attributes), so a
+    // child category's group can be sorted by its *parent's* order number.
+    $order_by_id = array();
+    foreach ( $categories as $cat ) {
+        $order_by_id[ $cat->ID ] = (int) $cat->menu_order;
+    }
+
     foreach ( $categories as $cat ) {
         $products = array();
         foreach ( $all as $p ) {
@@ -145,12 +152,16 @@ function tutti_frutti_get_brand_products_grouped( $brand_id ) {
             $cat_order    = get_post_meta( $cat->ID, '_tf_cat_order_url', true );
             $parent_title = '';
             $parent_image = '';
+            $group_sort   = (int) $cat->menu_order;
             if ( $cat->post_parent ) {
                 $parent_title = get_the_title( $cat->post_parent );
                 $parent_image = get_the_post_thumbnail_url( $cat->post_parent, 'medium' );
                 if ( ! $parent_image ) {
                     $parent_image = get_post_meta( $cat->post_parent, '_tf_cat_image', true );
                 }
+                $group_sort = isset( $order_by_id[ $cat->post_parent ] )
+                    ? $order_by_id[ $cat->post_parent ]
+                    : (int) get_post_field( 'menu_order', $cat->post_parent );
             }
             $grouped[] = array(
                 'title'        => $cat->post_title,
@@ -159,9 +170,23 @@ function tutti_frutti_get_brand_products_grouped( $brand_id ) {
                 'image'        => $cat_image ? $cat_image : '',
                 'order_url'    => $cat_order,
                 'products'     => $products,
+                'sort_group'   => $group_sort,
+                'sort_item'    => (int) $cat->menu_order,
             );
         }
     }
+
+    // Sort groups by the parent category's Order, then by each category's
+    // own Order within that group — both set via Page Attributes in admin.
+    usort(
+        $grouped,
+        function ( $a, $b ) {
+            if ( $a['sort_group'] !== $b['sort_group'] ) {
+                return $a['sort_group'] <=> $b['sort_group'];
+            }
+            return $a['sort_item'] <=> $b['sort_item'];
+        }
+    );
 
     $other = array();
     foreach ( $all as $p ) {
