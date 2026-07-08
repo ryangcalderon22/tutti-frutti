@@ -1489,16 +1489,22 @@ section.careers-hero.page-hero--careers.page-section--top .careers-hero__media i
 
 .footer-links{
     display:flex;
-    gap:35px;
+    gap:15px;
     list-style:none;
     padding:0;
     margin:0;
 	font-size:16px;
+    flex-flow: wrap;
+}
+
+@media (max-width: 767px) {
+    .footer-links{
+        gap:12px;
+    }
 }
 
 .footer-link-col{
     display:flex;
-    flex-direction:column;
     gap:2px;
 }
 
