@@ -191,7 +191,9 @@ nav a,
     letter-spacing: 0.05em;
 }
 
-nav a:hover {
+nav a:hover,
+#primary-menu .current_page_item a,
+#primary-menu a:hover {
     color: var(--secondary-orange);
 }
 

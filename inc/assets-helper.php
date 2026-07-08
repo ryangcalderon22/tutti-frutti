@@ -10,6 +10,129 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Ensure every <img> tag in a chunk of HTML has meaningful alt text.
+ *
+ * Useful for output coming from plugins/shortcodes we don't control (e.g.
+ * the Tutti Frutti Slider plugin's [tutti_slider] shortcode) where we can't
+ * edit the markup directly. For any <img> missing alt text, this tries —
+ * in order — the image's own title attribute, a wrapping <a> title
+ * attribute, common data-* attributes (data-title/data-caption/data-alt/
+ * data-name), then a nearby heading or title/caption/name-classed element
+ * within the same slide block. Falls back to $fallback_alt (empty by
+ * default) if nothing usable is found. Existing non-empty alt text is
+ * always left untouched.
+ *
+ * @param string $html         HTML to process.
+ * @param string $fallback_alt Alt text to use when no title can be found.
+ * @return string
+ */
+function tutti_frutti_ensure_img_alt( $html, $fallback_alt = '' ) {
+    if ( ! $html || false === stripos( $html, '<img' ) || ! class_exists( 'DOMDocument' ) ) {
+        return $html;
+    }
+
+    $doc = new DOMDocument();
+    $prev_errors = libxml_use_internal_errors( true );
+    $doc->loadHTML(
+        '<?xml encoding="UTF-8"><div id="tf-alt-wrap">' . $html . '</div>',
+        LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+    );
+    libxml_clear_errors();
+    libxml_use_internal_errors( $prev_errors );
+
+    $xpath  = new DOMXPath( $doc );
+    $images = $xpath->query( '//img' );
+
+    foreach ( $images as $img ) {
+        if ( ! $img instanceof DOMElement ) {
+            continue;
+        }
+        if ( '' !== trim( $img->getAttribute( 'alt' ) ) ) {
+            continue; // Already has real alt text.
+        }
+
+        $title = tutti_frutti_find_nearby_title( $img, $xpath );
+        $img->setAttribute( 'alt', $title ? $title : $fallback_alt );
+    }
+
+    $wrapper = $doc->getElementById( 'tf-alt-wrap' );
+    if ( ! $wrapper ) {
+        return $html;
+    }
+
+    $out = '';
+    foreach ( $wrapper->childNodes as $child ) {
+        $out .= $doc->saveHTML( $child );
+    }
+
+    return $out;
+}
+
+/**
+ * Try to find a title/caption for an <img> from nearby markup.
+ *
+ * @param DOMElement $img   The image element.
+ * @param DOMXPath   $xpath XPath helper bound to the same document.
+ * @return string
+ */
+function tutti_frutti_find_nearby_title( DOMElement $img, DOMXPath $xpath ) {
+    // 1. The image's own title attribute.
+    $title_attr = trim( $img->getAttribute( 'title' ) );
+    if ( $title_attr ) {
+        return $title_attr;
+    }
+
+    // 2. A wrapping <a title="...">.
+    $parent = $img->parentNode;
+    if ( $parent instanceof DOMElement && 'a' === strtolower( $parent->nodeName ) ) {
+        $a_title = trim( $parent->getAttribute( 'title' ) );
+        if ( $a_title ) {
+            return $a_title;
+        }
+    }
+
+    // 3. Common data-* attributes used by slider/gallery plugins.
+    foreach ( array( 'data-title', 'data-caption', 'data-alt', 'data-name' ) as $data_attr ) {
+        $val = trim( $img->getAttribute( $data_attr ) );
+        if ( $val ) {
+            return $val;
+        }
+    }
+
+    // 4. Walk up a few ancestor levels looking for a heading, or an element
+    // whose class suggests it holds the slide's title/caption/name.
+    $node  = $img->parentNode;
+    $depth = 0;
+    while ( $node instanceof DOMElement && $depth < 4 ) {
+        $heading = $xpath->query( './/h1 | .//h2 | .//h3 | .//h4 | .//h5 | .//h6', $node );
+        if ( $heading->length ) {
+            $text = trim( $heading->item( 0 )->textContent );
+            if ( $text ) {
+                return $text;
+            }
+        }
+
+        $captioned = $xpath->query(
+            './/*[contains(concat(" ", normalize-space(@class), " "), " title ") '
+            . 'or contains(concat(" ", normalize-space(@class), " "), " caption ") '
+            . 'or contains(concat(" ", normalize-space(@class), " "), " name ")]',
+            $node
+        );
+        if ( $captioned->length ) {
+            $text = trim( $captioned->item( 0 )->textContent );
+            if ( $text ) {
+                return $text;
+            }
+        }
+
+        $node = $node->parentNode;
+        $depth++;
+    }
+
+    return '';
+}
+
+/**
  * Theme asset URI for a file under assets/images/client/.
  *
  * @param string $filename Filename.

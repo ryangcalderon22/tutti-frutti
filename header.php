@@ -5,13 +5,15 @@
  * @package Tutti_Frutti_Cafe
  */
 
-$order_url = tutti_frutti_page_url( 'order-online' );
+// $order_url = tutti_frutti_page_url( 'order-online' );
+$order_url = tutti_frutti_get_chownow_url();
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="z6WnFhhN4jm5Zpp52JX1fR1vJnEHGFGFfFK1DcFLuEc" />
     <link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +46,7 @@ $order_url = tutti_frutti_page_url( 'order-online' );
                 tutti_frutti_fallback_menu();
             }
             ?>
-            <a href="<?php echo esc_url( $order_url ); ?>" class="btn-order-nav btn-order-nav--green">
+            <a href="<?php echo esc_url( $order_url ); ?>" class="btn-order-nav btn-order-nav--green" target="_blank">
                 <?php esc_html_e( 'Order Now', 'tutti-frutti-cafe' ); ?>
             </a>
         </nav>

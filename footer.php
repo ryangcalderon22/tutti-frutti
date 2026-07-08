@@ -47,22 +47,25 @@ for ( $i = 1; $i <= 4; $i++ ) {
                     
 					<ul class="footer-links">
     <div class="footer-link-col">
-        <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'about' ) ); ?>">About</a></li>
+        <!-- <li><a href="<?php //echo esc_url( tutti_frutti_page_url( 'about' ) ); ?>">About</a></li> -->
         <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'brands' ) ); ?>">Brands</a></li>
-    </div>
-
-    <div class="footer-link-col">
         <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'rewards' ) ); ?>">Rewards</a></li>
-        <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'franchise' ) ); ?>">Franchise</a></li>
     </div>
 
     <div class="footer-link-col">
-        <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'careers' ) ); ?>">Careers</a></li>
+        <!-- <li><a href="<?php //echo esc_url( tutti_frutti_page_url( 'rewards' ) ); ?>">Rewards</a></li> -->
+        <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'franchise' ) ); ?>">Franchise</a></li>
         <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'contact' ) ); ?>">Contact</a></li>
     </div>
+
     <div class="footer-link-col">
-        <li><a href="<?php echo esc_url( tutti_frutti_page_url( 'order-online' ) ); ?>">Order Online</a></li>
+        <!-- <li><a href="<?php //echo esc_url( tutti_frutti_page_url( 'careers' ) ); ?>">Careers</a></li> -->
+        <!-- <li><a href="<?php //echo esc_url( tutti_frutti_page_url( 'contact' ) ); ?>">Contact</a></li> -->
+        <li><a href="<?php echo esc_url( tutti_frutti_get_chownow_url() ); ?>" target="_blank" rel="noopener noreferrer">Order Online</a></li>
     </div>
+    <!-- <div class="footer-link-col">
+        
+    </div> -->
 </ul>		
 					
                 </div>

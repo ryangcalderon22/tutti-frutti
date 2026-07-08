@@ -236,6 +236,14 @@ function tutti_frutti_configure_smtp( $phpmailer ) {
     $phpmailer->SMTPAuth   = true;
     $phpmailer->Username   = get_option( 'tf_smtp_username', '' );
     $phpmailer->Password   = get_option( 'tf_smtp_password', '' );
+    // Bound how long we'll wait on a slow/unreachable SMTP host so a bad
+    // connection (e.g. blocked IP) fails fast instead of hanging the page
+    // for 30+ seconds. Sending still happens after the redirect (see
+    // inc/contact-form.php), so a failed/slow send here no longer blocks
+    // the visitor either way — this just keeps the background PHP process
+    // from running unnecessarily long.
+    $phpmailer->Timeout        = 5;
+    $phpmailer->SMTPKeepAlive  = false;
 
     $encryption = get_option( 'tf_smtp_encryption', 'tls' );
     if ( 'ssl' === $encryption ) {

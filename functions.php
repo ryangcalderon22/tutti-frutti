@@ -28,6 +28,8 @@ require_once get_template_directory() . '/inc/cpt-jobs.php';
 require_once get_template_directory() . '/inc/cpt-business-opportunity.php';
 require_once get_template_directory() . '/inc/business-opportunity-form.php';
 require_once get_template_directory() . '/inc/cpt-page-sections.php';
+require_once get_template_directory() . '/inc/schema-local-business.php';
+require_once get_template_directory() . '/inc/google-analytics.php';
 require_once get_template_directory() . '/inc/theme-setup.php';
 
 /**
