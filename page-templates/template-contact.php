@@ -14,9 +14,9 @@ get_header();
 
 <div class="container">
 
-    <h2 class="section-title section-title--contact">
+    <h1 class="section-title section-title--contact">
         We'd Love to Hear From You
-    </h2>
+    </h1>
 
     <div class="contact-layout">
 
@@ -28,7 +28,7 @@ get_header();
             $contact_title_text  = get_theme_mod( 'tf_contact_title_text', 'Tutti Frutti Cafe' );
             ?>
             <?php if ( $contact_title_image ) : ?>
-                <img src="<?php echo esc_url( $contact_title_image ); ?>" alt="<?php echo esc_attr( $contact_title_text ); ?>" class="contact-info__title-image">
+                <h2><img src="<?php echo esc_url( $contact_title_image ); ?>" alt="<?php echo esc_attr( $contact_title_text ); ?>" class="contact-info__title-image"></h2>
             <?php elseif ( $contact_title_text ) : ?>
                 <h2><?php echo esc_html( $contact_title_text ); ?></h2>
             <?php endif; ?>
@@ -84,7 +84,11 @@ get_header();
                 Contact Form
             </h2> -->
 
-            <?php tutti_frutti_render_contact_notice(); ?>
+            <?php
+            $tf_notice        = tutti_frutti_get_contact_notice();
+            $tf_invalid_field = ( $tf_notice && ! empty( $tf_notice['field'] ) ) ? $tf_notice['field'] : '';
+            tutti_frutti_render_contact_notice( $tf_notice );
+            ?>
 
             <?php $tf_recaptcha_site_key = get_theme_mod( 'tf_recaptcha_site_key', '' ); ?>
             <form
@@ -110,7 +114,10 @@ get_header();
                             type="text"
                             id="contact_first_name"
                             name="contact_first_name"
-                            required>
+                            required
+                            <?php if ( 'contact_first_name' === $tf_invalid_field ) : ?>
+                                aria-invalid="true" aria-describedby="tf-contact-notice"
+                            <?php endif; ?>>
 
                     </div>
 
@@ -124,7 +131,10 @@ get_header();
                             type="text"
                             id="contact_last_name"
                             name="contact_last_name"
-                            required>
+                            required
+                            <?php if ( 'contact_last_name' === $tf_invalid_field ) : ?>
+                                aria-invalid="true" aria-describedby="tf-contact-notice"
+                            <?php endif; ?>>
 
                     </div>
 
@@ -138,7 +148,10 @@ get_header();
                             type="email"
                             id="contact_email"
                             name="contact_email"
-                            required>
+                            required
+                            <?php if ( 'contact_email' === $tf_invalid_field ) : ?>
+                                aria-invalid="true" aria-describedby="tf-contact-notice"
+                            <?php endif; ?>>
 
                     </div>
 
@@ -165,7 +178,10 @@ get_header();
                             id="contact_message"
                             name="contact_message"
                             rows="6"
-                            required></textarea>
+                            required
+                            <?php if ( 'contact_message' === $tf_invalid_field ) : ?>
+                                aria-invalid="true" aria-describedby="tf-contact-notice"
+                            <?php endif; ?>></textarea>
 
                     </div>
 

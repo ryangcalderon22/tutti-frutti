@@ -439,6 +439,13 @@
     background: #fff;
 }
 
+.tf-form__field input[aria-invalid="true"],
+.tf-form__field select[aria-invalid="true"],
+.tf-form__field textarea[aria-invalid="true"] {
+    border-color: #c0392b;
+    border-width: 2px;
+}
+
 .tf-form__field textarea {
     resize: vertical;
     min-height: 120px;
@@ -610,6 +617,9 @@
 .container.home-hero__content {
     text-align: left;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
 }
 
 .home-hero__actions {
@@ -617,7 +627,7 @@
 }
 
 
-h1.home-hero__title {
+.home-hero__eyebrow {
     font-weight: 500;
     font-size: 50px;
 	line-height: 50px;
@@ -628,7 +638,7 @@ h1.home-hero__title {
 	color: antiquewhite;
 }
 
-h1.home-hero__title:after {
+.home-hero__eyebrow:after {
     content: '';
     position: absolute;
     width: 200px;
@@ -778,6 +788,7 @@ section.home-section.home-featured {
 	padding: 10px 0 0 !important;
 }
 
+h1.section-title,
 h2.section-title {
     font-family: 'Oswald';
     letter-spacing: 4px;
@@ -850,7 +861,7 @@ section.page-section.page-section--cream.page-section--top h2 {
     line-height: 45px;
 }
 
-section.page-section.page-section--cream.page-section--top h2.section-title--contact {
+section.page-section.page-section--cream.page-section--top .section-title--contact {
     text-align: center;
     font-size: 22px;
 }
@@ -1266,10 +1277,11 @@ section.home-hero:before {
 }
 
 @media (max-width: 767px){
-	h1.home-hero__title {
+	.home-hero__eyebrow {
     max-width: 100%;
     text-align: center;
 }
+
 
 .home-hero__tagline {
     text-align: center;
@@ -1375,11 +1387,21 @@ section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns i
     background-position: right;
 }
 
+.home-hero__eyebrow,
 h1.home-hero__title {
-            text-align: left;
+            text-align: center;
         font-size: 31px;
-        line-height: 29px;
-        padding-bottom: 12px;
+        line-height: 36px;
+}
+
+.home-hero__eyebrow {
+    padding-bottom: 10px;
+}
+
+.home-hero__eyebrow:after {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }
 
 body.has-transparent-header .hamburger span {
@@ -1574,6 +1596,12 @@ section.careers-hero.page-hero--careers.page-section--top .careers-hero__media i
     background: #ffffff !important;
 }
 
-.home-hero h1.home-hero__title {
-    margin-bottom: -40px !important;
+
+@media (min-width: 768px) {
+    .home-hero__tagline {
+        max-width: 600px;
+    }
+    .home-hero__title {
+        max-width: 750px;
+    }
 }

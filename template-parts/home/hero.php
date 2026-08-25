@@ -6,6 +6,7 @@
  */
 $hero_bg = tutti_frutti_get_page_banner( 'home' );
 
+$heroEyebrow = get_theme_mod( 'tf_heroEyebrow', '' );
 $hero_title   = get_theme_mod( 'tf_hero_title', '' );
 $hero_tagline = get_theme_mod( 'tf_hero_tagline', '' );
 
@@ -26,6 +27,9 @@ for ( $i = 1; $i <= 3; $i++ ) {
     <div class="home-hero__overlay"></div>
     <div class="container home-hero__content">
         <?php tutti_frutti_the_logo( 'hero' ); ?>
+        <?php if ( $heroEyebrow ) : ?>
+            <span class="home-hero__eyebrow"><?php echo esc_html( $heroEyebrow ); ?></span>
+        <?php endif; ?>
         <?php if ( $hero_title ) : ?>
             <h1 class="home-hero__title"><?php echo esc_html( $hero_title ); ?></h1>
         <?php endif; ?>

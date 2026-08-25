@@ -18,11 +18,18 @@ function tutti_frutti_careers_notice_key() {
 }
 
 /**
- * @param string $type success|error.
- * @param string $message Message.
+ * @param string $type    success|error.
+ * @param string $message Message. Should be specific enough for the user to
+ *                        know exactly what to fix (WCAG 3.3.3).
+ * @param string $field   Optional field id the error applies to, so the
+ *                        input itself can be marked aria-invalid.
  */
-function tutti_frutti_set_careers_notice( $type, $message ) {
-    set_transient( 'tf_careers_notice_' . tutti_frutti_careers_notice_key(), array( 'type' => $type, 'message' => $message ), 120 );
+function tutti_frutti_set_careers_notice( $type, $message, $field = '' ) {
+    set_transient(
+        'tf_careers_notice_' . tutti_frutti_careers_notice_key(),
+        array( 'type' => $type, 'message' => $message, 'field' => $field ),
+        120
+    );
 }
 
 /**
@@ -37,6 +44,9 @@ function tutti_frutti_get_careers_notice() {
     $data = get_transient( 'tf_careers_notice_' . tutti_frutti_careers_notice_key() );
     if ( $data ) {
         delete_transient( 'tf_careers_notice_' . tutti_frutti_careers_notice_key() );
+        if ( ! isset( $data['field'] ) ) {
+            $data['field'] = '';
+        }
         return $data;
     }
 
@@ -44,27 +54,37 @@ function tutti_frutti_get_careers_notice() {
         return array(
             'type'    => 'success',
             'message' => __( 'Thank you! Your application has been submitted.', 'tutti-frutti-cafe' ),
+            'field'   => '',
         );
     }
 
     return array(
         'type'    => 'error',
         'message' => __( 'Could not submit your application. Please try again.', 'tutti-frutti-cafe' ),
+        'field'   => '',
     );
 }
 
 /**
  * Render careers notice.
+ *
+ * @param array|null $notice Pre-fetched notice (avoids double-consuming the
+ *                           transient). Pass null to fetch it here.
  */
-function tutti_frutti_render_careers_notice() {
-    $notice = tutti_frutti_get_careers_notice();
+function tutti_frutti_render_careers_notice( $notice = null ) {
+    if ( null === $notice ) {
+        $notice = tutti_frutti_get_careers_notice();
+    }
     if ( ! $notice ) {
         return;
     }
-    $class = 'success' === $notice['type'] ? 'contact-notice contact-notice--success' : 'contact-notice contact-notice--error';
+    $is_success = 'success' === $notice['type'];
+    $class      = $is_success ? 'contact-notice contact-notice--success' : 'contact-notice contact-notice--error';
+    $role       = $is_success ? 'status' : 'alert';
     printf(
-        '<div class="%s" role="alert">%s</div>',
+        '<div id="tf-careers-notice" class="%s" role="%s">%s</div>',
         esc_attr( $class ),
+        esc_attr( $role ),
         esc_html( $notice['message'] )
     );
 }
@@ -112,8 +132,27 @@ function tutti_frutti_handle_careers_form() {
     $job_id     = isset( $_POST['careers_job_id'] ) ? absint( $_POST['careers_job_id'] ) : 0;
     $name       = trim( $first_name . ' ' . $last_name );
 
-    if ( empty( $first_name ) || empty( $last_name ) || empty( $email ) || ! is_email( $email ) || empty( $mobile ) || empty( $city ) || empty( $state ) || empty( $zip ) ) {
-        tutti_frutti_set_careers_notice( 'error', __( 'Please fill in all required fields with a valid email.', 'tutti-frutti-cafe' ) );
+    // Check each field individually so the error message tells the user
+    // specifically what to fix (WCAG 3.3.3 Error Suggestion).
+    $required_fields = array(
+        'careers_first_name' => array( $first_name, __( 'Please enter your first name.', 'tutti-frutti-cafe' ) ),
+        'careers_last_name'  => array( $last_name, __( 'Please enter your last name.', 'tutti-frutti-cafe' ) ),
+        'careers_mobile'     => array( $mobile, __( 'Please enter your mobile number.', 'tutti-frutti-cafe' ) ),
+        'careers_city'       => array( $city, __( 'Please enter your city.', 'tutti-frutti-cafe' ) ),
+        'careers_state'      => array( $state, __( 'Please enter your state.', 'tutti-frutti-cafe' ) ),
+        'careers_zip'        => array( $zip, __( 'Please enter your zip code.', 'tutti-frutti-cafe' ) ),
+    );
+    foreach ( $required_fields as $field_id => $field_data ) {
+        list( $field_value, $field_message ) = $field_data;
+        if ( empty( $field_value ) ) {
+            tutti_frutti_set_careers_notice( 'error', $field_message, $field_id );
+            wp_safe_redirect( add_query_arg( 'careers', 'error', $redirect ) );
+            exit;
+        }
+    }
+
+    if ( empty( $email ) || ! is_email( $email ) ) {
+        tutti_frutti_set_careers_notice( 'error', __( 'Please enter a valid email address (e.g. name@example.com).', 'tutti-frutti-cafe' ), 'careers_email' );
         wp_safe_redirect( add_query_arg( 'careers', 'error', $redirect ) );
         exit;
     }
@@ -130,7 +169,7 @@ function tutti_frutti_handle_careers_form() {
     $resume_url  = '';
 
     if ( empty( $_FILES['careers_resume']['name'] ) ) {
-        tutti_frutti_set_careers_notice( 'error', __( 'Please attach your resume.', 'tutti-frutti-cafe' ) );
+        tutti_frutti_set_careers_notice( 'error', __( 'Please attach your resume (PDF or Word, max 5MB).', 'tutti-frutti-cafe' ), 'careers_resume' );
         wp_safe_redirect( add_query_arg( 'careers', 'error', $redirect ) );
         exit;
     }
@@ -152,7 +191,7 @@ function tutti_frutti_handle_careers_form() {
 
     $size = isset( $_FILES['careers_resume']['size'] ) ? (int) $_FILES['careers_resume']['size'] : 0;
     if ( $size > 5 * 1024 * 1024 ) {
-        tutti_frutti_set_careers_notice( 'error', __( 'Resume must be 5MB or smaller.', 'tutti-frutti-cafe' ) );
+        tutti_frutti_set_careers_notice( 'error', __( 'Resume must be 5MB or smaller — please choose a smaller file.', 'tutti-frutti-cafe' ), 'careers_resume' );
         wp_safe_redirect( add_query_arg( 'careers', 'error', $redirect ) );
         exit;
     }
@@ -268,15 +307,18 @@ add_action( 'template_redirect', 'tutti_frutti_handle_careers_form' );
 /**
  * Render careers application form.
  *
- * @param int    $job_id Optional job ID.
- * @param string $heading Form heading.
+ * @param int        $job_id  Optional job ID.
+ * @param string     $heading Form heading.
+ * @param array|null $notice  Pre-fetched notice (see tutti_frutti_get_careers_notice()),
+ *                            used to mark the specific invalid field, if any.
  */
-function tutti_frutti_render_careers_form( $job_id = 0, $heading = '' ) {
+function tutti_frutti_render_careers_form( $job_id = 0, $heading = '', $notice = null ) {
     if ( ! $heading ) {
         $heading = __( 'Apply Now', 'tutti-frutti-cafe' );
     }
-    $form_id = 'careers-form';
-    $jobs    = tutti_frutti_get_active_jobs();
+    $form_id       = 'careers-form';
+    $jobs          = tutti_frutti_get_active_jobs();
+    $invalid_field = ( $notice && ! empty( $notice['field'] ) ) ? $notice['field'] : '';
     ?>
     <form id="<?php echo esc_attr( $form_id ); ?>" class="careers-form tf-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url( tutti_frutti_page_url( 'careers' ) ); ?>">
         <?php wp_nonce_field( 'tf_careers_form', 'tf_careers_nonce' ); ?>
@@ -297,31 +339,31 @@ function tutti_frutti_render_careers_form( $job_id = 0, $heading = '' ) {
             <?php endif; ?>
             <div class="tf-form__field">
                 <label for="<?php echo esc_attr( $form_id ); ?>-first-name"><?php esc_html_e( 'First Name', 'tutti-frutti-cafe' ); ?> *</label>
-                <input type="text" id="<?php echo esc_attr( $form_id ); ?>-first-name" name="careers_first_name" required>
+                <input type="text" id="<?php echo esc_attr( $form_id ); ?>-first-name" name="careers_first_name" required<?php echo ( 'careers_first_name' === $invalid_field ) ? ' aria-invalid="true" aria-describedby="tf-careers-notice"' : ''; ?>>
             </div>
             <div class="tf-form__field">
                 <label for="<?php echo esc_attr( $form_id ); ?>-last-name"><?php esc_html_e( 'Last Name', 'tutti-frutti-cafe' ); ?> *</label>
-                <input type="text" id="<?php echo esc_attr( $form_id ); ?>-last-name" name="careers_last_name" required>
+                <input type="text" id="<?php echo esc_attr( $form_id ); ?>-last-name" name="careers_last_name" required<?php echo ( 'careers_last_name' === $invalid_field ) ? ' aria-invalid="true" aria-describedby="tf-careers-notice"' : ''; ?>>
             </div>
             <div class="tf-form__field">
                 <label for="<?php echo esc_attr( $form_id ); ?>-mobile"><?php esc_html_e( 'Mobile Number', 'tutti-frutti-cafe' ); ?> *</label>
-                <input type="tel" id="<?php echo esc_attr( $form_id ); ?>-mobile" name="careers_mobile" required>
+                <input type="tel" id="<?php echo esc_attr( $form_id ); ?>-mobile" name="careers_mobile" required<?php echo ( 'careers_mobile' === $invalid_field ) ? ' aria-invalid="true" aria-describedby="tf-careers-notice"' : ''; ?>>
             </div>
             <div class="tf-form__field">
                 <label for="<?php echo esc_attr( $form_id ); ?>-email"><?php esc_html_e( 'Email', 'tutti-frutti-cafe' ); ?> *</label>
-                <input type="email" id="<?php echo esc_attr( $form_id ); ?>-email" name="careers_email" required>
+                <input type="email" id="<?php echo esc_attr( $form_id ); ?>-email" name="careers_email" required<?php echo ( 'careers_email' === $invalid_field ) ? ' aria-invalid="true" aria-describedby="tf-careers-notice"' : ''; ?>>
             </div>
             <div class="tf-form__field">
                 <label for="<?php echo esc_attr( $form_id ); ?>-city"><?php esc_html_e( 'City', 'tutti-frutti-cafe' ); ?> *</label>
-                <input type="text" id="<?php echo esc_attr( $form_id ); ?>-city" name="careers_city" required>
+                <input type="text" id="<?php echo esc_attr( $form_id ); ?>-city" name="careers_city" required<?php echo ( 'careers_city' === $invalid_field ) ? ' aria-invalid="true" aria-describedby="tf-careers-notice"' : ''; ?>>
             </div>
             <div class="tf-form__field">
                 <label for="<?php echo esc_attr( $form_id ); ?>-state"><?php esc_html_e( 'State', 'tutti-frutti-cafe' ); ?> *</label>
-                <input type="text" id="<?php echo esc_attr( $form_id ); ?>-state" name="careers_state" required>
+                <input type="text" id="<?php echo esc_attr( $form_id ); ?>-state" name="careers_state" required<?php echo ( 'careers_state' === $invalid_field ) ? ' aria-invalid="true" aria-describedby="tf-careers-notice"' : ''; ?>>
             </div>
             <div class="tf-form__field">
                 <label for="<?php echo esc_attr( $form_id ); ?>-zip"><?php esc_html_e( 'Zip', 'tutti-frutti-cafe' ); ?> *</label>
-                <input type="text" id="<?php echo esc_attr( $form_id ); ?>-zip" name="careers_zip" required>
+                <input type="text" id="<?php echo esc_attr( $form_id ); ?>-zip" name="careers_zip" required<?php echo ( 'careers_zip' === $invalid_field ) ? ' aria-invalid="true" aria-describedby="tf-careers-notice"' : ''; ?>>
             </div>
 
             <h4 class="tf-form__subheading tf-form__field--full"><?php esc_html_e( 'Social Media', 'tutti-frutti-cafe' ); ?></h4>
@@ -345,7 +387,7 @@ function tutti_frutti_render_careers_form( $job_id = 0, $heading = '' ) {
             </div>
             <div class="tf-form__field tf-form__field--full">
                 <label for="<?php echo esc_attr( $form_id ); ?>-resume"><?php esc_html_e( 'Upload Resume (PDF or Word, max 5MB)', 'tutti-frutti-cafe' ); ?> *</label>
-                <input type="file" id="<?php echo esc_attr( $form_id ); ?>-resume" name="careers_resume" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+                <input type="file" id="<?php echo esc_attr( $form_id ); ?>-resume" name="careers_resume" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required<?php echo ( 'careers_resume' === $invalid_field ) ? ' aria-invalid="true" aria-describedby="tf-careers-notice"' : ''; ?>>
             </div>
             <div class="tf-form__field tf-form__field--full tf-form__actions">
                 <button type="submit" name="tf_careers_submit" class="btn btn-brown"><?php esc_html_e( 'Submit Application', 'tutti-frutti-cafe' ); ?></button>

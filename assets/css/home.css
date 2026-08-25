@@ -53,15 +53,13 @@
     font-size: clamp(28px, 4.5vw, 48px);
     color: #fff;
     text-transform: uppercase;
-    margin-bottom: 16px;
     line-height: 1.15;
     border: none;
 }
 
 .home-hero__tagline {
-    font-family: 'Dancing Script', cursive;
-    font-size: clamp(22px, 3vw, 36px);
-    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(16px, 1vw, 20px);
     text-transform: none;
     letter-spacing: 0;
     color: #fff;
@@ -81,7 +79,180 @@
     font-size: 13px;
     letter-spacing: 0.06em;
     border-radius: 4px;
+    width: 200px;
+    text-align: center;
 }
+
+/* Introduction — v1 (centered text, template-parts/home/introduction-v1.php) */
+.home-intro {
+    padding: 40px 0 32px;
+    background: #fff;
+}
+
+.home-intro__inner {
+    max-width: 900px;
+    text-align: center;
+}
+
+.home-intro__inner .home-intro__title {
+    margin-bottom: 16px;
+}
+
+.home-intro__inner .home-intro__text {
+    font-size: clamp(15px, 1.1vw, 17px);
+    line-height: 1.7;
+    margin: 0;
+    color: var(--text-dark);
+}
+
+.home-intro__divider {
+    border: none;
+    height: 1px;
+    background-color: #eee;
+    margin: 45px auto 0;
+}
+
+/* Introduction — v2 product collage (imported from Claude Design "Tutti Frutti Hero", concept 3) */
+/* .home-intro--collage {
+    padding: 0;
+    margin: 60px auto 30px;
+}
+
+.home-intro__band {
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+    min-height: 350px;
+    padding: 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: radial-gradient(120% 130% at 50% 45%, #C4501F 0%, #A63C15 60%, #8A3010 100%);
+    box-shadow: 0 24px 60px -30px rgba(60, 45, 30, 0.4);
+}
+
+.home-intro__art {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.home-intro__item {
+    position: absolute;
+    display: block;
+    line-height: 0;
+}
+
+.home-intro__item img {
+    width: 100%;
+    height: auto;
+    filter:
+        drop-shadow(0 5px 7px rgba(60, 20, 5, 0.28))
+        drop-shadow(0 16px 20px rgba(50, 15, 4, 0.32))
+        drop-shadow(0 34px 42px rgba(40, 10, 2, 0.26));
+} */
+
+/* Desktop collage — offsets are the design's 1440px values as percentages of the band */
+/* .home-intro__item--froyo {
+    left: -2.083%;
+    bottom: -30px;
+    width: 16.389%;
+    transform: perspective(1000px) rotateY(6deg) rotateX(4deg);
+}
+
+.home-intro__item--cookies {
+    left: 3.194%;
+    top: -30px;
+    width: 9.306%;
+    transform: perspective(1000px) rotateY(7deg) rotateX(4deg) rotate(-4deg);
+}
+
+.home-intro__item--pretzel {
+    left: 13.611%;
+    top: -34px;
+    width: 10.139%;
+    transform: perspective(1000px) rotateY(-6deg) rotateX(6deg) rotate(10deg);
+}
+
+.home-intro__item--chicken-sandwich {
+    left: 16.528%;
+    bottom: -18px;
+    width: 10.972%;
+    transform: perspective(1000px) rotateY(-7deg) rotateX(6deg) rotate(-6deg);
+}
+
+.home-intro__item--smoothie {
+    right: 12.917%;
+    top: -20px;
+    width: 9.167%;
+    transform: perspective(1000px) rotateY(-6deg) rotateX(6deg);
+}
+
+.home-intro__item--coffee {
+    right: 1.806%;
+    top: -34px;
+    width: 10.972%;
+    transform: perspective(1000px) rotateY(5deg) rotateX(4deg);
+}
+
+.home-intro__item--fries {
+    right: 17.917%;
+    bottom: 6px;
+    width: 9.444%;
+    transform: perspective(1000px) rotateY(-5deg) rotateX(6deg) rotate(6deg);
+}
+
+.home-intro__item--desserts {
+    right: -1.944%;
+    bottom: -22px;
+    width: 20.833%;
+    transform: perspective(1000px) rotateY(7deg) rotateX(4deg);
+} */
+
+/* Mobile-only in the design */
+/* .home-intro__item--pretzel-sandwich {
+    display: none;
+}
+
+.home-intro__content {
+    position: relative;
+    z-index: 2;
+    width: 48.6%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+}
+
+.home-intro__band .home-intro__title {
+    margin: 0;
+    max-width: 15ch;
+    font-family: 'Oswald', 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(30px, 3.75vw, 54px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    text-transform: none;
+    color: #FFF6EE;
+    text-wrap: balance;
+    text-shadow: 0 4px 26px rgba(80, 25, 5, 0.45);
+}
+
+.home-intro__band .home-intro__text {
+    margin: 0;
+    max-width: 660px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #FFEEDF;
+    text-wrap: pretty;
+    text-shadow: 0 2px 16px rgba(80, 25, 5, 0.5);
+} */
 
 /* Brands */
 .home-brands {
@@ -348,6 +519,105 @@
 
 @media (max-width: 768px) {
     .brands-grid, .promo-grid { grid-template-columns: 1fr; }
+    .home-intro:not(.home-intro--collage) { padding: 32px 0 24px; }
     .home-hero__actions { flex-direction: column; align-items: center; }
     .footer-badges__inner { grid-template-columns: 1fr; }
+}
+
+/* Introduction v2 — mobile collage (design's 390px arrangement) */
+@media (max-width: 767px) {
+    .home-intro__band {
+        min-height: 660px;
+        padding: 118px 22px 40px;
+        align-items: flex-start;
+        border-radius: 0;
+        background: radial-gradient(120% 100% at 50% 45%, #C4501F 0%, #A63C15 60%, #8A3010 100%);
+    }
+
+    .home-intro__content {
+        width: 100%;
+        max-width: none;
+        gap: 16px;
+    }
+
+    .home-intro__band .home-intro__title {
+        font-size: clamp(32px, 10.25vw, 40px);
+        line-height: 1.05;
+    }
+
+    .home-intro__band .home-intro__text {
+        font-size: 14px;
+        text-shadow: 0 2px 16px rgba(80, 25, 5, 0.55);
+    }
+
+    .home-intro__item img {
+        filter:
+            drop-shadow(0 6px 8px rgba(60, 20, 5, 0.28))
+            drop-shadow(0 22px 26px rgba(50, 15, 4, 0.34))
+            drop-shadow(0 44px 54px rgba(40, 10, 2, 0.3));
+    }
+
+    /* Desktop-only in the design */
+    .home-intro__item--chicken-sandwich,
+    .home-intro__item--desserts {
+        display: none;
+    }
+
+    .home-intro__item--pretzel-sandwich {
+        display: block;
+        left: 31.282%;
+        bottom: -30px;
+        width: 43.59%;
+        transform: perspective(1200px) rotateY(6deg) rotateX(4deg) rotate(4deg);
+    }
+
+    .home-intro__item--smoothie {
+        left: -8.718%;
+        right: auto;
+        top: -26px;
+        bottom: auto;
+        width: 35.385%;
+        transform: perspective(1200px) rotateY(-7deg) rotateX(6deg);
+    }
+
+    .home-intro__item--cookies {
+        left: auto;
+        right: -7.692%;
+        top: -30px;
+        width: 35.385%;
+        transform: perspective(1200px) rotateY(5deg) rotateX(4deg) rotate(-6deg);
+    }
+
+    .home-intro__item--pretzel {
+        left: 34.872%;
+        top: -58px;
+        width: 33.846%;
+        transform: perspective(1200px) rotateY(-6deg) rotateX(6deg) rotate(10deg);
+    }
+
+    .home-intro__item--froyo {
+        left: -6.667%;
+        top: auto;
+        bottom: 6px;
+        width: 47.692%;
+        transform: perspective(1200px) rotateY(7deg) rotateX(4deg);
+    }
+
+    .home-intro__item--coffee {
+        left: auto;
+        right: -4.103%;
+        top: auto;
+        bottom: 30px;
+        width: 33.846%;
+        transform: perspective(1200px) rotateY(-5deg) rotateX(6deg);
+    }
+
+    .home-intro__item--fries {
+        left: 61.538%;
+        right: auto;
+        top: auto;
+        bottom: 132px;
+        width: 31.282%;
+        transform: perspective(1200px) rotateY(-7deg) rotateX(6deg) rotate(6deg);
+    }
 }

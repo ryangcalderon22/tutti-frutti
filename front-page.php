@@ -11,6 +11,7 @@ get_header();
 <main id="primary" class="site-main site-main--home">
     <?php
     get_template_part( 'template-parts/home/hero' );
+    get_template_part( 'template-parts/home/introduction' );
     get_template_part( 'template-parts/home/brands-grid' );
     get_template_part( 'template-parts/home/featured-treats' );
     get_template_part( 'template-parts/home/moments' );

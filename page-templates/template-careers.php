@@ -13,8 +13,11 @@ get_header();
     <section class="page-section page-section--cream careers-form-section">
         <div class="container">
             <div class="careers-form-wrap">
-                <?php tutti_frutti_render_careers_notice(); ?>
-                <?php tutti_frutti_render_careers_form(); ?>
+                <?php
+                $tf_careers_notice = tutti_frutti_get_careers_notice();
+                tutti_frutti_render_careers_notice( $tf_careers_notice );
+                tutti_frutti_render_careers_form( 0, '', $tf_careers_notice );
+                ?>
             </div>
         </div>
     </section>

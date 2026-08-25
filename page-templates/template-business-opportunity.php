@@ -13,8 +13,11 @@ get_header();
     <section class="page-section page-section--cream business-form-section">
         <div class="container">
             <div class="business-form-wrap">
-                <?php tutti_frutti_render_business_notice(); ?>
-                <?php tutti_frutti_render_business_form(); ?>
+                <?php
+                $tf_business_notice = tutti_frutti_get_business_notice();
+                tutti_frutti_render_business_notice( $tf_business_notice );
+                tutti_frutti_render_business_form( '', $tf_business_notice );
+                ?>
             </div>
         </div>
     </section>

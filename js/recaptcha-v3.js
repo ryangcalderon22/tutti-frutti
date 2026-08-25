@@ -1,7 +1,34 @@
 (function () {
     'use strict';
 
+    /**
+     * Google's reCAPTCHA script auto-injects its own hidden
+     * <textarea name="g-recaptcha-response"> with no label, which
+     * accessibility scanners (WAVE, axe, etc.) flag as a form control
+     * missing a label. We can't edit Google's markup, so label it via JS
+     * once it appears. Uses a MutationObserver since the element is added
+     * asynchronously and its exact timing isn't guaranteed.
+     */
+    function labelRecaptchaTextareas() {
+        document
+            .querySelectorAll('textarea.g-recaptcha-response:not([aria-label])')
+            .forEach(function (el) {
+                el.setAttribute('aria-label', 'reCAPTCHA verification (automatically generated, not user-editable)');
+                el.setAttribute('aria-hidden', 'true');
+                el.setAttribute('tabindex', '-1');
+            });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
+        labelRecaptchaTextareas();
+
+        if ('MutationObserver' in window) {
+            new MutationObserver(labelRecaptchaTextareas).observe(document.body, {
+                childList: true,
+                subtree: true,
+            });
+        }
+
         if (typeof tfRecaptcha === 'undefined' || !tfRecaptcha.siteKey) {
             return;
         }

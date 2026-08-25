@@ -114,7 +114,7 @@ add_filter( 'page_template', 'tutti_frutti_load_page_template' );
  * Enqueue Styles and Scripts
  */
 function tutti_frutti_enqueue_scripts() {
-    $version = '1.7.2';
+    $version = '1.7.4';
 
     wp_enqueue_style( 'tutti-frutti-style', get_stylesheet_uri(), array(), $version );
 

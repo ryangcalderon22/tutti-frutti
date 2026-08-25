@@ -59,8 +59,11 @@ function tutti_frutti_customizer_content( $wp_customize ) {
 
     $text_fields = array(
         'tf_contact_title_text' => array( 'label' => __( 'Contact page — info title text', 'tutti-frutti-cafe' ), 'default' => 'Tutti Frutti Cafe' ),
+        'tf_heroEyebrow'    => array( 'label' => __( 'Homepage hero eyebrow', 'tutti-frutti-cafe' ), 'default' => '' ),
         'tf_hero_title'    => array( 'label' => __( 'Homepage hero title', 'tutti-frutti-cafe' ), 'default' => '' ),
-        'tf_hero_tagline'  => array( 'label' => __( 'Homepage hero tagline', 'tutti-frutti-cafe' ), 'default' => '' ),
+        'tf_hero_tagline'  => array( 'label' => __( 'Homepage hero tagline', 'tutti-frutti-cafe' ), 'default' => '', 'type' => 'textarea' ),
+        'tf_intro_title'   => array( 'label' => __( 'Introduction section title', 'tutti-frutti-cafe' ), 'default' => 'More Than Frozen Yogurt' ),
+        'tf_intro_text'    => array( 'label' => __( 'Introduction section paragraph', 'tutti-frutti-cafe' ), 'default' => 'Tutti Frutti may be known for frozen yogurt, but at our La Verne location we are introducing the next generation café that offers much more. Order online or stop in for lunch, an afternoon coffee, dessert, or an easy meal with family and friends. Choose from gourmet sandwiches, pasta and savory bites, specialty coffee and drinks, gourmet cookies and desserts, açaí bowls, smoothies, matcha, and the frozen yogurt you already know and love.', 'type' => 'textarea' ),
         'tf_moments_title' => array( 'label' => __( 'Moments section title', 'tutti-frutti-cafe' ), 'default' => '' ),
         'tf_moments_text'  => array( 'label' => __( 'Moments section text', 'tutti-frutti-cafe' ), 'default' => '', 'type' => 'textarea' ),
         'tf_promo1_title'  => array( 'label' => __( 'Promo 1 title', 'tutti-frutti-cafe' ), 'default' => 'Late Nights. Good Vibes. Great Treats.' ),

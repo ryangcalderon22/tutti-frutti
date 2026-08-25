@@ -78,11 +78,18 @@ function tutti_frutti_contact_notice_key() {
 }
 
 /**
- * @param string $type success|error.
- * @param string $message Message.
+ * @param string $type    success|error.
+ * @param string $message Message. Should be specific enough for the user to
+ *                        know exactly what to fix (WCAG 3.3.3).
+ * @param string $field   Optional field id the error applies to, so the
+ *                        input itself can be marked aria-invalid.
  */
-function tutti_frutti_set_contact_notice( $type, $message ) {
-    set_transient( 'tf_contact_notice_' . tutti_frutti_contact_notice_key(), array( 'type' => $type, 'message' => $message ), 120 );
+function tutti_frutti_set_contact_notice( $type, $message, $field = '' ) {
+    set_transient(
+        'tf_contact_notice_' . tutti_frutti_contact_notice_key(),
+        array( 'type' => $type, 'message' => $message, 'field' => $field ),
+        120
+    );
 }
 
 /**
@@ -97,6 +104,9 @@ function tutti_frutti_get_contact_notice() {
     $data = get_transient( 'tf_contact_notice_' . tutti_frutti_contact_notice_key() );
     if ( $data ) {
         delete_transient( 'tf_contact_notice_' . tutti_frutti_contact_notice_key() );
+        if ( ! isset( $data['field'] ) ) {
+            $data['field'] = '';
+        }
         return $data;
     }
 
@@ -104,6 +114,7 @@ function tutti_frutti_get_contact_notice() {
         return array(
             'type'    => 'success',
             'message' => __( 'Thank you! Your message has been sent.', 'tutti-frutti-cafe' ),
+            'field'   => '',
         );
     }
 
@@ -111,6 +122,7 @@ function tutti_frutti_get_contact_notice() {
         return array(
             'type'    => 'error',
             'message' => __( 'Could not send your message. Please try again.', 'tutti-frutti-cafe' ),
+            'field'   => '',
         );
     }
 
@@ -119,16 +131,26 @@ function tutti_frutti_get_contact_notice() {
 
 /**
  * Render contact notice HTML.
+ *
+ * @param array|null $notice Pre-fetched notice (avoids double-consuming the
+ *                           transient). Pass null to fetch it here.
  */
-function tutti_frutti_render_contact_notice() {
-    $notice = tutti_frutti_get_contact_notice();
+function tutti_frutti_render_contact_notice( $notice = null ) {
+    if ( null === $notice ) {
+        $notice = tutti_frutti_get_contact_notice();
+    }
     if ( ! $notice ) {
         return;
     }
-    $class = 'success' === $notice['type'] ? 'contact-notice contact-notice--success' : 'contact-notice contact-notice--error';
+    $is_success = 'success' === $notice['type'];
+    $class      = $is_success ? 'contact-notice contact-notice--success' : 'contact-notice contact-notice--error';
+    // Status messages (success) use role="status" (polite, non-interrupting);
+    // errors use role="alert" (assertive) — see WCAG 4.1.3 / ARIA19 & ARIA22.
+    $role = $is_success ? 'status' : 'alert';
     printf(
-        '<div class="%s" role="alert">%s</div>',
+        '<div id="tf-contact-notice" class="%s" role="%s">%s</div>',
         esc_attr( $class ),
+        esc_attr( $role ),
         esc_html( $notice['message'] )
     );
 }
@@ -206,8 +228,29 @@ function tutti_frutti_handle_contact_form() {
     $message    = isset( $_POST['contact_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['contact_message'] ) ) : '';
     $name       = trim( $first_name . ' ' . $last_name );
 
-    if ( empty( $first_name ) || empty( $last_name ) || empty( $email ) || empty( $message ) || ! is_email( $email ) ) {
-        tutti_frutti_set_contact_notice( 'error', __( 'Please fill in all required fields with a valid email.', 'tutti-frutti-cafe' ) );
+    // Check each field individually so the error message tells the user
+    // specifically what to fix, rather than one generic message covering
+    // every possible problem (WCAG 3.3.3 Error Suggestion).
+    if ( empty( $first_name ) ) {
+        tutti_frutti_set_contact_notice( 'error', __( 'Please enter your first name.', 'tutti-frutti-cafe' ), 'contact_first_name' );
+        wp_safe_redirect( add_query_arg( 'contact', 'error', tutti_frutti_page_url( 'contact' ) ) );
+        exit;
+    }
+
+    if ( empty( $last_name ) ) {
+        tutti_frutti_set_contact_notice( 'error', __( 'Please enter your last name.', 'tutti-frutti-cafe' ), 'contact_last_name' );
+        wp_safe_redirect( add_query_arg( 'contact', 'error', tutti_frutti_page_url( 'contact' ) ) );
+        exit;
+    }
+
+    if ( empty( $email ) || ! is_email( $email ) ) {
+        tutti_frutti_set_contact_notice( 'error', __( 'Please enter a valid email address (e.g. name@example.com).', 'tutti-frutti-cafe' ), 'contact_email' );
+        wp_safe_redirect( add_query_arg( 'contact', 'error', tutti_frutti_page_url( 'contact' ) ) );
+        exit;
+    }
+
+    if ( empty( $message ) ) {
+        tutti_frutti_set_contact_notice( 'error', __( 'Please enter a message.', 'tutti-frutti-cafe' ), 'contact_message' );
         wp_safe_redirect( add_query_arg( 'contact', 'error', tutti_frutti_page_url( 'contact' ) ) );
         exit;
     }
