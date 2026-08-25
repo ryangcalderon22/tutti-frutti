@@ -65,10 +65,11 @@ function tutti_frutti_get_brands() {
                 'url'         => $url ? $url : home_url( '/' ),
                 'btn'         => $btn ? $btn : 'btn-brand--purple',
                 'logo'        => $logo ? $logo : ( $thumb ? $thumb : '' ),
-                'card_title'  => get_post_meta( $post->ID, '_tf_card_title', true ),
-                'card_desc'   => get_post_meta( $post->ID, '_tf_card_desc', true ),
                 'card_button' => get_post_meta( $post->ID, '_tf_card_button_text', true ),
                 'card_lines'  => tutti_frutti_parse_brand_card_lines( get_post_meta( $post->ID, '_tf_card_lines', true ) ),
+                'home_card_title'      => get_post_meta( $post->ID, '_tf_home_card_title', true ),
+                'home_card_desc'       => get_post_meta( $post->ID, '_tf_home_card_desc', true ),
+                'home_card_link_title' => get_post_meta( $post->ID, '_tf_home_card_link_title', true ),
             );
         }
         return $brands;

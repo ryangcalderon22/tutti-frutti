@@ -79,10 +79,11 @@ function tutti_frutti_brand_meta_box_render( $post ) {
     $hero_btn_text  = get_post_meta( $post->ID, '_tf_hero_btn_text', true );
     $products_title = get_post_meta( $post->ID, '_tf_products_title', true );
     $order_url      = get_post_meta( $post->ID, '_tf_order_url', true );
-    $card_title     = get_post_meta( $post->ID, '_tf_card_title', true );
-    $card_desc      = get_post_meta( $post->ID, '_tf_card_desc', true );
     $card_button    = get_post_meta( $post->ID, '_tf_card_button_text', true );
     $card_lines     = get_post_meta( $post->ID, '_tf_card_lines', true );
+    $home_title     = get_post_meta( $post->ID, '_tf_home_card_title', true );
+    $home_desc      = get_post_meta( $post->ID, '_tf_home_card_desc', true );
+    $home_link      = get_post_meta( $post->ID, '_tf_home_card_link_title', true );
     ?>
     <p><em><?php esc_html_e( 'Featured Image = detail hero (right). Logo URL = left + brand cards. Leave fields empty to hide on front.', 'tutti-frutti-cafe' ); ?></em></p>
     <table class="form-table">
@@ -117,12 +118,25 @@ function tutti_frutti_brand_meta_box_render( $post ) {
             </td>
         </tr>
         <tr>
-            <th><label for="tf_card_title"><?php esc_html_e( 'Card title (optional fallback)', 'tutti-frutti-cafe' ); ?></label></th>
-            <td><input type="text" id="tf_card_title" name="tf_card_title" value="<?php echo esc_attr( $card_title ); ?>" class="regular-text"></td>
+            <th><label for="tf_home_card_title"><?php esc_html_e( 'Homepage Card Title', 'tutti-frutti-cafe' ); ?></label></th>
+            <td>
+                <input type="text" id="tf_home_card_title" name="tf_home_card_title" value="<?php echo esc_attr( $home_title ); ?>" class="regular-text">
+                <p class="description"><?php esc_html_e( 'Heading shown on the brand card, below the logo and menu lines. Leave empty to hide.', 'tutti-frutti-cafe' ); ?></p>
+            </td>
         </tr>
         <tr>
-            <th><label for="tf_card_desc"><?php esc_html_e( 'Card description (legacy fallback)', 'tutti-frutti-cafe' ); ?></label></th>
-            <td><textarea id="tf_card_desc" name="tf_card_desc" class="large-text" rows="2"><?php echo esc_textarea( $card_desc ); ?></textarea></td>
+            <th><label for="tf_home_card_desc"><?php esc_html_e( 'Homepage Card Description', 'tutti-frutti-cafe' ); ?></label></th>
+            <td>
+                <textarea id="tf_home_card_desc" name="tf_home_card_desc" class="large-text" rows="3"><?php echo esc_textarea( $home_desc ); ?></textarea>
+                <p class="description"><?php esc_html_e( 'Short paragraph under the heading — one or two sentences. Leave empty to hide.', 'tutti-frutti-cafe' ); ?></p>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="tf_home_card_link_title"><?php esc_html_e( 'Homepage Card Link Title', 'tutti-frutti-cafe' ); ?></label></th>
+            <td>
+                <input type="text" id="tf_home_card_link_title" name="tf_home_card_link_title" value="<?php echo esc_attr( $home_link ); ?>" class="regular-text">
+                <p class="description"><?php esc_html_e( 'Wording of the link at the bottom of the card. It always points at this brand page, so describe the destination — e.g. "See the Pio Coffee menu" rather than "Read more". Leave empty to hide.', 'tutti-frutti-cafe' ); ?></p>
+            </td>
         </tr>
         <tr>
             <th><label for="tf_card_button_text"><?php esc_html_e( 'Card button text (only if enabled in Customize)', 'tutti-frutti-cafe' ); ?></label></th>
@@ -194,9 +208,10 @@ function tutti_frutti_save_brand_meta( $post_id ) {
         'tf_detail_image'      => 'esc_url_raw',
         'tf_products_title'    => 'sanitize_text_field',
         'tf_order_url'         => 'esc_url_raw',
-        'tf_card_title'        => 'sanitize_text_field',
-        'tf_card_desc'         => 'sanitize_textarea_field',
         'tf_card_lines'        => 'sanitize_textarea_field',
+        'tf_home_card_title'   => 'sanitize_text_field',
+        'tf_home_card_desc'    => 'sanitize_textarea_field',
+        'tf_home_card_link_title' => 'sanitize_text_field',
         'tf_card_button_text'  => 'sanitize_text_field',
         'tf_button_style'      => 'sanitize_text_field',
         'tf_demo_key'          => 'sanitize_text_field',
@@ -258,6 +273,85 @@ function tutti_frutti_seed_brand_card_lines() {
     update_option( 'tutti_frutti_card_lines_seeded', 1 );
 }
 add_action( 'init', 'tutti_frutti_seed_brand_card_lines', 110 );
+
+/**
+ * Approved homepage card copy by brand slug.
+ *
+ * Each entry: title (H3), desc (paragraph), link (descriptive link wording).
+ * The link always points at the brand's own page, so only the wording lives here.
+ *
+ * @return array<string, array<string, string>>
+ */
+function tutti_frutti_default_brand_home_cards() {
+    return array(
+        'tutti-frutti' => array(
+            'title' => 'Frozen Yogurt, Açaí, Smoothies & Matcha',
+            'desc'  => 'Enjoy Tutti Frutti frozen yogurt with your favorite toppings, customize an açaí bowl, or choose from real fruit no sugar added smoothies, refreshing drinks and handcrafted matcha.',
+            'link'  => 'Explore Frozen Yogurt, Açaí & Drinks',
+        ),
+        'pio-coffee'   => array(
+            'title' => 'Coffee & Chai',
+            'desc'  => 'From hot coffee and iced drinks to blended favorites and chai, our café beverage menu offers something for a quick pick-me-up, an afternoon break or something to enjoy with dessert.',
+            'link'  => 'Explore Coffee & Specialty Drinks',
+        ),
+        'my-cookies'   => array(
+            'title' => 'Gourmet Cookies & Desserts',
+            'desc'  => 'Discover sumptuous oversized gourmet cookies, cheesecake, brownies, muffins, dessert bars, waffles and other sweet favorites—perfect on their own or paired with coffee, frozen yogurt or another café drink.',
+            'link'  => 'Explore Cookies & Desserts',
+        ),
+        'o-my'         => array(
+            'title' => 'Gourmet Cookies & Desserts',
+            'desc'  => 'Discover sumptuous oversized gourmet cookies, cheesecake, brownies, muffins, dessert bars, waffles and other sweet favorites—perfect on their own or paired with coffee, frozen yogurt or another café drink.',
+            'link'  => 'Explore Cookies & Desserts',
+        ),
+        'tf-bites'     => array(
+            'title' => 'Sandwiches, Pasta, Pizza & Bites',
+            'desc'  => 'The savory side of Tutti Frutti Café includes pretzel bun halal deli and crispy chicken sandwiches, cheese ravioli, penne Alfredo, chicken Parmesan, savory bites, waffle fries, nuggets, mac & cheese and shareable bites.',
+            'link'  => 'Explore Sandwiches, Pasta & Savory Bites',
+        ),
+    );
+}
+
+/**
+ * Seed homepage card title / description / link wording (one-time).
+ *
+ * Only fills fields that are still empty, so anything edited in wp-admin is
+ * never overwritten.
+ */
+function tutti_frutti_seed_brand_home_cards() {
+    if ( get_option( 'tutti_frutti_home_cards_seeded' ) ) {
+        return;
+    }
+
+    $defaults = tutti_frutti_default_brand_home_cards();
+    $brands   = get_posts(
+        array(
+            'post_type'      => 'tf_brand',
+            'posts_per_page' => -1,
+            'post_status'    => 'any',
+        )
+    );
+
+    $map = array(
+        'title' => '_tf_home_card_title',
+        'desc'  => '_tf_home_card_desc',
+        'link'  => '_tf_home_card_link_title',
+    );
+
+    foreach ( $brands as $brand ) {
+        if ( ! isset( $defaults[ $brand->post_name ] ) ) {
+            continue;
+        }
+        foreach ( $map as $key => $meta_key ) {
+            if ( ! get_post_meta( $brand->ID, $meta_key, true ) ) {
+                update_post_meta( $brand->ID, $meta_key, $defaults[ $brand->post_name ][ $key ] );
+            }
+        }
+    }
+
+    update_option( 'tutti_frutti_home_cards_seeded', 1 );
+}
+add_action( 'init', 'tutti_frutti_seed_brand_home_cards', 111 );
 
 /**
  * Brand slug map for demo import.

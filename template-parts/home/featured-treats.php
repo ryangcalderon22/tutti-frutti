@@ -4,7 +4,7 @@
  *
  * @package Tutti_Frutti_Cafe
  */
-$section_title = get_theme_mod( 'tf_featured_treats_title', 'Featured Treats' );
+$section_title = get_theme_mod( 'tf_featured_treats_title', 'Featured Favorites' );
 $subtitle      = get_theme_mod( 'tf_grab_go_title', 'Grab & Go' );
 $group         = sanitize_title( get_theme_mod( 'tf_slider_group', 'grab-and-go' ) );
 $slide_count   = min( 50, max( 1, absint( get_theme_mod( 'tf_slider_count', 10 ) ) ) );

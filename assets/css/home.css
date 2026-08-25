@@ -99,6 +99,7 @@
 }
 
 .home-intro__inner .home-intro__text {
+    font-family: 'Montserrat', sans-serif;
     font-size: clamp(15px, 1.1vw, 17px);
     line-height: 1.7;
     margin: 0;
