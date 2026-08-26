@@ -14,6 +14,7 @@ get_header();
     get_template_part( 'template-parts/home/introduction' );
     get_template_part( 'template-parts/home/brands-grid' );
     get_template_part( 'template-parts/home/featured-treats' );
+    get_template_part( 'template-parts/home/visit');
     get_template_part( 'template-parts/home/moments' );
     if ( get_theme_mod( 'tf_show_promos', false ) ) {
         get_template_part( 'template-parts/home/promo-banners' );

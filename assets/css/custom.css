@@ -381,6 +381,7 @@
     max-width: 140px;
     max-height: 64px;
 }
+
 .container--narrow {
     max-width: 720px;
     margin-left: auto;
@@ -630,12 +631,12 @@
 .home-hero__eyebrow {
     font-weight: 500;
     font-size: 50px;
-	line-height: 50px;
-	padding-bottom: 20px;
-	position: relative;
+    line-height: 50px;
+    padding-bottom: 20px;
+    position: relative;
     font-family: "Cormorant", serif;
     text-transform: capitalize;
-	color: antiquewhite;
+    color: antiquewhite;
 }
 
 .home-hero__eyebrow:after {
@@ -659,23 +660,22 @@ article.brand-card {
 
     /* 3D Effect */
     box-shadow:
-        0 4px 8px rgba(0,0,0,0.05),
-        0 12px 24px rgba(0,0,0,0.08),
-        0 24px 40px rgba(0,0,0,0.06);
+        0 4px 8px rgba(0, 0, 0, 0.05),
+        0 12px 24px rgba(0, 0, 0, 0.08),
+        0 24px 40px rgba(0, 0, 0, 0.06);
 
-    margin-top: -30px;
     margin-bottom: 30px;
 
     transition: all .3s ease;
 }
 
 
-article.brand-card:hover{
+article.brand-card:hover {
     transform: translateY(-5px);
     box-shadow:
-        0 8px 16px rgba(0,0,0,0.08),
-        0 20px 40px rgba(0,0,0,0.12),
-        0 30px 60px rgba(0,0,0,0.10);
+        0 8px 16px rgba(0, 0, 0, 0.08),
+        0 20px 40px rgba(0, 0, 0, 0.12),
+        0 30px 60px rgba(0, 0, 0, 0.10);
 }
 
 
@@ -684,16 +684,16 @@ article.brand-card:hover{
     margin-left: auto;
     margin-right: auto;
 }
- 
+
 .brand-card__logo {
     margin-bottom: 10px !important;
-	
+
 }
 
 article.brand-card a.btn.btn-sm {
     font-family: 'Oswald';
     padding: 1px 16px;
-	
+
 }
 
 section.home-section.home-brands.page-brands__section.page-section--cream {
@@ -702,14 +702,12 @@ section.home-section.home-brands.page-brands__section.page-section--cream {
 }
 
 article.brand-card {
-    background: linear-gradient(
-        180deg,
-        #FBF6F0 0%,
-        #FCF0E8 100%
-    );
+    background: linear-gradient(180deg,
+            #FBF6F0 0%,
+            #FCF0E8 100%);
     border: 1px solid #E7DDD1;
     border-radius: 14px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 article.brand-card img.brand-card__image {
@@ -727,7 +725,7 @@ section.home-section.home-moments {
     background-position: top center;
     background-size: 100% auto;
     height: 0;
-    padding-top: 38%; 
+    padding-top: 38%;
     min-height: unset !important;
 }
 
@@ -782,7 +780,7 @@ body {
 section.home-section.home-featured {
     background: #FFF !important;
     border-top: none !important;
-	padding: 10px 0 0 !important;
+    padding: 10px 0 0 !important;
 }
 
 h1.section-title,
@@ -803,12 +801,12 @@ section.home-section.home-featured .tf-slider__media {
 
 section.home-section.home-featured .tf-slider__media img.tf-slider__image {
     width: 100%;
-		object-fit: contain;
+    object-fit: contain;
 }
 
 section.home-section.home-featured .container {
     padding: 0 !important;
-	background-color: #FFF !important;
+    background-color: #FFF !important;
 }
 
 section.home-section.home-promos {}
@@ -818,7 +816,9 @@ section.home-section.home-promos .container.promo-grid {
     max-width: 1440px;
 }
 
-section.home-section.home-promos .container.promo-grid a.promo-card {display: inline-block;}
+section.home-section.home-promos .container.promo-grid a.promo-card {
+    display: inline-block;
+}
 
 section.home-section.home-promos .container.promo-grid a.promo-card h3.promo-card__title {
     font-family: 'Oswald';
@@ -833,7 +833,7 @@ section.home-section.home-promos .container.promo-grid a.promo-card span.btn.btn
     min-width: inherit;
     font-family: 'Oswald';
     padding: 7px 16px;
-	margin-top: 15px
+    margin-top: 15px
 }
 
 section.page-section.page-section--cream.page-section--top {
@@ -879,7 +879,7 @@ section.page-section.page-section--cream.page-section--top a.btn.btn-primary {
 }
 
 section.page-section.page-section--cream {
-    padding: 40px 0 ;
+    padding: 40px 0;
     border-bottom: 1px solid #fb82165c;
 }
 
@@ -914,15 +914,13 @@ section.page-brands__section.page-section--cream.page-section--top h1.section-ti
 }
 
 section.page-brands__section.page-section--cream.page-section--top article.brand-card {
-        background: linear-gradient(
-        180deg,
-        #FBF6F0 0%,
-        #FCF0E8 100%
-    ) !important;
-        border: 1px solid #E7DDD1;
-        border-radius: 14px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
+    background: linear-gradient(180deg,
+            #FBF6F0 0%,
+            #FCF0E8 100%) !important;
+    border: 1px solid #E7DDD1;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
 
 section.page-brands__section.page-section--cream.page-section--top article.brand-card h2.brand-card__name {
     font-family: 'Oswald';
@@ -990,8 +988,9 @@ section.page-brands__section.page-section--cream.page-section--top article.brand
     top: 0;
     /* background: linear-gradient(to left, #5c4848, transparent); */
     right: 0;
-/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+100,ffffff+100&0+0,1+29 */
-    background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 29%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+100,ffffff+100&0+0,1+29 */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 29%, rgba(255, 255, 255, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .page-rewards section.page-section.page-section--cream.page-section--top .container {
@@ -1000,7 +999,7 @@ section.page-brands__section.page-section--cream.page-section--top article.brand
 
 .page-careers section.careers-hero.page-section--top {
     position: relative;
-/*     background-image: url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=700&fit=crop); */
+    /*     background-image: url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=700&fit=crop); */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
@@ -1011,7 +1010,10 @@ section.page-brands__section.page-section--cream.page-section--top article.brand
     visibility: hidden;
 }
 
-.page-careers section.careers-hero.page-section--top .careers-hero__content .careers-hero__intro {margin: 0;padding: 0;}
+.page-careers section.careers-hero.page-section--top .careers-hero__content .careers-hero__intro {
+    margin: 0;
+    padding: 0;
+}
 
 .page-careers section.careers-hero.page-section--top .careers-hero__media {
     width: 70%;
@@ -1025,8 +1027,9 @@ section.page-brands__section.page-section--cream.page-section--top article.brand
     top: 0;
     /* background: linear-gradient(to left, #5c4848, transparent); */
     left: 0;
-/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+100,ffffff+100&0+0,1+29 */
-    background: linear-gradient(to left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 29%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+100,ffffff+100&0+0,1+29 */
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 29%, rgba(255, 255, 255, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .page-careers section.careers-hero.page-section--top .careers-hero__content {
@@ -1036,7 +1039,7 @@ section.page-brands__section.page-section--cream.page-section--top article.brand
 .page-brand-detail section.brand-detail-hero {
     position: relative;
     background-color: #fff;
-/*     background-image: url(http://tutti-frutti-cafe.local/wp-content/uploads/2026/05/download-1.webp); */
+    /*     background-image: url(http://tutti-frutti-cafe.local/wp-content/uploads/2026/05/download-1.webp); */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
@@ -1050,8 +1053,9 @@ section.page-brands__section.page-section--cream.page-section--top article.brand
     top: 0;
     /* background: linear-gradient(to left, #5c4848, transparent); */
     left: 100px;
-/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+100,ffffff+100&0+0,1+29 */
-    background: linear-gradient(to left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 29%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+100,ffffff+100&0+0,1+29 */
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 29%, rgba(255, 255, 255, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .page-brand-detail section.brand-detail-hero .brand-detail-hero__body.entry-content img {
@@ -1089,7 +1093,15 @@ section.page-brands__section.page-section--cream.page-section--top article.brand
     position: relative;
 }
 
-.page-id-177 section.page-hero.page-hero--brown.page-section--top:before {content: '';position: absolute;width: 40%;height: 100%;top: 0;left: 0;background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 29%, rgba(255, 255, 255, 1) 100%);}
+.page-id-177 section.page-hero.page-hero--brown.page-section--top:before {
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 29%, rgba(255, 255, 255, 1) 100%);
+}
 
 .page-id-177 section.page-hero.page-hero--brown.page-section--top .container {
     position: relative;
@@ -1122,6 +1134,7 @@ body.has-transparent-header .site-header:not(.site-header--scrolled) .site-brand
     opacity: 1;
     width: auto;
 }
+
 .footer-social {
     display: flex;
     gap: 12px;
@@ -1155,7 +1168,7 @@ body.has-transparent-header .site-header:not(.site-header--scrolled) .site-brand
 
 .footer-social__link:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(255,255,255,0.25);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.25);
 }
 
 
@@ -1164,7 +1177,7 @@ section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns {
     grid-column: 7 !important;
     display: flex;
     flex-wrap: wrap;
-	gap: 30px !important;
+    gap: 30px !important;
     justify-content: center;
     align-items: center;
 }
@@ -1181,8 +1194,8 @@ section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .
 section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-menu-column {
     border-right: 1px solid #ffdb99;
     height: 100%;
-	max-width: 30%;
-	padding-right: 30px;
+    max-width: 30%;
+    padding-right: 30px;
 }
 
 section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-menu-column:last-child {
@@ -1191,7 +1204,7 @@ section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .
 
 section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns img.brand-menu-category-card__image {
     aspect-ratio: inherit;
-	  min-height: 260px;
+    min-height: 260px;
     object-fit: contain;
 }
 
@@ -1206,7 +1219,8 @@ section.home-section.home-brands.page-brands__section.page-section--cream a.bran
     padding-top: 0;
 }
 
-.home-brands .brand-card, .page-brand-detail .brand-detail-all-brands .brand-card a.btn.btn-sm.btn-brand--orange {
+.home-brands .brand-card,
+.page-brand-detail .brand-detail-all-brands .brand-card a.btn.btn-sm.btn-brand--orange {
     text-align: center;
 }
 
@@ -1218,16 +1232,16 @@ section.home-section.home-brands.page-brands__section.page-section--cream a.bran
     background-repeat: no-repeat;
     background-position: right;
     background-color: #936846;
-		display: flex;
-		align-items: end;
+    display: flex;
+    align-items: end;
 }
 
 section.home-hero:before {
-		content: '';
+    content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(to right, #6e583b7a 0%, rgb(88 62 42 / 25%) 35%, rgba(15, 8, 3, 0.20) 60%, rgba(15, 8, 3, 0.05) 100%);
-        }
+}
 
 .brand-menu-category__title {
     font-size: 22px;
@@ -1251,12 +1265,12 @@ section.home-hero:before {
 }
 
 
-.brand-detail-menu + .brand-detail-all-brands {
+.brand-detail-menu+.brand-detail-all-brands {
     display: none;
 }
 
 .container.footer-grid img.custom-logo {
-	    margin-bottom: 15px;
+    margin-bottom: 15px;
     background-color: #fff;
     padding: 5px;
     border-radius: 10px;
@@ -1272,198 +1286,197 @@ section.home-hero:before {
     display: none;
 }
 
-@media (max-width: 767px){
-	.home-hero__eyebrow {
-    max-width: 100%;
-    text-align: center;
-}
+@media (max-width: 767px) {
+    .home-hero__eyebrow {
+        max-width: 100%;
+        text-align: center;
+    }
 
 
-.home-hero__tagline {
-    text-align: center;
-}
-	
-	.brand-detail-hero {
-    background-size: cover;
-    min-height: inherit !important;
-}
-	
-	
+    .home-hero__tagline {
+        text-align: center;
+    }
 
-.page-brand-detail section.brand-detail-hero:before {
-    left: 0;
-    width: 100%;
-    background: #ffffffc4;
-}
-	
-	.page-careers section.careers-hero.page-section--top {
-    background-size: cover;
-    min-height: inherit;
-}
+    .brand-detail-hero {
+        background-size: cover;
+        min-height: inherit !important;
+    }
 
-.page-careers section.careers-hero.page-section--top:before {
-    background: #ffffffc4;
-    width: 100%;
-}
-	
-	   .tf-slider__slide, .tf-slider--featured .tf-slider__slide
-Specificity: (0,2,0)
- {
+
+
+    .page-brand-detail section.brand-detail-hero:before {
+        left: 0;
+        width: 100%;
+        background: #ffffffc4;
+    }
+
+    .page-careers section.careers-hero.page-section--top {
+        background-size: cover;
+        min-height: inherit;
+    }
+
+    .page-careers section.careers-hero.page-section--top:before {
+        background: #ffffffc4;
+        width: 100%;
+    }
+
+    .tf-slider__slide,
+    .tf-slider--featured .tf-slider__slide Specificity: (0, 2, 0) {
         flex: 0 0 30%;
-	 
+
     }
 
-	
-	
-@media (max-width:767px){
 
-    .page-id-57 section.home-section.home-moments{
-        background-image:url('/wp-content/uploads/2026/06/Celebrating.png');
-        background-size:100% auto;
-        background-repeat:no-repeat;
-        background-position:top center;
-        height:160px !important;
-        min-height:130px !important;
-        padding:0 !important;
-        margin:0 !important;
-        overflow:hidden;
+
+    @media (max-width:767px) {
+
+        .page-id-57 section.home-section.home-moments {
+            background-image: url('/wp-content/uploads/2026/06/Celebrating.png');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: top center;
+            height: 160px !important;
+            min-height: 130px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow: hidden;
+        }
+
+        .page-id-57 section.home-section.home-moments .container.moments-split {
+            display: none;
+        }
+
     }
 
-    .page-id-57 section.home-section.home-moments .container.moments-split{
-        display:none;
+
+    section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns {
+        flex-direction: column;
     }
 
-}
-   
-	
-	section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns {
-    flex-direction: column;
-}
+    section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-column {
+        flex-direction: column;
+    }
 
-section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-column {
-    flex-direction: column;
-}
+    section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-menu-column {
+        max-width: 100%;
+        border-right: 0;
+        border-bottom: 1px solid #ffdb99;
+        padding-bottom: 20px;
+        padding-right: 0;
+        width: 100%;
+        text-align: center;
+    }
 
-section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-menu-column {
-    max-width: 100%;
-    border-right: 0;
-    border-bottom: 1px solid #ffdb99;
-	padding-bottom: 20px;
-	padding-right: 0;
-	width: 100%;
-	text-align: center;
-}
-	
-	.brand-menu-products li.brand-menu-product .brand-menu-product__row {
-    text-align: center;
-    justify-content: center;
-}
+    .brand-menu-products li.brand-menu-product .brand-menu-product__row {
+        text-align: center;
+        justify-content: center;
+    }
 
 
-.brand-menu-category__title {
-    font-size: 16px;
-    font-weight: 800;
-    margin-bottom: 5px;
-}	
+    .brand-menu-category__title {
+        font-size: 16px;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
 
-.brand-menu-category__title--with-logo {
-    font-size: 18px;
-}
-	
-section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns img.brand-menu-category-card__image {
-    min-height: inherit !important;
-	width: 160px;
-	margin: 0 auto;
-}
-	
-	section.home-hero {
-    background-size: cover;
-    max-height: inherit;
-    min-height: inherit;
-    background-position: right;
-}
+    .brand-menu-category__title--with-logo {
+        font-size: 18px;
+    }
 
-.home-hero__eyebrow,
-h1.home-hero__title {
-            text-align: center;
+    section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns img.brand-menu-category-card__image {
+        min-height: inherit !important;
+        width: 160px;
+        margin: 0 auto;
+    }
+
+    section.home-hero {
+        background-size: cover;
+        max-height: inherit;
+        min-height: inherit;
+        background-position: right;
+    }
+
+    .home-hero__eyebrow,
+    h1.home-hero__title {
+        text-align: center;
         font-size: 31px;
         line-height: 36px;
-}
+    }
 
-.home-hero__eyebrow {
-    padding-bottom: 10px;
-}
+    .home-hero__eyebrow {
+        padding-bottom: 10px;
+    }
 
-.home-hero__eyebrow:after {
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-}
+    .home-hero__eyebrow:after {
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
 
-body.has-transparent-header .hamburger span {
-    background: #6b3e26 !important;
-}
-	
-.container.footer-grid {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-	  margin-bottom: 5px;
-		margin-top: 10px;
+    body.has-transparent-header .hamburger span {
+        background: #6b3e26 !important;
+    }
+
+    .container.footer-grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 5px;
+        margin-top: 10px;
         flex-direction: column;
-}
+    }
 
-@media (max-width: 767px) {
-    .footer-col {
-        direction: ltr;
+    @media (max-width: 767px) {
+        .footer-col {
+            direction: ltr;
+        }
+    }
+
+
+    .footer-social__link {
+        width: 36px;
+        height: 36px;
+    }
+
+    .page-brand-detail section.brand-detail-hero .brand-detail-hero__content img.brand-detail-hero__logo.brand-detail-hero__logo--small {
+        position: relative;
+        width: 140px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    h3.brand-menu-category__title {
+        text-align: center;
+    }
+
+    section.careers-hero.page-hero--careers.page-section--top {
+        background-image: inherit !important;
+        padding-top: 0;
+    }
+
+    section.careers-hero.page-hero--careers.page-section--top .careers-hero__media {
+        width: 100%;
+    }
+
+    section.careers-hero.page-hero--careers.page-section--top .careers-hero__media img {
+        min-height: inherit;
+        visibility: visible;
+    }
+
+
+    .container.home-hero__content {
+        padding-bottom: 60px;
+        padding-top: 150px;
     }
 }
-	
 
-.footer-social__link {
-    width: 36px;
-    height: 36px;
-}
-	
-	.page-brand-detail section.brand-detail-hero .brand-detail-hero__content img.brand-detail-hero__logo.brand-detail-hero__logo--small {
-    position: relative;
-    width: 140px;
-		display: block;
-		margin: 0 auto;
-}
-	
-h3.brand-menu-category__title {
-    text-align: center;
-}
-	
-	section.careers-hero.page-hero--careers.page-section--top {
-    background-image: inherit !important;
-    padding-top: 0;
-}
+@media (max-width:1024px) {
 
-section.careers-hero.page-hero--careers.page-section--top .careers-hero__media {
-    width: 100%;
-}
-
-section.careers-hero.page-hero--careers.page-section--top .careers-hero__media img {
-    min-height: inherit;
-		visibility: visible;
-}
-	
-	
-.container.home-hero__content {
-    padding-bottom: 60px;
-    padding-top: 150px;
-}
-}
-
-@media (max-width:1024px){
-
-    #primary-menu{
-        display:grid !important;
-        grid-template-columns:1fr 1fr !important;
-        column-gap:30px !important;
-        row-gap:2px !important;
+    #primary-menu {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        column-gap: 30px !important;
+        row-gap: 2px !important;
     }
 
     /* #menu-item-82  { grid-column:1; grid-row:1; }
@@ -1477,20 +1490,18 @@ section.careers-hero.page-hero--careers.page-section--top .careers-hero__media i
     #menu-item-592 { grid-column:2; grid-row:3; }
     #menu-item-591 { grid-column:2; grid-row:4; } */
 
-    #primary-menu li{
-        width:100% !important;
-        margin:0 !important;
+    #primary-menu li {
+        width: 100% !important;
+        margin: 0 !important;
     }
 }
 
 
 
 .tf-slider__media {
-    background: linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #fffaf5 100%
-    );
+    background: linear-gradient(180deg,
+            #ffffff 0%,
+            #fffaf5 100%);
 
     border-radius: 20px !important;
     overflow: hidden;
@@ -1498,38 +1509,38 @@ section.careers-hero.page-hero--careers.page-section--top .careers-hero__media i
     border: 1px solid rgba(255, 202, 8, 0.15);
 
     box-shadow:
-        0 8px 20px rgba(0,0,0,.04),
-        0 20px 40px rgba(0,0,0,.05),
-        0 35px 70px rgba(0,0,0,.03);
+        0 8px 20px rgba(0, 0, 0, .04),
+        0 20px 40px rgba(0, 0, 0, .05),
+        0 35px 70px rgba(0, 0, 0, .03);
 
     transition: all .35s ease;
 }
 
-.footer-links{
-    display:flex;
-    gap:15px;
-    list-style:none;
-    padding:0;
-    margin:0;
-	font-size:16px;
+.footer-links {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
     flex-flow: wrap;
 }
 
 @media (max-width: 767px) {
-    .footer-links{
-        gap:12px;
+    .footer-links {
+        gap: 12px;
     }
 }
 
-.footer-link-col{
-    display:flex;
-    gap:2px;
+.footer-link-col {
+    display: flex;
+    gap: 2px;
 }
 
-.footer-links li{
-    margin:0;
+.footer-links li {
+    margin: 0;
 }
-   
+
 
 @media (max-width: 767px) {
     .brand-detail-hero__media {
@@ -1542,9 +1553,10 @@ section.careers-hero.page-hero--careers.page-section--top .careers-hero__media i
         height: auto;
         display: block;
         object-fit: contain;
-			margin-top:-110px;
+        margin-top: -110px;
     }
 }
+
 @media (max-width: 767px) {
 
     .brand-detail-hero {
@@ -1559,7 +1571,7 @@ section.careers-hero.page-hero--careers.page-section--top .careers-hero__media i
     }
 
     .brand-detail-hero__media {
-	    margin-bottom:-30px;
+        margin-bottom: -30px;
         height: auto;
         overflow: hidden;
     }
@@ -1597,6 +1609,7 @@ section.careers-hero.page-hero--careers.page-section--top .careers-hero__media i
     .home-hero__tagline {
         max-width: 600px;
     }
+
     .home-hero__title {
         max-width: 750px;
     }
@@ -1619,7 +1632,7 @@ section.careers-hero.page-hero--careers.page-section--top .careers-hero__media i
 
 /* Keep the optional Explore button hugging its text rather than stretching
    to the full card width now that it is a flex item. */
-.brand-card > .btn {
+.brand-card>.btn {
     align-self: center;
 }
 
@@ -1634,7 +1647,7 @@ section.careers-hero.page-hero--careers.page-section--top .careers-hero__media i
 }
 
 .brand-card__heading {
-    font-size: 17px;
+    font-size: 20px;
     line-height: 1.3;
     margin: 0 0 15px;
     color: var(--primary-brown);
@@ -1642,7 +1655,7 @@ section.careers-hero.page-hero--careers.page-section--top .careers-hero__media i
 }
 
 .brand-card__summary {
-    font-size: 13.5px;
+    font-size: 15px;
     line-height: 1.6;
     color: #666;
     margin: 0 0 8px;
@@ -1655,7 +1668,7 @@ section.careers-hero.page-hero--careers.page-section--top .careers-hero__media i
     margin-top: auto;
     /* padding keeps the tap target comfortably above 24px on touch screens */
     padding: 4px 2px;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--secondary-orange);
     text-decoration: underline;

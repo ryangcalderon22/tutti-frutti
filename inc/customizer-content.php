@@ -78,6 +78,9 @@ function tutti_frutti_customizer_content( $wp_customize ) {
         'tf_hero_btn2_url'  => array( 'label' => __( 'Hero button 2 URL', 'tutti-frutti-cafe' ), 'default' => '' ),
         'tf_hero_btn3_text' => array( 'label' => __( 'Hero button 3 text', 'tutti-frutti-cafe' ), 'default' => '' ),
         'tf_hero_btn3_url'  => array( 'label' => __( 'Hero button 3 URL', 'tutti-frutti-cafe' ), 'default' => '' ),
+        'tf_visit_title'   => array( 'label' => __( 'Visit section title', 'tutti-frutti-cafe' ), 'default' => 'Visit Tutti Frutti Café in La Verne' ),
+        'tf_visit_text'    => array( 'label' => __( 'Visit section paragraph', 'tutti-frutti-cafe' ), 'default' => 'Visit us at 2357 Foothill Blvd, La Verne, CA 91750 for frozen yogurt, coffee, lunch, dessert and everything in between. Dine in, pick up your favorites, or order online for a convenient meal or treat.', 'type' => 'textarea' ),
+        'tf_phone_display' => array( 'label' => __( 'Phone (display format)', 'tutti-frutti-cafe' ), 'default' => '(909) 245-1383' ),
     );
 
     foreach ( $text_fields as $id => $args ) {

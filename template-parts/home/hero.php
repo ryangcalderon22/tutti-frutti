@@ -27,9 +27,9 @@ for ( $i = 1; $i <= 3; $i++ ) {
     <div class="home-hero__overlay"></div>
     <div class="container home-hero__content">
         <?php tutti_frutti_the_logo( 'hero' ); ?>
-        <?php if ( $heroEyebrow ) : ?>
-            <span class="home-hero__eyebrow"><?php echo esc_html( $heroEyebrow ); ?></span>
-        <?php endif; ?>
+        <?php //if ( $heroEyebrow ) : ?>
+            <!-- <span class="home-hero__eyebrow"><?php echo esc_html( $heroEyebrow ); ?></span> -->
+        <?php //endif; ?>
         <?php if ( $hero_title ) : ?>
             <h1 class="home-hero__title"><?php echo esc_html( $hero_title ); ?></h1>
         <?php endif; ?>

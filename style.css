@@ -40,7 +40,11 @@ body {
     background-color: #fff;
 }
 
-h1, h2, h3, h4, .section-title {
+h1,
+h2,
+h3,
+h4,
+.section-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -64,7 +68,8 @@ a:hover {
     color: var(--primary-brown);
 }
 
-button, .button {
+button,
+.button {
     cursor: pointer;
     border: none;
     font-family: inherit;
@@ -475,7 +480,7 @@ footer {
 
 .btn-primary:hover {
     background-color: #E85A0C;
-    transform: translateY(-2px);
+    color: #fff;
     box-shadow: 0 10px 25px rgba(242, 107, 33, 0.4);
 }
 
