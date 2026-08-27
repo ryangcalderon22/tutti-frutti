@@ -1673,6 +1673,7 @@ section.home-hero:before {
     color: var(--primary-brown);
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
+    min-height: 45px;
 }
 
 .brand-card__summary {
@@ -1706,8 +1707,7 @@ section.home-hero:before {
 }
 
 .brand-card--lines .brand-card__heading .brand-card__link {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0;
 }
 
 .section-description {
