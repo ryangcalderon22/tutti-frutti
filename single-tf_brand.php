@@ -14,6 +14,7 @@ while ( have_posts() ) :
     $hero_image  = tutti_frutti_get_brand_hero_image_url( $brand_id );
     $brand_logo  = tutti_frutti_get_brand_logo_url( $brand_id );
     $hero_title  = get_post_meta( $brand_id, '_tf_hero_heading', true );
+    $page_h1     = $hero_title ? $hero_title : get_the_title();
     $hero_desc   = get_post_meta( $brand_id, '_tf_hero_desc', true );
     $btn_text    = get_post_meta( $brand_id, '_tf_hero_btn_text', true );
     $order_url   = get_post_meta( $brand_id, '_tf_order_url', true );
@@ -31,12 +32,12 @@ while ( have_posts() ) :
                         <img src="<?php echo esc_url( $hero_image ); ?>" alt="<?php the_title_attribute(); ?>">
                     </div>
                 <?php endif; ?>
-                <?php //if ( $hero_title ) : ?>
-                    <!-- <h1 class="brand-detail-hero__title"><?php echo esc_html( $hero_title ); ?></h1> -->
-                <?php //endif; ?>
-                <?php //if ( $hero_desc ) : ?>
-                    <!-- <p class="brand-detail-hero__desc"><?php echo esc_html( $hero_desc ); ?></p> -->
-                <?php //endif; ?>
+                <?php if ( $page_h1 ) : ?>
+                    <h1 class="brand-detail-hero__title"><?php echo esc_html( $page_h1 ); ?></h1>
+                <?php endif; ?>
+                <?php if ( $hero_desc ) : ?>
+                    <p class="brand-detail-hero__desc"><?php echo esc_html( $hero_desc ); ?></p>
+                <?php endif; ?>
                 <?php if ( $btn_text && $order_url ) : ?>
                     <a href="<?php echo esc_url( $order_url ); ?>" class="btn btn-brown brand-detail-hero__cta" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $btn_text ); ?></a>
                 <?php endif; ?>

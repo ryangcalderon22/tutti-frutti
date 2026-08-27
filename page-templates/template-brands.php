@@ -13,8 +13,10 @@ get_header();
         'template-parts/brands/grid',
         null,
         array(
-            'title'        => __( 'Explore Our Brands', 'tutti-frutti-cafe' ),
+            'title'        => __( 'Explore Tutti Frutti Café Brands', 'tutti-frutti-cafe' ),
+            'description'  => __( 'Tutti Frutti Café brings four complementary café concepts together in one La Verne location: Tutti Frutti frozen yogurt, açaí, smoothies and matcha; PIO Coffee; O MY Cookies & Desserts; and TF Bites sandwiches, pasta, pizza and savory bites.', 'tutti-frutti-cafe' ),
             'wrap_section' => true,
+            'heading_tag'  => 'h1',
         )
     );
     ?>

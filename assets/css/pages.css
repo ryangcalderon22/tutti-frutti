@@ -276,7 +276,7 @@
     direction: rtl;
 }
 
-.page-split--reverse > * {
+.page-split--reverse>* {
     direction: ltr;
 }
 
@@ -420,8 +420,16 @@
     padding: 30px 0;
 }
 
-.page-brands .section-title {
+.page-brands .section-title,
+.page-brands .page-title {
     text-align: center;
+    font-size: 24px;
+}
+
+@media (min-width: 767px) {
+    .page-brands .page-title {
+        font-size: 36px;
+    }
 }
 
 .page-brands .brands-grid {
@@ -435,7 +443,7 @@
     border-radius: 12px;
     overflow: hidden;
     text-align: center;
-    padding-bottom: 24px;
+    padding-bottom: 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     text-align: center;
 }
@@ -499,10 +507,29 @@
     font-weight: 400;
 }
 
-.page-brands .btn-brand--purple { background: var(--accent-purple); color: #fff !important; border-radius: 4px; }
-.page-brands .btn-brand--orange { background: var(--secondary-orange); color: #fff !important; border-radius: 4px; }
-.page-brands .btn-brand--yellow { background: #F2B824; color: var(--primary-brown) !important; border-radius: 4px; }
-.page-brands .btn-brand--green { background: var(--accent-green); color: #fff !important; border-radius: 4px; }
+.page-brands .btn-brand--purple {
+    background: var(--accent-purple);
+    color: #fff !important;
+    border-radius: 4px;
+}
+
+.page-brands .btn-brand--orange {
+    background: var(--secondary-orange);
+    color: #fff !important;
+    border-radius: 4px;
+}
+
+.page-brands .btn-brand--yellow {
+    background: #F2B824;
+    color: var(--primary-brown) !important;
+    border-radius: 4px;
+}
+
+.page-brands .btn-brand--green {
+    background: var(--accent-green);
+    color: #fff !important;
+    border-radius: 4px;
+}
 
 /* Careers */
 .careers-hero {
@@ -511,7 +538,8 @@
     min-height: 480px;
     background: var(--light-cream);
     align-items: stretch;
-    padding-top: 0;;
+    padding-top: 0;
+    ;
 }
 
 .careers-hero__content {
@@ -631,49 +659,91 @@
     display: block;
 }
 
-.text-center { text-align: center; }
+.text-center {
+    text-align: center;
+}
 
 @media (max-width: 992px) {
-    .page-split, .pio-hero, .careers-hero, .brand-detail-hero { grid-template-columns: 1fr; }
-    .brand-detail-hero__content { padding: 48px 24px; }
-    .brand-detail-hero__media img { min-height: 280px; mask-image: none; -webkit-mask-image: none; }
-    .page-brand-detail .brand-detail-all-brands .brands-grid { grid-template-columns: repeat(2, 1fr); }
-    .values-grid { grid-template-columns: repeat(3, 1fr); }
-    .drinks-grid { grid-template-columns: repeat(3, 1fr); }
-    .features-grid--4 { grid-template-columns: repeat(2, 1fr); }
-    .page-brands .brands-grid { grid-template-columns: repeat(2, 1fr); }
-    .careers-paths__inner { grid-template-columns: repeat(2, 1fr); }
-    .careers-hero__content { padding: 30px 24px 20px; }
-    .careers-hero__media img { min-height: 320px; mask-image: none; -webkit-mask-image: none; }
+
+    .page-split,
+    .pio-hero,
+    .careers-hero,
+    .brand-detail-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .brand-detail-hero__content {
+        padding: 48px 24px;
+    }
+
+    .brand-detail-hero__media img {
+        min-height: 280px;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
+    .page-brand-detail .brand-detail-all-brands .brands-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .values-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .drinks-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .features-grid--4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-brands .brands-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .careers-paths__inner {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .careers-hero__content {
+        padding: 30px 24px 20px;
+    }
+
+    .careers-hero__media img {
+        min-height: 320px;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
 }
 
 
 
 @media (max-width: 767px) {
 
-    
-    .page-split{
-        display:flex !important;
-        flex-direction:column !important;
+
+    .page-split {
+        display: flex !important;
+        flex-direction: column !important;
     }
 
-    
-    .page-split__media{
-        order:2 !important;
-        width:100%;
-        margin:20px 0 !important;
+
+    .page-split__media {
+        order: 2 !important;
+        width: 100%;
+        margin: 20px 0 !important;
     }
 
-   
-    .page-split__content{
-        order:1 !important;
-        width:100%;
+
+    .page-split__content {
+        order: 1 !important;
+        width: 100%;
     }
 
- 
+
     .page-split__content h2,
-    .page-split__content p{
-        order:3;
+    .page-split__content p {
+        order: 3;
     }
 
     .page-brands .brands-grid {
@@ -682,98 +752,98 @@
 
 }
 
-.contact-title{
-    text-align:center;
-    font-family:"Cormorant", serif;
-    font-size:64px;
-    color:#4b2b1d;
-    margin-bottom:60px;
-    line-height:1.1;
+.contact-title {
+    text-align: center;
+    font-family: "Cormorant", serif;
+    font-size: 64px;
+    color: #4b2b1d;
+    margin-bottom: 60px;
+    line-height: 1.1;
 }
 
-.contact-layout{
-    display:grid;
-    grid-template-columns:380px 1fr;
-    gap:60px;
-    align-items:start;
+.contact-layout {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 60px;
+    align-items: start;
 }
 
-.contact-info{
-    background:#fff;
-    padding:40px;
-    border-radius:20px;
-    box-shadow:0 8px 25px rgba(0,0,0,.08);
+.contact-info {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
 }
 
 .contact-info h2,
-.contact-form-title{
-    font-family:"Cormorant", serif;
-    font-size:40px;
-    color:#4b2b1d;
-    margin-bottom:30px;
+.contact-form-title {
+    font-family: "Cormorant", serif;
+    font-size: 40px;
+    color: #4b2b1d;
+    margin-bottom: 30px;
 }
 
-.contact-info__title-image{
-    display:block;
-    max-width:100%;
-    height:auto;
-    margin-bottom:30px;
+.contact-info__title-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 30px;
 }
 
-.contact-item{
-    margin-bottom:30px;
+.contact-item {
+    margin-bottom: 30px;
 }
 
-.contact-item h3{
-    font-size:20px;
-    color:#6b3c22;
-    margin-bottom:10px;
+.contact-item h3 {
+    font-size: 20px;
+    color: #6b3c22;
+    margin-bottom: 10px;
 }
 
-.contact-item p{
-    line-height:1.8;
+.contact-item p {
+    line-height: 1.8;
 }
 
-.contact-form-wrapper{
-    background:#fff;
-    padding:40px;
-    border-radius:20px;
-    box-shadow:0 8px 25px rgba(0,0,0,.08);
+.contact-form-wrapper {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
 }
 
 
 
 @media (max-width: 991px) {
 
-    .contact-layout{
-        display:flex;
-        flex-direction:column;
-        gap:40px;
+    .contact-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
     }
 
     /* Form first */
-    .contact-form-wrapper{
-        order:1;
+    .contact-form-wrapper {
+        order: 1;
     }
 
     /* Location second */
-    .contact-info{
-        order:2;
-        margin-top:0;
+    .contact-info {
+        order: 2;
+        margin-top: 0;
     }
 
-    .contact-title{
-        font-size:30px;
-        text-align:center;
-        line-height:1.2;
-        margin-bottom:35px;
+    .contact-title {
+        font-size: 30px;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 35px;
     }
 
     .contact-form-wrapper,
-    .contact-info{
-        width:100%;
-        padding:25px;
-        border-radius:18px;
+    .contact-info {
+        width: 100%;
+        padding: 25px;
+        border-radius: 18px;
     }
 
     .contact-form-wrapper {
@@ -782,10 +852,10 @@
 
     /* Reduce both headings */
     .contact-info h2,
-    .contact-form-title{
-        font-size:26px;
-        margin-bottom:20px;
-        text-align:center;
+    .contact-form-title {
+        font-size: 26px;
+        margin-bottom: 20px;
+        text-align: center;
     }
 
 }

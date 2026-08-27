@@ -220,7 +220,6 @@ nav a:hover,
 .btn-order-nav--green:hover {
     background-color: #6B9232;
     color: #fff !important;
-    transform: translateY(-2px);
 }
 
 .site-logo__cafe {

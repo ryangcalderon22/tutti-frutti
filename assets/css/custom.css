@@ -5,6 +5,7 @@
 
 /* Oswald for headings / brand labels */
 .section-title,
+.page-title,
 .home-hero__title,
 .page-hero__title,
 .brand-card__name,
@@ -784,7 +785,8 @@ section.home-section.home-featured {
 }
 
 h1.section-title,
-h2.section-title {
+h2.section-title,
+h1.page-title {
     font-family: 'Oswald';
     letter-spacing: 4px;
 }
@@ -1110,7 +1112,6 @@ section.page-brands__section.page-section--cream.page-section--top article.brand
 
 .home-brands .brand-card__logo {
     max-width: inherit;
-    width: 170px;
 }
 
 
@@ -1683,4 +1684,19 @@ section.home-hero:before {
 /* The lines variant zeroes the card's bottom padding; the intro block supplies its own. */
 .brand-card--lines .brand-card__link {
     padding-bottom: 10px;
+}
+
+.brand-card--lines .brand-card__heading .brand-card__link {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.section-description {
+    max-width: 760px;
+    margin: 14px auto 34px;
+    text-align: center;
+    font-size: clamp(15px, 1.5vw, 18px);
+    line-height: 1.7;
+    color: var(--text-dark);
+    text-wrap: pretty;
 }
