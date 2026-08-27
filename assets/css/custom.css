@@ -1237,10 +1237,29 @@ section.home-section.home-brands.page-brands__section.page-section--cream a.bran
     align-items: end;
 }
 
+/* Hero photo is a real <img> so it can be preloaded and carry alt text.
+   Three explicit layers: photo 0, gradient scrim 1, text 2. Without these the
+   img paints over the scrim, because ::before is generated as the first child
+   and the img follows it in DOM order. */
+.home-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+}
+
+.container.home-hero__content {
+    z-index: 2;
+}
+
 section.home-hero:before {
     content: '';
     position: absolute;
     inset: 0;
+    z-index: 1;
     background: linear-gradient(to right, #6e583b7a 0%, rgb(88 62 42 / 25%) 35%, rgba(15, 8, 3, 0.20) 60%, rgba(15, 8, 3, 0.05) 100%);
 }
 

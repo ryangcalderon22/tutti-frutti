@@ -239,12 +239,35 @@ function tutti_frutti_get_logo_url( $context = 'light' ) {
 }
 
 /**
+ * Page banner attachment ID.
+ *
+ * Set by the media picker in Appearance -> Customize -> Page Images. Returns 0
+ * for banners still using a legacy URL or a bundled theme fallback.
+ *
+ * @param string $key Banner key.
+ * @return int Attachment ID, or 0.
+ */
+function tutti_frutti_get_page_banner_id( $key ) {
+    $id = absint( get_theme_mod( 'tf_banner_' . $key . '_id', 0 ) );
+
+    return ( $id && wp_attachment_is_image( $id ) ) ? $id : 0;
+}
+
+/**
  * Page banner: Customizer, client file, or demo URL.
  *
  * @param string $key Setting key.
  * @return string
  */
 function tutti_frutti_get_page_banner( $key ) {
+    $id = tutti_frutti_get_page_banner_id( $key );
+    if ( $id ) {
+        $src = wp_get_attachment_image_url( $id, 'full' );
+        if ( $src ) {
+            return $src;
+        }
+    }
+
     $mod = get_theme_mod( 'tf_banner_' . $key );
     if ( $mod ) {
         return $mod;
