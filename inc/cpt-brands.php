@@ -66,6 +66,32 @@ function tutti_frutti_brand_meta_box() {
 add_action( 'add_meta_boxes', 'tutti_frutti_brand_meta_box' );
 
 /**
+ * Media picker assets, brand edit screen only.
+ *
+ * @param string $hook Current admin page.
+ */
+function tutti_frutti_brand_admin_assets( $hook ) {
+    if ( ! in_array( $hook, array( 'post.php', 'post-new.php' ), true ) ) {
+        return;
+    }
+
+    $screen = get_current_screen();
+    if ( ! $screen || 'tf_brand' !== $screen->post_type ) {
+        return;
+    }
+
+    wp_enqueue_media();
+    wp_enqueue_script(
+        'tutti-frutti-admin-brand-media',
+        get_template_directory_uri() . '/js/admin-brand-media.js',
+        array( 'jquery' ),
+        '1.7.4',
+        true
+    );
+}
+add_action( 'admin_enqueue_scripts', 'tutti_frutti_brand_admin_assets' );
+
+/**
  * @param WP_Post $post Post.
  */
 function tutti_frutti_brand_meta_box_render( $post ) {
@@ -73,6 +99,7 @@ function tutti_frutti_brand_meta_box_render( $post ) {
     $btn           = get_post_meta( $post->ID, '_tf_button_style', true );
     $key           = get_post_meta( $post->ID, '_tf_demo_key', true );
     $detail_image   = get_post_meta( $post->ID, '_tf_detail_image', true );
+    $detail_image_id = absint( get_post_meta( $post->ID, '_tf_detail_image_id', true ) );
     $brand_logo     = get_post_meta( $post->ID, '_tf_brand_logo', true );
     $hero_heading   = get_post_meta( $post->ID, '_tf_hero_heading', true );
     $hero_desc      = get_post_meta( $post->ID, '_tf_hero_desc', true );
@@ -104,10 +131,38 @@ function tutti_frutti_brand_meta_box_render( $post ) {
             <td><input type="text" id="tf_hero_btn_text" name="tf_hero_btn_text" value="<?php echo esc_attr( $hero_btn_text ); ?>" class="regular-text"></td>
         </tr>
         <tr>
-            <th><label for="tf_detail_image"><?php esc_html_e( 'Detail hero image URL (right)', 'tutti-frutti-cafe' ); ?></label></th>
+            <th><label for="tf_detail_image"><?php esc_html_e( 'Detail hero image', 'tutti-frutti-cafe' ); ?></label></th>
             <td>
-                <input type="url" id="tf_detail_image" name="tf_detail_image" value="<?php echo esc_url( $detail_image ); ?>" class="large-text">
-                <p class="description"><?php esc_html_e( 'Or use Featured Image. Empty = no right hero image.', 'tutti-frutti-cafe' ); ?></p>
+                <div class="tf-media-field">
+                    <input type="hidden" class="tf-media-id" name="tf_detail_image_id" value="<?php echo esc_attr( (string) $detail_image_id ); ?>">
+                    <div class="tf-media-preview" style="margin-bottom:8px;">
+                        <?php
+                        if ( $detail_image_id ) {
+                            echo wp_get_attachment_image( $detail_image_id, 'medium' );
+                        }
+                        ?>
+                    </div>
+                    <button type="button" class="button tf-media-choose"
+                        data-title="<?php esc_attr_e( 'Select detail hero image', 'tutti-frutti-cafe' ); ?>"
+                        data-button="<?php esc_attr_e( 'Use this image', 'tutti-frutti-cafe' ); ?>"><?php esc_html_e( 'Choose Image', 'tutti-frutti-cafe' ); ?></button>
+                    <button type="button" class="button-link tf-media-remove" style="margin-left:8px;<?php echo $detail_image_id ? '' : 'display:none;'; ?>"><?php esc_html_e( 'Remove', 'tutti-frutti-cafe' ); ?></button>
+                    <p class="description tf-media-alt-note">
+                        <?php
+                        if ( $detail_image_id ) {
+                            $alt_now = trim( (string) get_post_meta( $detail_image_id, '_wp_attachment_image_alt', true ) );
+                            echo $alt_now
+                                ? esc_html( sprintf( __( 'Alt text: "%s"', 'tutti-frutti-cafe' ), $alt_now ) )
+                                : esc_html__( 'This image has no alt text set in the Media Library.', 'tutti-frutti-cafe' );
+                        }
+                        ?>
+                    </p>
+                    <p class="description"><?php esc_html_e( 'Alt text comes from the Media Library — edit it there (Media → select image → Alternative Text).', 'tutti-frutti-cafe' ); ?></p>
+                </div>
+                <p style="margin-top:12px;">
+                    <label for="tf_detail_image"><?php esc_html_e( 'Or paste an image URL (legacy)', 'tutti-frutti-cafe' ); ?></label><br>
+                    <input type="url" id="tf_detail_image" name="tf_detail_image" value="<?php echo esc_url( $detail_image ); ?>" class="large-text">
+                </p>
+                <p class="description"><?php esc_html_e( 'A chosen image always wins over a pasted URL. With both empty the Featured Image is used, and if that is empty too the hero shows no image.', 'tutti-frutti-cafe' ); ?></p>
             </td>
         </tr>
         <tr>
@@ -206,6 +261,7 @@ function tutti_frutti_save_brand_meta( $post_id ) {
         'tf_hero_desc'         => 'sanitize_textarea_field',
         'tf_hero_btn_text'     => 'sanitize_text_field',
         'tf_detail_image'      => 'esc_url_raw',
+        'tf_detail_image_id'   => 'absint',
         'tf_products_title'    => 'sanitize_text_field',
         'tf_order_url'         => 'esc_url_raw',
         'tf_card_lines'        => 'sanitize_textarea_field',

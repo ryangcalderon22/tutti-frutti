@@ -79,12 +79,47 @@ function tutti_frutti_get_brands() {
 }
 
 /**
+ * Brand detail hero attachment ID.
+ *
+ * Only set when the image was picked with the media button. Preferred over the
+ * URL because an ID lets the front end render with wp_get_attachment_image(),
+ * which carries the Media Library alt text and srcset.
+ *
+ * @param int $brand_id Brand post ID.
+ * @return int Attachment ID, or 0.
+ */
+function tutti_frutti_get_brand_hero_image_id( $brand_id ) {
+    $id = absint( get_post_meta( $brand_id, '_tf_detail_image_id', true ) );
+    if ( $id && wp_attachment_is_image( $id ) ) {
+        return $id;
+    }
+
+    // Legacy pasted URLs have no ID; fall back to the featured image.
+    if ( ! get_post_meta( $brand_id, '_tf_detail_image', true ) ) {
+        $thumb_id = absint( get_post_thumbnail_id( $brand_id ) );
+        if ( $thumb_id && wp_attachment_is_image( $thumb_id ) ) {
+            return $thumb_id;
+        }
+    }
+
+    return 0;
+}
+
+/**
  * Brand detail hero image (right side) — no fallback.
  *
  * @param int $brand_id Brand post ID.
  * @return string
  */
 function tutti_frutti_get_brand_hero_image_url( $brand_id ) {
+    $id = absint( get_post_meta( $brand_id, '_tf_detail_image_id', true ) );
+    if ( $id ) {
+        $src = wp_get_attachment_image_url( $id, 'large' );
+        if ( $src ) {
+            return $src;
+        }
+    }
+
     $detail = get_post_meta( $brand_id, '_tf_detail_image', true );
     if ( $detail ) {
         return $detail;

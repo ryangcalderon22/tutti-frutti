@@ -12,11 +12,16 @@ while ( have_posts() ) :
     $brand_id = get_the_ID();
 
     $hero_image  = tutti_frutti_get_brand_hero_image_url( $brand_id );
+    $hero_image_id = tutti_frutti_get_brand_hero_image_id( $brand_id );
     $brand_logo  = tutti_frutti_get_brand_logo_url( $brand_id );
     $hero_title  = get_post_meta( $brand_id, '_tf_hero_heading', true );
     $page_h1     = $hero_title ? $hero_title : get_the_title();
     $hero_desc   = get_post_meta( $brand_id, '_tf_hero_desc', true );
     $btn_text    = get_post_meta( $brand_id, '_tf_hero_btn_text', true );
+    $hero_alt = $hero_image_id
+        ? tutti_frutti_get_attachment_alt( $hero_image_id, get_the_title() )
+        : tutti_frutti_get_image_alt( $hero_image, get_the_title() );
+    $logo_alt = tutti_frutti_get_image_alt( $brand_logo, get_the_title() );
     $order_url   = get_post_meta( $brand_id, '_tf_order_url', true );
     $grouped     = tutti_frutti_get_brand_products_grouped( $brand_id );
     $product_title = get_post_meta( $brand_id, '_tf_products_title', true );
@@ -29,7 +34,18 @@ while ( have_posts() ) :
             <div class="brand-detail-hero__content">
                 <?php if ( $has_right_hero ) : ?>
                     <div class="brand-detail-hero__media">
-                        <img src="<?php echo esc_url( $hero_image ); ?>" alt="<?php the_title_attribute(); ?>">
+                        <?php
+                        if ( $hero_image_id ) {
+                            // Picked in the media library: gives srcset for free.
+                            echo wp_get_attachment_image( $hero_image_id, 'large', false, array( 'alt' => $hero_alt ) );
+                        } else {
+                            printf(
+                                '<img src="%s" alt="%s">',
+                                esc_url( $hero_image ),
+                                esc_attr( $hero_alt )
+                            );
+                        }
+                        ?>
                     </div>
                 <?php endif; ?>
                 <?php if ( $page_h1 ) : ?>
@@ -71,12 +87,12 @@ while ( have_posts() ) :
                                 <?php if ( $group_parent_title ) : ?>
                                     <div class="brand-menu-parent">
                                         <?php if ( ! empty( $group['parent_image'] ) ) : ?>
-                                            <img src="<?php echo esc_url( $group['parent_image'] ); ?>" alt="<?php echo esc_attr( $group_parent_title ); ?>" class="brand-menu-parent__image">
+                                            <img src="<?php echo esc_url( $group['parent_image'] ); ?>" alt="<?php echo esc_attr( tutti_frutti_get_image_alt( $group['image'], $group['title'] ) ); ?>" class="brand-menu-parent__image">
                                         <?php else : ?>
                                             <?php if ( $brand_logo ) : ?>
-                                                <img src="<?php echo esc_url( $brand_logo ); ?>" alt="<?php the_title_attribute(); ?>" class="brand-menu-parent__logo">
+                                                <img src="<?php echo esc_url( $brand_logo ); ?>" alt="<?php echo esc_attr( $logo_alt ); ?>" class="brand-menu-parent__logo">
                                             <?php endif; ?>
-                                            <h3 class="brand-menu-parent__title"><?php echo esc_html( $group_parent_title ); ?></h3>
+                                            <h2 class="brand-menu-parent__title"><?php echo esc_html( $group_parent_title ); ?></h2>
                                         <?php endif; ?>
                                     </div>
                                     <?php
@@ -99,13 +115,13 @@ while ( have_posts() ) :
                                     <div class="brand-menu-category-card">
                                         <?php if ( ! empty( $group['order_url'] ) ) : ?>
                                             <a href="<?php echo esc_url( $group['order_url'] ); ?>" class="brand-menu-category-card__link" target="_blank" rel="noopener noreferrer">
-                                                <img src="<?php echo esc_url( $group['image'] ); ?>" alt="<?php echo esc_attr( $group['title'] ); ?>" class="brand-menu-category-card__image" loading="lazy">
+                                                <img src="<?php echo esc_url( $group['image'] ); ?>" alt="<?php echo esc_attr( tutti_frutti_get_image_alt( $group['image'], $group['title'] ) ); ?>" class="brand-menu-category-card__image" loading="lazy">
                                                 <span class="brand-menu-category-card__overlay">
                                                     <span class="btn btn-brown btn-sm"><?php esc_html_e( 'Order Now', 'tutti-frutti-cafe' ); ?></span>
                                                 </span>
                                             </a>
                                         <?php else : ?>
-                                            <img src="<?php echo esc_url( $group['image'] ); ?>" alt="<?php echo esc_attr( $group['title'] ); ?>" class="brand-menu-category-card__image" loading="lazy">
+                                            <img src="<?php echo esc_url( $group['image'] ); ?>" alt="<?php echo esc_attr( tutti_frutti_get_image_alt( $group['image'], $group['title'] ) ); ?>" class="brand-menu-category-card__image" loading="lazy">
                                         <?php endif; ?>
                                     </div>
                                 <?php endif; ?>

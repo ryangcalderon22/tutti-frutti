@@ -69,6 +69,58 @@ function tutti_frutti_ensure_img_alt( $html, $fallback_alt = '' ) {
 }
 
 /**
+ * Alt text for an attachment ID.
+ *
+ * @param int    $id       Attachment ID.
+ * @param string $fallback Used when the attachment has no alt text set.
+ * @return string
+ */
+function tutti_frutti_get_attachment_alt( $id, $fallback = '' ) {
+    $id = absint( $id );
+    if ( ! $id ) {
+        return $fallback;
+    }
+
+    $alt = trim( (string) get_post_meta( $id, '_wp_attachment_image_alt', true ) );
+
+    return '' !== $alt ? $alt : $fallback;
+}
+
+/**
+ * Alt text for an image referenced by URL.
+ *
+ * Brand images are stored as URLs in post meta, so the attachment must be
+ * resolved before its alt text can be read. Results are memoised per request
+ * because attachment_url_to_postid() queries the database on every call.
+ *
+ * @param string $url      Image URL.
+ * @param string $fallback Used when the attachment has no alt text set.
+ * @return string
+ */
+function tutti_frutti_get_image_alt( $url, $fallback = '' ) {
+    if ( ! $url ) {
+        return $fallback;
+    }
+
+    static $cache = array();
+
+    if ( ! isset( $cache[ $url ] ) ) {
+        // attachment_url_to_postid() only matches the original file, so strip
+        // any -WxH suffix WordPress added to a generated size.
+        $full = preg_replace( '/-\d+x\d+(?=\.[a-z0-9]+$)/i', '', $url );
+
+        $id = attachment_url_to_postid( $full );
+        if ( ! $id && $full !== $url ) {
+            $id = attachment_url_to_postid( $url );
+        }
+
+        $cache[ $url ] = $id ? tutti_frutti_get_attachment_alt( $id ) : '';
+    }
+
+    return '' !== $cache[ $url ] ? $cache[ $url ] : $fallback;
+}
+
+/**
  * Try to find a title/caption for an <img> from nearby markup.
  *
  * @param DOMElement $img   The image element.
