@@ -22,9 +22,10 @@ for ( $i = 1; $i <= 3; $i++ ) {
     $url  = get_theme_mod( 'tf_hero_btn' . $i . '_url', '' );
     if ( $text && $url ) {
         $hero_buttons[] = array(
-            'text'  => $text,
-            'url'   => $url,
-            'class' => 1 === $i ? 'btn btn-primary' : 'btn btn-tertiary',
+            'text'    => $text,
+            'url'     => $url,
+            'class'   => 1 === $i ? 'btn btn-primary' : 'btn btn-tertiary',
+            'new_tab' => (bool) get_theme_mod( 'tf_hero_btn' . $i . '_new_tab', false ),
         );
     }
 }
@@ -68,7 +69,7 @@ for ( $i = 1; $i <= 3; $i++ ) {
         <?php if ( ! empty( $hero_buttons ) ) : ?>
             <div class="home-hero__actions">
                 <?php foreach ( $hero_buttons as $btn ) : ?>
-                    <a href="<?php echo esc_url( $btn['url'] ); ?>" class="<?php echo esc_attr( $btn['class'] ); ?>"><?php echo esc_html( $btn['text'] ); ?></a>
+                    <a href="<?php echo esc_url( $btn['url'] ); ?>" class="<?php echo esc_attr( $btn['class'] ); ?>"<?php echo $btn['new_tab'] ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>><?php echo esc_html( $btn['text'] ); ?><?php if ( $btn['new_tab'] ) : ?><span class="screen-reader-text"><?php esc_html_e( ' (opens in a new tab)', 'tutti-frutti-cafe' ); ?></span><?php endif; ?></a>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>

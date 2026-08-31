@@ -101,6 +101,27 @@ function tutti_frutti_customizer_content( $wp_customize ) {
         );
     }
 
+    for ( $i = 1; $i <= 3; $i++ ) {
+        $id = 'tf_hero_btn' . $i . '_new_tab';
+        $wp_customize->add_setting(
+            $id,
+            array(
+                'default'           => false,
+                'sanitize_callback' => 'wp_validate_boolean',
+            )
+        );
+        $wp_customize->add_control(
+            $id,
+            array(
+                /* translators: %d: hero button number. */
+                'label'       => sprintf( __( 'Hero button %d — open in new tab', 'tutti-frutti-cafe' ), $i ),
+                'description' => __( 'Use for links that leave the site, such as online ordering.', 'tutti-frutti-cafe' ),
+                'section'     => 'tf_site_content',
+                'type'        => 'checkbox',
+            )
+        );
+    }
+
     $wp_customize->add_setting( 'tf_moments_image', array( 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control(
         new WP_Customize_Image_Control(

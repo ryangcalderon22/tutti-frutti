@@ -1189,12 +1189,17 @@ section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .
     width: 100%;
     gap: 30px;
     justify-content: center;
-    align-items: center;
+    /* stretch, not center: centering offset every column by half its height
+       difference, dropping the shortest one furthest down. Stretch also gives
+       the columns equal height so the divider borders line up. */
+    align-items: stretch;
 }
 
 section.page-section.page-section--cream.brand-detail-menu .brand-menu-columns .brand-menu-column {
     border-right: 1px solid #ffdb99;
-    height: 100%;
+    /* height:100% on a flex item is circular here; align-items: stretch on the
+       row is what equalises the heights. */
+    height: auto;
     max-width: 30%;
     padding-right: 30px;
 }
@@ -1689,11 +1694,21 @@ section.home-hero:before {
     margin-top: auto;
     /* padding keeps the tap target comfortably above 24px on touch screens */
     padding: 4px 2px;
+    line-height: 1.6;
+    /* Reserve two lines in every card. Without this a link that wraps starts a
+       line higher than the single-line ones, since the boxes are bottom-pinned.
+       Two lines + the 8px vertical padding, with border-box sizing. */
     font-size: 15px;
     font-weight: 600;
     color: var(--secondary-orange);
     text-decoration: underline;
     text-underline-offset: 3px;
+}
+
+@media (min-width: 991px) {
+    .brand-card__cta {
+        min-height: calc(2 * 1.6em + 8px);
+    }
 }
 
 .brand-card__cta:hover,

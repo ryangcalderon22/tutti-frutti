@@ -68,13 +68,23 @@ while ( have_posts() ) :
                     <?php endif; ?>
                     <div class="brand-menu-columns">
                         <?php
-                        $current_parent_title = null;
+                        $current_parent_key   = null;
                         $column_index         = 0;
                         $column_open          = false;
                         foreach ( $grouped as $group ) :
                             $group_parent_title = ! empty( $group['parent_title'] ) ? $group['parent_title'] : '';
-                            if ( $group_parent_title !== $current_parent_title ) :
-                                $current_parent_title = $group_parent_title;
+                            // Fall back to the title for any group built without a key.
+                            $group_parent_key   = ! empty( $group['parent_key'] ) ? $group['parent_key'] : $group_parent_title;
+                            $group_has_title    = ! empty( $group['title'] ) && 'Tutti Frutti Products' !== $group['title'];
+                            /*
+                             * Heading for the column. A child category is headed by its
+                             * parent; a top-level category heads its own column, so its
+                             * own name is the heading. Leaves the untitled catch-all
+                             * group with no heading, as before.
+                             */
+                            $column_heading     = $group_parent_title ? $group_parent_title : ( $group_has_title ? $group['title'] : '' );
+                            if ( $group_parent_key !== $current_parent_key ) :
+                                $current_parent_key = $group_parent_key;
                                 if ( $column_open ) :
                                     ?>
                                     </div>
@@ -84,7 +94,7 @@ while ( have_posts() ) :
                                 $column_open = true;
                                 ?>
                                 <div class="brand-column brand-column-<?php echo esc_attr( $column_index ); ?>">
-                                <?php if ( $group_parent_title ) : ?>
+                                <?php if ( $column_heading ) : ?>
                                     <div class="brand-menu-parent">
                                         <?php if ( ! empty( $group['parent_image'] ) ) : ?>
                                             <img src="<?php echo esc_url( $group['parent_image'] ); ?>" alt="<?php echo esc_attr( tutti_frutti_get_image_alt( $group['image'], $group['title'] ) ); ?>" class="brand-menu-parent__image">
@@ -92,23 +102,17 @@ while ( have_posts() ) :
                                             <?php if ( $brand_logo ) : ?>
                                                 <img src="<?php echo esc_url( $brand_logo ); ?>" alt="<?php echo esc_attr( $logo_alt ); ?>" class="brand-menu-parent__logo">
                                             <?php endif; ?>
-                                            <h2 class="brand-menu-parent__title"><?php echo esc_html( $group_parent_title ); ?></h2>
+                                            <h2 class="brand-menu-parent__title"><?php echo esc_html( $column_heading ); ?></h2>
                                         <?php endif; ?>
                                     </div>
                                     <?php
                                 endif;
                             endif;
                             ?>
-                            <?php $group_has_title = ! empty( $group['title'] ) && 'Tutti Frutti Products' !== $group['title']; ?>
                             <div class="brand-menu-column">
-                                <?php if ( ! $group_parent_title && ( $brand_logo || $group_has_title ) ) : ?>
+                                <?php if ( ! $column_heading && $brand_logo ) : ?>
                                     <div class="brand-menu-column__header">
-                                        <?php if ( $brand_logo ) : ?>
-                                            <img src="<?php echo esc_url( $brand_logo ); ?>" alt="<?php the_title_attribute(); ?>" class="brand-menu-column__logo">
-                                        <?php endif; ?>
-                                        <?php if ( $group_has_title ) : ?>
-                                            <h3 class="brand-menu-category__title brand-menu-category__title--with-logo"><?php echo esc_html( $group['title'] ); ?></h3>
-                                        <?php endif; ?>
+                                        <img src="<?php echo esc_url( $brand_logo ); ?>" alt="<?php echo esc_attr( $logo_alt ); ?>" class="brand-menu-column__logo">
                                     </div>
                                 <?php endif; ?>
                                 <?php if ( ! empty( $group['image'] ) ) : ?>

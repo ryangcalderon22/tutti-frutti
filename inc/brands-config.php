@@ -202,6 +202,13 @@ function tutti_frutti_get_brand_products_grouped( $brand_id ) {
             $grouped[] = array(
                 'title'        => $cat->post_title,
                 'parent_title' => $parent_title,
+                /*
+                 * Column grouping key. Categories sharing a parent share a
+                 * column; a top-level category is its own column. Keying off
+                 * parent_title instead would lump every top-level category
+                 * together, because they all have an empty parent title.
+                 */
+                'parent_key'   => $cat->post_parent ? 'p' . (int) $cat->post_parent : 'c' . (int) $cat->ID,
                 'parent_image' => $parent_image ? $parent_image : '',
                 'image'        => $cat_image ? $cat_image : '',
                 'order_url'    => $cat_order,
@@ -234,6 +241,7 @@ function tutti_frutti_get_brand_products_grouped( $brand_id ) {
         $grouped[] = array(
             'title'        => '',
             'parent_title' => '',
+            'parent_key'   => 'other',
             'parent_image' => '',
             'image'        => '',
             'order_url'    => '',
@@ -245,6 +253,7 @@ function tutti_frutti_get_brand_products_grouped( $brand_id ) {
         $grouped[] = array(
             'title'        => '',
             'parent_title' => '',
+            'parent_key'   => 'all',
             'parent_image' => '',
             'image'        => '',
             'order_url'    => '',
