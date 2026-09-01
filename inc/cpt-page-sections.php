@@ -539,7 +539,7 @@ function tutti_frutti_maybe_import_page_sections() {
         ),
         array(
             'page' => 'order', 'layout' => 'split', 'side' => 'right', 'order' => 0,
-            'title' => 'Order Your Favorites Pickup or Delivery',
+            'title' => 'Order Your Favorites for Pickup or Delivery',
             'content' => 'Skip the line and enjoy your favorite treats, drinks and meals.',
             'btn' => 'Order Now', 'url' => '#', 'img' => 'order_phone',
         ),

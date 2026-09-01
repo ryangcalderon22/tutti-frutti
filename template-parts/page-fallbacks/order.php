@@ -9,7 +9,7 @@ $top_class = ! empty( $top ) ? ' page-section--top' : '';
 <section class="order-top<?php echo esc_attr( $top_class ); ?>">
     <div class="container page-split page-split--reverse">
         <div class="page-split__content">
-            <h1><?php esc_html_e( 'Order Your Favorites Pickup or Delivery', 'tutti-frutti-cafe' ); ?></h1>
+            <h1><?php esc_html_e( 'Order Your Favorites for Pickup or Delivery', 'tutti-frutti-cafe' ); ?></h1>
             <p><?php esc_html_e( 'Skip the line and enjoy your favorite treats, drinks and meals.', 'tutti-frutti-cafe' ); ?></p>
             <a href="https://order.chownow.com/order/43470/locations/65443" class="btn btn-primary"><?php esc_html_e( 'Order Now', 'tutti-frutti-cafe' ); ?></a>
         </div>
