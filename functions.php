@@ -28,6 +28,7 @@ require_once get_template_directory() . '/inc/cpt-jobs.php';
 require_once get_template_directory() . '/inc/cpt-business-opportunity.php';
 require_once get_template_directory() . '/inc/business-opportunity-form.php';
 require_once get_template_directory() . '/inc/cpt-page-sections.php';
+require_once get_template_directory() . '/inc/page-hero-meta.php';
 require_once get_template_directory() . '/inc/schema-local-business.php';
 require_once get_template_directory() . '/inc/google-analytics.php';
 require_once get_template_directory() . '/inc/theme-setup.php';
@@ -114,7 +115,7 @@ add_filter( 'page_template', 'tutti_frutti_load_page_template' );
  * Enqueue Styles and Scripts
  */
 function tutti_frutti_enqueue_scripts() {
-    $version = '1.7.4';
+    $version = '1.7.5';
 
     wp_enqueue_style( 'tutti-frutti-style', get_stylesheet_uri(), array(), $version );
 
@@ -196,6 +197,38 @@ function tutti_frutti_enqueue_scripts() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'tutti_frutti_enqueue_scripts' );
+
+/**
+ * Nav menu items set to open in a new tab.
+ */
+function tutti_frutti_nav_new_tab_rel( $atts, $item ) {
+    if ( isset( $item->target ) && '_blank' === $item->target ) {
+        $rel         = isset( $atts['rel'] ) ? $atts['rel'] . ' ' : '';
+        $atts['rel'] = trim( $rel . 'noopener noreferrer' );
+    }
+
+    return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'tutti_frutti_nav_new_tab_rel', 10, 2 );
+
+/**
+ * Append a visually hidden "opens in a new tab" note inside the link.
+ */
+function tutti_frutti_nav_new_tab_hint( $item_output, $item ) {
+    if ( ! isset( $item->target ) || '_blank' !== $item->target ) {
+        return $item_output;
+    }
+
+    $pos = strrpos( $item_output, '</a>' );
+    if ( false === $pos ) {
+        return $item_output;
+    }
+
+    $hint = '<span class="screen-reader-text">' . esc_html__( ' (opens in a new tab)', 'tutti-frutti-cafe' ) . '</span>';
+
+    return substr_replace( $item_output, $hint, $pos, 0 );
+}
+add_filter( 'walker_nav_menu_start_el', 'tutti_frutti_nav_new_tab_hint', 10, 2 );
 
 /**
  * Register Widget Areas

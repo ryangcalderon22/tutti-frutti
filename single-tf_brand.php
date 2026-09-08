@@ -151,8 +151,6 @@ while ( have_posts() ) :
                                                     <span class="brand-menu-product__name"><?php echo esc_html( $product['name'] ); ?></span>
                                                     <?php
 $instore_products = array(
-    'Açaí Bowls',
-    'Frozen Yogurt',
 );
 
 if ( in_array( $product['name'], $instore_products, true ) ) : ?>

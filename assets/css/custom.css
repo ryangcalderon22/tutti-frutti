@@ -801,6 +801,7 @@ h2.section-title,
 h1.page-title {
     font-family: 'Oswald';
     letter-spacing: 4px;
+    color: var(--primary-orange);
 }
 
 section.home-section.home-featured .tf-slider__media {
@@ -1753,4 +1754,147 @@ section.home-hero:before {
     line-height: 1.7;
     color: var(--text-dark);
     text-wrap: pretty;
+}
+
+/* ===== Primary nav dropdowns =====
+   Submenus are opened on hover, and on :focus-within so keyboard users can
+   reach them with Tab. Below 769px the nav is a stacked panel, so the dropdown
+   becomes an accordion driven by .is-open from js/mobile-menu.js. */
+.main-navigation .menu-item-has-children {
+    position: relative;
+}
+
+.main-navigation .menu-item-has-children>a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Caret: a square with two adjacent borders, rotated so the corner points down.
+   margin-top pulls the glyph back to optical centre, because the visible corner
+   sits below the middle of its 6x6 layout box. */
+.main-navigation .menu-item-has-children>a::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    margin-top: -3px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    flex: none;
+    transition: transform 0.2s ease, margin-top 0.2s ease;
+}
+
+.main-navigation .sub-menu {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    min-width: 220px;
+}
+
+@media (min-width: 769px) {
+    .main-navigation .sub-menu {
+        /* override the site-wide `nav ul { display: flex }` */
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1001;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(6px);
+        transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    }
+
+    /* Hover bridge: keeps the menu open while the cursor crosses the gap. */
+    .main-navigation .menu-item-has-children::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 12px;
+    }
+
+    .main-navigation .menu-item-has-children:hover>.sub-menu,
+    .main-navigation .menu-item-has-children:focus-within>.sub-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .main-navigation .menu-item-has-children:hover>a::after,
+    .main-navigation .menu-item-has-children:focus-within>a::after {
+        transform: rotate(225deg);
+        margin-top: 2px;
+    }
+
+    .main-navigation .sub-menu li {
+        display: block;
+        width: 100%;
+    }
+
+    .main-navigation .sub-menu a {
+        display: block;
+        padding: 9px 18px;
+        white-space: nowrap;
+        color: var(--primary-brown);
+        font-size: 14px;
+    }
+
+    .main-navigation .sub-menu a:hover,
+    .main-navigation .sub-menu a:focus-visible {
+        background: var(--light-cream);
+        color: var(--secondary-orange);
+    }
+
+    /* Hover opens the dropdown on desktop, so the tap toggle is not needed. */
+    .main-navigation .submenu-toggle {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Accordion: collapsed until .is-open is set on the parent item. */
+    .main-navigation .sub-menu {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 5px 0 4px 16px;
+        border-left: 2px solid var(--light-cream);
+        margin-top: 10px;
+    }
+
+    .main-navigation .menu-item-has-children.is-open>.sub-menu {
+        display: flex;
+    }
+
+    .main-navigation .menu-item-has-children.is-open>a::after {
+        transform: rotate(225deg);
+        margin-top: 2px;
+    }
+
+    .main-navigation .sub-menu a {
+        font-size: 14px;
+    }
+
+    /* Tap target for opening the submenu, separate from the link itself. */
+    .main-navigation .submenu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: auto;
+        margin-left: 4px;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: inherit;
+        cursor: pointer;
+    }
 }

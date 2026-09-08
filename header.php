@@ -38,7 +38,8 @@ $order_url = tutti_frutti_get_chownow_url();
                         'theme_location' => 'primary',
                         'menu_id'        => 'primary-menu',
                         'container'      => false,
-                        'depth'          => 1,
+                        // 2 = top level plus one dropdown; a third level has no styling.
+                        'depth'          => 2,
                         'fallback_cb'    => false,
                     )
                 );
